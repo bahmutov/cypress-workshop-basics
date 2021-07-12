@@ -1,0 +1,45 @@
+{
+  "name": "cypress-workshop-basics",
+  "version": "1.0.0",
+  "description": "Basics of end-to-end testing with Cypress.io test runner",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "start": "npm start --prefix todomvc -- --quiet",
+    "ci": "start-test 3000",
+    "dev": "start-test 3000 cy:open",
+    "postinstall": "npm install --prefix todomvc",
+    "reset": "npm run reset --prefix todomvc",
+    "slides:dev": "vite",
+    "slides:build": "vite build"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/cypress-workshop-basics.git"
+  },
+  "keywords": [
+    "cypress",
+    "cypress-io",
+    "e2e",
+    "end-to-end",
+    "testing",
+    "workshop"
+  ],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahmutov/cypress-workshop-basics/issues"
+  },
+  "homepage": "https://github.com/bahmutov/cypress-workshop-basics#readme",
+  "devDependencies": {
+    "cypress": "7.7.0",
+    "prettier": "2.2.1",
+    "reveal.js": "4.1.0",
+    "start-server-and-test": "1.12.1",
+    "vite": "2.0.4"
+  },
+  "engines": {
+    "node": ">=12"
+  }
+}

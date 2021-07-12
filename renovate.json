@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "automerge": true,
+  "updateNotScheduled": false,
+  "timezone": "America/New_York",
+  "schedule": [
+    "every weekend"
+  ],
+  "masterIssue": true
+}
