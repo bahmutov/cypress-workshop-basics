@@ -1,4 +1,4 @@
-# cypress-workshop-basics
+# cypress-workshop-basics ![cypress version](https://img.shields.io/badge/cypress-7.7.0-brightgreen)
 > Basics of end-to-end testing with [Cypress.io](https://www.cypress.io) test runner
 
 ## Requirements
