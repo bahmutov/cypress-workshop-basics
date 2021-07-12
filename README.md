@@ -1,4 +1,5 @@
-# cypress-workshop-basics ![cypress version](https://img.shields.io/badge/cypress-7.7.0-brightgreen)
+# cypress-workshop-basics
+[![ci status][ci image]][ci url] [![badges status][badges image]][badges url] [![renovate-app badge][renovate-badge]][renovate-app] ![cypress version](https://img.shields.io/badge/cypress-7.7.0-brightgreen)
 > Basics of end-to-end testing with [Cypress.io](https://www.cypress.io) test runner
 
 ## Requirements
@@ -139,5 +140,13 @@ npm run slides:dev
 - https://docs.cypress.io/
 - https://glebbahmutov.com/cypress-examples/
 
+## Other workshops
+
+- https://github.com/cypress-io/cypress-workshop-ci
+
 [renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
 [renovate-app]: https://renovateapp.com/
+[ci image]: https://github.com/bahmutov/cypress-workshop-basics/workflows/ci/badge.svg?branch=main
+[ci url]: https://github.com/bahmutov/cypress-workshop-basics/actions
+[badges image]: https://github.com/bahmutov/cypress-workshop-basics/workflows/badges/badge.svg?branch=main
+[badges url]: https://github.com/bahmutov/cypress-workshop-basics/actions

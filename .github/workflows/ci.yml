@@ -12,5 +12,5 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           config-file: 'cypress-ci.json'
-          start: 'npm start',
+          start: 'npm start'
           wait-on: 'http://localhost:3000'
