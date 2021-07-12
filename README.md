@@ -73,6 +73,8 @@ $ npm run dev
 
 ## Slides
 
+Read [Presentations with Reveal.js and Vite](https://glebbahmutov.com/blog/reveal-vite/)
+
 ## Content
 
 ### Beginner

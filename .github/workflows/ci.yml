@@ -21,3 +21,11 @@ jobs:
           config-file: 'cypress-slides.json'
           start: 'npm run slides'
           wait-on: 'http://localhost:3100'
+
+      # build and deploy new version of the slides
+      - name: Build slides 🏗
+        run: npm run slides:build -- --base cypress-workshop-basics
+
+      # TODO deploy to gh-pages
+      - name: Deploy slides 📋
+        run: ls -la dist

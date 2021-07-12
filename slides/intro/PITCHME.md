@@ -151,12 +151,10 @@ Look at `todomvc/app.js`
 
 ## Questions
 
-@ul
 - what happens when you add a new Todo item?
 - how does it get to the server?
 - where does the server save it?
 - what happens on start up?
-@ulend
 
 Note:
 The students should open DevTools and look at XHR requests that go between the web application and the server. Also the students should find `todomvc/data.json` file with saved items.
