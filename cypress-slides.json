@@ -1,5 +1,5 @@
 {
-  "baseUrl": "http://localhost:3000",
+  "baseUrl": "http://localhost:3100",
   "$schema": "https://on.cypress.io/cypress.schema.json",
   "integrationFolder": "cypress/slides-tests",
   "supportFile": false,

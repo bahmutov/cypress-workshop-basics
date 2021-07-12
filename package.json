@@ -10,8 +10,8 @@
     "dev": "start-test 3000 cy:open",
     "postinstall": "npm install --prefix todomvc",
     "reset": "npm run reset --prefix todomvc",
-    "slides": "vite",
-    "slides:dev": "start-test slides 3000 cy:slides",
+    "slides": "vite --strictPort --port 3100",
+    "slides:dev": "start-test slides 3100 cy:slides",
     "slides:build": "vite build",
     "cy:slides": "cypress open --config-file cypress-slides.json"
   },

@@ -20,4 +20,4 @@ jobs:
         with:
           config-file: 'cypress-slides.json'
           start: 'npm run slides'
-          wait-on: 'http://localhost:3000'
+          wait-on: 'http://localhost:3100'
