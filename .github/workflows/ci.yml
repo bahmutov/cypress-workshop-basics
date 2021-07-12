@@ -14,18 +14,3 @@ jobs:
           config-file: 'cypress-ci.json'
           start: 'npm start'
           wait-on: 'http://localhost:3000'
-
-      - name: Test slides 🎞
-        uses: cypress-io/github-action@v2
-        with:
-          config-file: 'cypress-slides.json'
-          start: 'npm run slides'
-          wait-on: 'http://localhost:3100'
-
-      # build and deploy new version of the slides
-      - name: Build slides 🏗
-        run: npm run slides:build -- --base cypress-workshop-basics
-
-      # TODO deploy to gh-pages
-      - name: Deploy slides 📋
-        run: ls -la dist
