@@ -5,7 +5,7 @@ import {
   resetDatabase,
   stubMathRandom,
   visit
-} from '../../support/utils'
+} from '../support/utils'
 
 // testing TodoMVC server API
 // because json-server can fail sometimes, let the tests retry

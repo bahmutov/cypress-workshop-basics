@@ -1,5 +1,4 @@
 /// <reference types="Cypress" />
-/* eslint-env mocha */
 import {
   enterTodo,
   getNewTodoInput,
@@ -7,7 +6,7 @@ import {
   getTodoItems,
   resetDatabase,
   visit
-} from '../../support/utils'
+} from '../support/utils'
 
 it('loads the app', () => {
   visit()

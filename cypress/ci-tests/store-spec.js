@@ -8,7 +8,7 @@ import {
   resetDatabase,
   stubMathRandom,
   visit
-} from '../../support/utils'
+} from '../support/utils'
 
 // testing the central Vuex data store
 describe('UI to Vuex store', { retries: 2 }, () => {
