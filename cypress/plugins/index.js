@@ -15,7 +15,7 @@
 
 const fs = require('fs')
 const path = require('path')
-const debug = require('debug')('testing-workshop-cypress')
+const debug = require('debug')('cypress-workshop-basics')
 
 const getDbFilename = () =>
   path.join(__dirname, '..', '..', 'todomvc', 'data.json')
@@ -81,22 +81,9 @@ module.exports = (on, config) => {
     }
   })
 
-  // code coverage tasks
-  // @see https://on.cypress.io/code-coverage
-  // on('task', require('@cypress/code-coverage/task'))
-  // use .babelrc file if want to instrument unit tests
-  // on('file:preprocessor', require('@cypress/code-coverage/use-babelrc'))
-
   // `config` is the resolved Cypress config
   // see https://on.cypress.io/configuration-api
   config.fixturesFolder = 'cypress/fixtures'
   config.modifyObstructiveCode = false
   return Promise.resolve(config)
 }
-
-// init for cypress-plugin-snapshots
-// const snapshotsPlugin = require('cypress-plugin-snapshots/plugin')
-// module.exports = (on, config) => {
-//   snapshotsPlugin.initPlugin(on, config)
-//   return config
-// }
