@@ -111,9 +111,7 @@ $ npm run dev
 | [🔗](#stubbing-methods) | Stubbing methods | [20-stubbing](./cypress/integration/20-stubbing) | [20-stubbing](./slides/20-stubbing/PITCHME.md) | [link](https://testing-workshop-cypress.netlify.app?p=20-stubbing)
 | | The end                                | -                                                                                        | [end](slides/end/PITCHME.md)                                       | [link](https://testing-workshop-cypress.netlify.app?p=end)
 
-## For speakers 🎙
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/de48e52e-e2ee-4092-a626-ab4fa358e441/deploy-status)](https://app.netlify.com/sites/testing-workshop-cypress/deploys)
+## For speakers
 
 This workshop can take all day, but you can pick the sections you are interested in teaching at will and customize it into any time duration. Everyone is coding for the most part, except for CI and the Cypress Dashboard sections, where the usage was shown via slides and actual sites.
 
@@ -131,7 +129,7 @@ npm run cy:open
 The slides are generated using Reveal.js from Markdown sources in the [slides](slides) folder. You can show the slides locally by running
 
 ```shell
-npm run slides:dev
+npm run slides
 ```
 
 ## Additional information

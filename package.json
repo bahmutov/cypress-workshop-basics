@@ -10,8 +10,10 @@
     "dev": "start-test 3000 cy:open",
     "postinstall": "npm install --prefix todomvc",
     "reset": "npm run reset --prefix todomvc",
-    "slides:dev": "vite",
-    "slides:build": "vite build"
+    "slides": "vite",
+    "slides:dev": "start-test slides 3000 cy:slides",
+    "slides:build": "vite build",
+    "cy:slides": "cypress open --config-file cypress-slides.json"
   },
   "private": true,
   "repository": {
