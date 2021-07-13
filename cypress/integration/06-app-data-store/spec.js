@@ -9,6 +9,13 @@ beforeEach(() => {
 beforeEach(() => {
   cy.visit('/')
 })
+
+it('has window.app property', () => {
+  // get its "app" property
+  // and confirm it is an object
+  cy.window()
+})
+
 /**
  * Adds a todo item
  * @param {string} text

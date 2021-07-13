@@ -35,6 +35,12 @@ describe('App Data Store', { retries: 2 }, () => {
     cy.screenshot(this.currentTest.fullTitle())
   })
 
+  it('has window.app property', () => {
+    // get its "app" property
+    // and confirm it is an object
+    cy.window().its('app').should('be.an', 'object')
+  })
+
   it('adds items to store', () => {
     addItem('something')
     addItem('something else')
