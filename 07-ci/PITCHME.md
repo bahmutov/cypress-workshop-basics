@@ -8,30 +8,50 @@
 - CircleCI Orb example
 - GitHub Actions example
 
-+++
+---
 
 ## Todo if possible
 
 - sign up for free account on CircleCI
-- use specs from folder `cypress/integration/07-ci`
+- use the specs from folder `cypress/ci-tests`
   - UI spec
   - Data store spec
   - API calls spec
 
-+++
+---
 
-## Questions
+## Open vs Run
 
-- look at the scripts in `package.json`
 - run the specs in the interactive mode with `cypress open`
 - run the specs in the headless mode with `cypress run`
 
+See [https://on.cypress.io/command-line](https://on.cypress.io/command-line)
+
 +++
 
-## Set up CI
+## Config files
+
+- by default, all Cypress settings are in `cypress.json`
+- for CI this repo has `cypress-ci.json`
+
+It overrides the integration folder
+
+```text
+"integrationFolder": "cypress/ci-tests"
+```
+
+Todo: run Cypres with
+
+```shell
+$ npx cypress run --config-file cypress-ci.json
+```
+
+---
+
+## Set up CircleCI
 
 - sign up for CircleCI
-- fork this repo [cypress-io/testing-workshop-cypress](https://github.com/cypress-io/testing-workshop-cypress)
+- fork this repo [bahmutov/cypress-workshop-basics](https://github.com/bahmutov/cypress-workshop-basics)
 - add project to CircleCI
 
 ![Add project](./img/add-project.png)
@@ -51,15 +71,14 @@ Read file `.circleci/circle.yml`
 
 - uses CircleCI V2 [https://circleci.com/docs/2.0/sample-config/](https://circleci.com/docs/2.0/sample-config/)
 - Docker file from [https://github.com/cypress-io/cypress-docker-images](https://github.com/cypress-io/cypress-docker-images)
-  - `cypress/base:8`, `cypress/base:10`, `cypress/base:12.x.y` are good choices
 
-+++
+---
 
 ## On CI:
 
 - install and cache dependencies
 - start `todomvc` server in the background
-- run spec files from `cypress/integration/07-ci`
+- run Cypress using the config file `cypress-ci.json`
 
 +++
 
@@ -68,7 +87,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cypress/base:8
+      - image: cypress/base:12
     working_directory: ~/repo
     steps:
       - checkout
@@ -86,12 +105,8 @@ jobs:
             - ~/.npm
             - ~/.cache
           key: dependencies-{{ checksum "package.json" }}
+      # continued: start the app and run the tests
 ```
-
-@[4-5](Use Cypress Docker image with Node 8)
-@[9-13](Restore previously cached dependencies)
-@[14-17](Install NPM dependencies)
-@[18-22](Save dependencies, including Cypress binary in ~/.cache)
 
 +++
 
@@ -104,11 +119,8 @@ jobs:
     background: true
 - run:
     name: Run Cypress tests
-    command: npm test
+    command: npx cypress run --config-file cypress-ci.json
 ```
-
-@[2-6](Start application server)
-@[7-9](Run Cypress tests)
 
 +++
 
@@ -123,14 +135,14 @@ Alternative: use [start-server-and-test](https://github.com/bahmutov/start-serve
 ```json
 {
   "scripts": {
-    "start": "cd todomvc; npm start -- --quiet",
-    "test": "cypress run --spec 'cypress/integration/07-ci/*'",
+    "start": "npm start --prefix todomvc -- --quiet",
+    "test": "cypress run --config-file cypress-ci.json",
     "ci": "start-test 3000"
   }
 }
 ```
 
-+++
+---
 
 ## CircleCI Cypress Orb
 
@@ -141,6 +153,7 @@ version: 2.1
 orbs:
   # import Cypress orb by specifying an exact version x.y.z
   # or the latest version 1.x.x using "@1" syntax
+  # https://github.com/cypress-io/circleci-orb
   cypress: cypress-io/cypress@1
 workflows:
   build:
@@ -150,26 +163,50 @@ workflows:
       - cypress/run
 ```
 
+See [https://github.com/cypress-io/circleci-orb](https://github.com/cypress-io/circleci-orb)
+
 +++
 
 ## Todo
 
-Look how tests are run on Firefox in [.circleci/config.yml](.circleci/config.yml) using [cypress-io/circleci-orb](https://github.com/cypress-io/circleci-orb).
+Look how tests are run in [.circleci/config.yml](https://github.com/bahmutov/cypress-workshop-basics/blob/main/.circleci/config.yml) using [cypress-io/circleci-orb](https://github.com/cypress-io/circleci-orb).
 
-+++
+---
 
-## Record on Dashboard
+## Store test artifacts
 
 ```yaml
 version: 2.1
 orbs:
+  # https://github.com/cypress-io/circleci-orb
   cypress: cypress-io/cypress@1
 workflows:
   build:
     jobs:
       - cypress/run:
+          # store videos and any screenshots after tests
+          store_artifacts: true
+```
+
++++
+
+## Record results on Dashboard
+
+```yaml
+version: 2.1
+orbs:
+  # https://github.com/cypress-io/circleci-orb
+  cypress: cypress-io/cypress@1
+workflows:
+  build:
+    jobs:
+      # set CYPRESS_RECORD_KEY as CircleCI
+      # environment variable
+      - cypress/run:
           record: true
 ```
+
+[https://on.cypress.io/dashboard-introduction](https://on.cypress.io/dashboard-introduction)
 
 +++
 
@@ -178,12 +215,13 @@ workflows:
 ```yaml
 version: 2.1
 orbs:
+  # https://github.com/cypress-io/circleci-orb
   cypress: cypress-io/cypress@1
 workflows:
   build:
     jobs:
-      - cypress/install
-      - cypress/run:
+      - cypress/install # single install job
+      - cypress/run: # 4 test jobs
           requires:
             - cypress/install
           record: true # record results on Cypress Dashboard
@@ -201,40 +239,40 @@ Never struggle with CI config 👍
 - [circleci.com/orbs/registry/orb/cypress-io/cypress](https://circleci.com/orbs/registry/orb/cypress-io/cypress)
 - 📺 [CircleCI + Cypress webinar](https://youtu.be/J-xbNtKgXfY)
 
-+++
+---
 
 ## GitHub Actions
 
 - cross-platform CI built on top of Azure CI + MacStadium
 - Linux, Windows, and Mac
-- We wrote [cypress-io/github-action](https://github.com/cypress-io/github-action)
+- Official [cypress-io/github-action](https://github.com/cypress-io/github-action)
 
 +++
 
 ```yaml
 jobs:
   cypress-run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v1
-      - uses: cypress-io/github-action@v1
+      - uses: actions/checkout@v2
+      # https://github.com/cypress-io/github-action
+      - uses: cypress-io/github-action@v2
         with:
           start: npm start
           wait-on: 'http://localhost:3000'
-          spec: 'cypress/integration/07-ci/*'
+          config-file: 'cypress-ci.json'
 ```
 
-@[5](Checkout GitHub repo)
-@[6-10](Run Cypress tests)
+Check [.github/workflows/ci.yml](https://github.com/bahmutov/cypress-workshop-basics/blob/main/.github/workflows/ci.yml)
 
-+++
+---
 
-## Take away
+## Cypress on CI: take away
 
 - use `npm ci` command instead of `npm install`
 - cache `~/.npm` and `~/.cache` folders
 - use [start-server-and-test](https://github.com/bahmutov/start-server-and-test) for simplicity
-- store video as artifact with [store_artifacts](https://circleci.com/docs/2.0/configuration-reference/#store_artifacts)
+- store videos and screenshots yourself or use Cypress Dashboard
 
 +++
 
