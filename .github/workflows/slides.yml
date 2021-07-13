@@ -22,6 +22,14 @@ jobs:
       - name: Build slides 🏗
         run: npm run slides:build -- --base /cypress-workshop-basics/
 
-      # TODO deploy to gh-pages
-      - name: Deploy slides 📋
+      - name: Show the built folder 📋
         run: ls -la dist
+
+      # if the tests passed, publish the application
+      # https://github.com/peaceiris/actions-gh-pages
+      - name: Publish slides 🌐
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
