@@ -1,15 +1,7 @@
 {
   "viewportWidth": 600,
   "viewportHeight": 800,
-  "ignoreTestFiles": [
-    "**/answer/*",
-    "*answer.js",
-    "*.d.ts",
-    "**/13-app-actions/todo-page-object.js",
-    "**/13-app-actions/utils.js",
-    "**/17-component-testing/filters.js",
-    "**/17-component-testing/*.jsx"
-  ],
+  "ignoreTestFiles": ["**/answer/*", "*answer.js", "*.d.ts"],
   "baseUrl": "http://localhost:3000",
   "env": {},
   "$schema": "https://on.cypress.io/cypress.schema.json",
