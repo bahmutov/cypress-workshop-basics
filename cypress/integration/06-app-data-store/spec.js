@@ -13,6 +13,19 @@ beforeEach(() => {
 it('has window.app property', () => {
   // get its "app" property
   // and confirm it is an object
+  // see https://on.cypress.io/its
+  cy.window()
+})
+
+it('has vuex store', () => {
+  // check app's $store property
+  // and confirm it has typical Vuex store methods
+  // see https://on.cypress.io/its
+  cy.window()
+})
+
+it('starts with an empty store', () => {
+  // the list of todos in the Vuex store should be empty
   cy.window()
 })
 
