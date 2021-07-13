@@ -103,4 +103,4 @@ Record tests by clicking on the page
 - pick elements using Selector Playground
 - record tests using Cypress Studio
 
-➡️ Pick the [next section](https://github.com/cypress-io/testing-workshop-cypress#content-)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)

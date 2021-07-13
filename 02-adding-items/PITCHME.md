@@ -226,4 +226,4 @@ describe('Feature A', () => {
 - go through UI
 - validate the application after actions
 
-➡️ Pick the [next section](https://github.com/cypress-io/testing-workshop-cypress#content-)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)

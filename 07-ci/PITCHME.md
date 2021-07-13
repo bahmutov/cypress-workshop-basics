@@ -241,3 +241,5 @@ jobs:
 ## Todo
 
 Find the CI you use on [https://on.cypress.io/continuous-integration](https://on.cypress.io/continuous-integration) and [https://github.com/cypress-io/cypress-example-kitchensink#ci-status](https://github.com/cypress-io/cypress-example-kitchensink#ci-status)
+
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)

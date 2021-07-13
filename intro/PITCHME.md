@@ -1,11 +1,11 @@
 # Cypress Workshop: Basics
 
-- [github.com/cypress-io/cypress-workshop-basics](https://github.com/cypress-io/cypress-workshop-basics)
+- [github.com/bahmutov/cypress-workshop-basics](https://github.com/bahmutov/cypress-workshop-basics)
 
-Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=02-adding-items), [03-selector-playground](?p=03-selector-playground), [04-reset-state](?p=04-reset-state), [05-xhr](?p=05-xhr), [06-app-data-store](?p=06-app-data-store), [07-ci](?p=07-ci), [08-dashboard](?p=08-dashboard), [09-reporters](?p=09-reporters), [10-configuration](?p=10-configuration), [11-retry-ability](?p=11-retry-ability)
+Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=02-adding-items), [03-selector-playground](?p=03-selector-playground), [04-reset-state](?p=04-reset-state), [05-xhr](?p=05-xhr), [06-app-data-store](?p=06-app-data-store), [07-ci](?p=07-ci), [11-retry-ability](?p=11-retry-ability), [12-custom-commands](?p=12-custom-commands)
 
 +++
-## Gleb Bahmutov, PhD
+## Author: Gleb Bahmutov, PhD
 
 - Ex-VP of Engineering at Cypress
 - Ex-Distinguished Engineer at Cypress
@@ -15,80 +15,62 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 - [https://glebbahmutov.com/blog/tags/cypress/](https://glebbahmutov.com/blog/tags/cypress/)
 - [https://www.youtube.com/glebbahmutov](https://www.youtube.com/glebbahmutov)
 
-+++
+---
 
-## What we are going to cover 1/3
-
-As long as ⏳ permits
+## What we are going to cover 1/2
 
 - example TodoMVC
   * web app, data store, REST calls
 - basic page load test
 - selector playground
-- resetting state
-- XHR spying and stubbing, fixtures
+- resetting state before the test
+- any questions
 
 +++
 
-## What we are going to cover 2/3
+## What we are going to cover 2/2
 
-As long as ⏳ permits
+- network spying and stubbing, fixtures
+- running E2E tests on CI
+- retry-ability and flake-free tests
+- custom commands
+- - any questions
 
-- CI and Cypress dashboard
-- test reporters
-- configuration and environment variables
-- retry-ability
-- debugging
-- visual testing
-
-+++
-## What we are going to cover 3/3
-
-As long as ⏳ permits
-
-- page objects vs app actions
-- fixtures and backend
-- preprocessors
-- component testing
-- plugins
-- code coverage
-
-+++
+---
 
 ## Time 🕰
 
-- total workshop duration 3 - 9 hours, depending on the included sections
-- short breaks, lunch
+- total workshop duration 4 hours over two days
+- short breaks after each hour
 
 +++
 
 Please: if you have experience with Cypress.io, help others during the workshop 🙏
 
-+++
+---
 
-## How learning works
+## How efficient learning works
 
 1. I explain and show
 2. We do together
 3. You do and I help
 
-+++
+---
 
 ## Requirements
 
 You will need:
 
 - `git` to clone this repo
-- Node v10+ to install dependencies
-- Node v12 recommended
+- Node v12+ to install dependencies
 
 ```text
 git clone <repo url>
-cd testing-workshop-cypress
+cd cypress-workshop-basics
 npm install
 ```
 
-+++
+---
 
 ## Repo organization
 
@@ -151,10 +133,10 @@ Look at `todomvc/app.js`
 
 ## Questions
 
-- what happens when you add a new Todo item?
-- how does it get to the server?
-- where does the server save it?
-- what happens on start up?
+- what happens when you add a new Todo item? <!-- .element: class="fragment" -->
+- how does it get to the server? <!-- .element: class="fragment" -->
+- where does the server save it? <!-- .element: class="fragment" -->
+- what happens on start up? <!-- .element: class="fragment" -->
 
 Note:
 The students should open DevTools and look at XHR requests that go between the web application and the server. Also the students should find `todomvc/data.json` file with saved items.
@@ -170,4 +152,4 @@ This app has been coded and described in this blog post [https://www.cypress.io/
 
 This app has been coded and described in this blog post [https://www.cypress.io/blog/2017/11/28/testing-vue-web-application-with-vuex-data-store-and-rest-backend/](https://www.cypress.io/blog/2017/11/28/testing-vue-web-application-with-vuex-data-store-and-rest-backend/)
 
-➡️ Pick the [next section](https://github.com/cypress-io/testing-workshop-cypress#content-)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)

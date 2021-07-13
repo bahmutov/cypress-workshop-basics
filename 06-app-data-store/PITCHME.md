@@ -189,3 +189,5 @@ getStore()
 - when needed, you can access the application directly from the test
 
 Read also: https://www.cypress.io/blog/2018/11/14/testing-redux-store/
+
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)

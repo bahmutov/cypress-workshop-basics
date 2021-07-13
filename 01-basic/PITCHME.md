@@ -1,4 +1,4 @@
-## ☀️ Part 1: Basic tests
+## The very basic tests
 
 ### 📚 You will learn
 
@@ -6,7 +6,7 @@
 - two ways to run Cypress
 - screenshots and video recording
 
-+++
+---
 
 - keep `todomvc` app running
 - open Cypress from the root folder with `npm run cy:open`
@@ -29,36 +29,34 @@ This is a good moment to show how Cypress stores DOM snapshots and shows them fo
 
 +++
 
-## Questions 1/3
+## Questions 1/2
 
-@ul
 - where are the docs for `cy.contains` command?
-- why is the command failing?
+- why is the command failing? <!-- .element: class="fragment" -->
   - **hint**: use DevTools
-- can you fix this?
-@ulend
+- can you fix this? <!-- .element: class="fragment" -->
 
 +++
 
-## Questions 2/3
+## Questions 2/2
 
-@ul
 - do you see the command retrying (blue spinner)?
-- use `timeout` option to force the command to try for longer
-@ulend
+- try using the timeout option to force the command to try for longer <!-- .element: class="fragment" -->
 
-+++
+---
 
 ## Cypress has 2 commands
 
 - `cypress open`
 - `cypress run`
 
+See [https://on.cypress.io/command-line](https://on.cypress.io/command-line)
+
 +++
 
-## How to?
+## Q: How do you:
 
-- run just this spec `cypress/integration/01-basic/spec.js` in headless mode?
+- run just the spec `cypress/integration/01-basic/spec.js` in headless mode?
 
 Hint: `npx cypress run --help`
 
@@ -71,12 +69,12 @@ Hint: `npx cypress run --help`
 - video recording [https://on.cypress.io/configuration#Videos](https://on.cypress.io/configuration#Videos)
 - `cy.screenshot` command
 
-+++
+---
 
 ## Fix the test
 
 - can you fix the test?
-- how would you select an element:
+- how would you select an element: <!-- .element: class="fragment" -->
   - by text
   - by id
   - by class
@@ -84,11 +82,11 @@ Hint: `npx cypress run --help`
 
 **Tip:** https://on.cypress.io/best-practices#Selecting-Elements
 
-+++
+---
 ## 🏁 Conclusions
 
 - most commands retry
 - run Cypress in headless mode on CI with `cypress run`
 - screenshots and videos
 
-➡️ Pick the [next section](https://github.com/cypress-io/testing-workshop-cypress#content-)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
