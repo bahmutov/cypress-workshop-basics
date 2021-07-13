@@ -75,22 +75,24 @@ $ npm run dev
 
 ## Slides
 
-Read [Presentations with Reveal.js and Vite](https://glebbahmutov.com/blog/reveal-vite/)
+The slides are deployed to GitHub Pages and can be seen at [https://glebbahmutov.com/cypress-workshop-basics/](https://glebbahmutov.com/cypress-workshop-basics/).
 
-## Content
+The slides can be seen locally by running `npm run slides` and opening `localhost:3100`. The content for the slides comes from the Markdown files in the [slides](./slides) folder. Read [Presentations with Reveal.js and Vite](https://glebbahmutov.com/blog/reveal-vite/) for technical details.
 
-### Beginner
+## Contents
 
-| | topic                                  | folder                                                                                   | contents                                                       | slides |
-| --- | -------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ------ |
-| [🔗](#intro) | Introduction, TodoMVC application      | [todomvc](todomvc)                                                                       | [intro.md](slides/intro/PITCHME.md)                                   | [link](https://testing-workshop-cypress.netlify.app?p=intro)
-| [🔗](#start) | Loading page                           | [00-start](00-start)                                                                     | [00-start](slides/00-start/PITCHME.md)                             | [link](https://testing-workshop-cypress.netlify.app?p=00-start)
-| [🔗](#basic) | `cypress open` vs `cypress run`        | [01-basic](cypress/integration/01-basic)                             | [01-basic](slides/01-basic/PITCHME.md)                             | [link](https://testing-workshop-cypress.netlify.app?p=01-basic)
-| [🔗](#adding-items) | Adding items test, `cypress.json` file | [02-adding-items](cypress/integration/02-adding-items)               | [02-adding-items](slides/02-adding-items/PITCHME.md)               | [link](https://testing-workshop-cypress.netlify.app?p=02-adding-items)
-| [🔗](#selector-playground) | Selector Playground                    | [03-selector-playground](cypress/integration/03-selector-playground) | [03-selector-playground](slides/03-selector-playground/PITCHME.md) | [link](https://testing-workshop-cypress.netlify.app?p=03-selector-playground)
-| [🔗](#reset-state) | Reset database using `cy.request`      | [04-reset-state](cypress/integration/04-reset-state)                 | [04-reset-state](slides/04-reset-state/PITCHME.md)                 | [link](https://testing-workshop-cypress.netlify.app?p=04-reset-state)
-| [🔗](#xhr) | Spy and stub XHR requests, fixtures    | [05-xhr](cypress/integration/05-xhr)                                 | [05-xhr](slides/05-xhr/PITCHME.md)                                 | [link](https://testing-workshop-cypress.netlify.app?p=05-xhr)
-| [🔗](#app-data-store) | Access application code and data       | [06-app-data-store](cypress/integration/06-app-data-store)           | [06-app-data-store](slides/06-app-data-store/PITCHME.md)           | [link](https://testing-workshop-cypress.netlify.app?p=06-app-data-store)
+<!-- prettier-ignore-start -->
+Topic | The Markdown | See the slides
+---|---|---
+Introduction | [intro.md](slides/intro/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=intro)
+Loading and testing the page | [00-start](slides/00-start/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=00-start)
+`cypress open` vs `cypress run` | [01-basic](slides/01-basic/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=01-basic)
+Adding items test, `cypress.json` file | [02-adding-items](slides/02-adding-items/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=02-adding-items)
+Selector Playground and Cypress Studio | [03-selector-playground](slides/03-selector-playground/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=03-selector-playground)
+Reset the database using `cy.request` | [04-reset-state](slides/04-reset-state/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=04-reset-state)
+Control the network requests | [05-xhr](slides/05-xhr/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=05-xhr)
+Access the application code and data | [06-app-data-store](slides/06-app-data-store/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=06-app-data-store)
+<!-- prettier-ignore-end -->
 
 ### Intermediate
 | | topic                                  | folder                                                                                   | contents                                                       | slides |
