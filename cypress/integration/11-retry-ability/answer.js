@@ -201,6 +201,24 @@ describe('Careful with negative assertions', { retries: 2 }, () => {
     // then assert it goes away (negative assertion)
     cy.get('.loading').should('not.be.visible')
   })
+
+  it.only('loading element is visible, while todos do not exist', () => {
+    cy.intercept('/todos', {
+      delayMs: 1000,
+      fixture: 'two-items.json'
+    })
+    cy.visit('/?delay=1000')
+    cy.get('.loading').should(($loading) => {
+      // single function with synchronous assertions
+      expect($loading).to.be.visible
+      const doc = $loading[0].ownerDocument
+      const todoList = doc.querySelector('.todo-list')
+      expect(todoList).to.be.empty
+    })
+    // the loading element goes away and the list appears
+    cy.get('.loading').should('not.be.visible')
+    cy.get('.todo-list li').should('have.length', 2)
+  })
 })
 
 describe('aliases', () => {
