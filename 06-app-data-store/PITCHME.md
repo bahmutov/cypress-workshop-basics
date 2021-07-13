@@ -12,11 +12,12 @@
 - open `cypress/integration/06-app-data-store/spec.js`
 - test that Vuex data store is working correctly
 
-+++
+---
 
-## Application object
+## The application object
 
 ```javascript
+// todomvc/app.js
 // if you want to expose "app" globally only
 // during end-to-end tests you can guard it using "window.Cypress" flag
 // if (window.Cypress) {
@@ -26,9 +27,41 @@ window.app = app
 
 +++
 
+## Todo: confirm window.app
+
+```js
+// cypress/integration/06-app-data-store/spec.js
+it('has window.app property', () => {
+  // get its "app" property
+  // and confirm it is an object
+  cy.window()
+})
+```
+
+---
+
+## Todo: confirm window.app.$store
+
+```js
+// cypress/integration/06-app-data-store/spec.js
+it('has window.app property', () => {
+  // get the app.$store property
+  // and confirm it has expected Vuex properties
+  cy.window()
+})
+```
+
+---
+
 ## Todo: check Vuex state
 
+Let's add two items via the page, then confirm the Vuex store has them
+
 ```javascript
+// cypress/integration/06-app-data-store/spec.js
+const addItem = (text) => {
+  cy.get('.new-todo').type(`${text}{enter}`)
+}
 it('adds items to store', () => {
   addItem('something')
   addItem('something else')
