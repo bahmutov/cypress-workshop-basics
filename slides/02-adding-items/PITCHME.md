@@ -2,10 +2,10 @@
 
 ### 📚 You will learn
 
-- common commands for working with elements
-- organizing test code using Mocha hooks
+- the common commands for working with page elements
+- organizing the test code using Mocha hooks
 
-+++
+---
 
 ## What kind of tests?
 
@@ -14,7 +14,9 @@
 Note:
 Longer tests, adding items then deleting one for example. Adding items via GUI and observing communication with the server. Adding items then reloading the page.
 
-+++
+---
+
+## Let's test
 
 - keep `todomvc` app running
 - open `cypress/integration/02-adding-items/spec.js` in your text editor
@@ -22,13 +24,15 @@ Longer tests, adding items then deleting one for example. Adding items via GUI a
 
 +++
 
-## ⚠️ Todo items
+## ⚠️ Warning
 
-**Note:** the tests we are about to write are NOT resetting the previously added Todo items. Delete the Todo items before each test manually.
+The tests we are about to write are NOT resetting the previously added Todo items. Delete the Todo items before each test manually.
 
 We will reset the previously saved Todo items in section "4 Reset State".
 
-+++
+---
+
+## Todo: Make this test work
 
 ```js
 it.only('adds two items', () => {
@@ -49,7 +53,7 @@ not change the subject.
 
 +++
 
-## Todo: mark first item completed
+## Todo: mark the first item completed
 
 ```js
 it('can mark an item as completed', () => {
@@ -87,7 +91,7 @@ Avoid duplicate `cy.visit('localhost:3000')` command at the start of each test.
 Note:
 Move `addItem` function into a separate file and import from the spec file. It is just JavaScript, and Cypress bundles each spec file, so utilities can have `cy...` commands too!
 
-+++
+---
 
 ## Todo: delete an item
 
@@ -100,9 +104,9 @@ it('can delete an item', () => {
   // confirm the other item still exists
 })
 ```
-+++
+---
 
-## Todo
+## Todo: use random text
 
 ```javascript
 it('adds item with random text', () => {
@@ -120,16 +124,27 @@ it('adds item with random text', () => {
 - resize the viewport in `cypress.json`
 - set up IntelliSense in `cypress.json` using [https://on.cypress.io/intelligent-code-completion](https://on.cypress.io/intelligent-code-completion)
 
-+++
+---
 ## Adding blank item
 
 The application does not allow adding items with blank titles. What happens when the user does it? Hint: open DevTools console.
 
-### Todo
-
-Fill the test `does not allow adding blank todos`.
-
 +++
+## Todo: finish this test
+
+```js
+it('does not allow adding blank todos', () => {
+  // https://on.cypress.io/catalog-of-events#App-Events
+  cy.on('uncaught:exception', () => {
+    // check e.message to match expected error text
+    // return false if you want to ignore the error
+  })
+
+  // try adding an item with just spaces
+})
+```
+
+---
 ## Bonus
 
 Unit tests vs end-to-end tests
@@ -167,6 +182,8 @@ it('can mark items as completed', () => {
 })
 ```
 
+command - assertion - command - assertion (CACA pattern)
+
 - **tip** check out `cy.pause` command
 
 Note:
@@ -185,7 +202,7 @@ Revisit the discussion about what kind of tests one should write. E2E tests can 
 
 - Core concepts [https://on.cypress.io/writing-and-organizing-tests](https://on.cypress.io/writing-and-organizing-tests)
 
-+++
+---
 
 Organize tests using folder structure and spec files
 
@@ -198,6 +215,8 @@ cypress/integration/
     another-spec.js
     errors-spec.js
 ```
+
+**Tip:** splitting longer specs into smaller ones allows to run them faster in parallel mode https://glebbahmutov.com/blog/split-spec/
 
 +++
 
@@ -220,7 +239,7 @@ describe('Feature A', () => {
 })
 ```
 
-+++
+---
 ## 🏁 Write your tests like a user
 
 - go through UI
