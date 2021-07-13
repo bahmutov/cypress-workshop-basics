@@ -4,13 +4,14 @@
 
 - Cypress Selector Playground tool
 - best practices for selecting elements
+- Cypress Studio for recording tests
 
 +++
 
 - keep `todomvc` app running
 - open `03-selector-playground/spec.js`
 
-+++
+---
 
 > How do we select element in `cy.get(...)`?
 
@@ -51,6 +52,11 @@ Read [best-practices.html#Selecting-Elements](https://docs.cypress.io/guides/ref
 - add test data ids to `todomvc/index.html` DOM markup
 - use new selectors to write `cypress/integration/03-selector-playground/spec.js`
 
+```js
+// fill the selector, maybe use "tid" function
+cy.get('...').should('have.length', 2)
+```
+
 Note:
 The updated test should look something like the next image
 
@@ -73,7 +79,7 @@ it('finds element', () => {
 })
 ```
 
-+++
+---
 ## Cypress Studio
 
 Record tests by clicking on the page
@@ -89,7 +95,7 @@ Record tests by clicking on the page
 
 ![open Cypress Studio](./img/start-studio.png)
 
-+++
+---
 ## 🏁 Selecting Elements
 
 - Use Selector Playground
