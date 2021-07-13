@@ -34,6 +34,7 @@ window.app = app
 it('has window.app property', () => {
   // get its "app" property
   // and confirm it is an object
+  // see https://on.cypress.io/its
   cy.window()
 })
 ```
@@ -47,6 +48,18 @@ it('has window.app property', () => {
 it('has window.app property', () => {
   // get the app.$store property
   // and confirm it has expected Vuex properties
+  // see https://on.cypress.io/its
+  cy.window()
+})
+```
+
+---
+
+## Todo: the initial Vuex state
+
+```js
+it('starts with an empty store', () => {
+  // the list of todos in the Vuex store should be empty
   cy.window()
 })
 ```
@@ -71,17 +84,33 @@ it('adds items to store', () => {
 })
 ```
 
+---
+
+## Question
+
+Why can't we confirm both items using `should('deep.equal', [...])`?
+
+```js
+cy.window()
+  .its('app.$store.state.todos')
+  .should('deep.equal', [
+    { title: 'something', completed: false, id: '1' },
+    { title: 'else', completed: false, id: '2' }
+  ])
+```
+
 +++
 
 ![Random id](./img/new-todo.png)
 
-+++
+---
 
 ## Non-determinism
 
 - random data in tests makes it very hard
 - UUIDs, dates, etc
-- Cypress includes XHR and method stubbing using [http://sinonjs.org/](http://sinonjs.org/)
+- Cypress includes network and method stubbing using [http://sinonjs.org/](http://sinonjs.org/)
+- [https://on.cypress.io/network-requests](https://on.cypress.io/network-requests)
 - [https://on.cypress.io/stubs-spies-and-clocks](https://on.cypress.io/stubs-spies-and-clocks)
 
 +++
@@ -89,7 +118,7 @@ it('adds items to store', () => {
 ## Questions
 
 - how does a new item get its id?
-- can you override random id generator from DevTools?
+- can you override random id generator from DevTools? <!-- .element: class="fragment" -->
 
 +++
 
@@ -103,7 +132,7 @@ it('adds items to store', () => {
 
 ![Application under test](./img/app-in-window.png)
 
-+++
+---
 
 ## Stub application's random generator
 
@@ -122,30 +151,18 @@ it('adds items to store', () => {
 - name spy with an alias `cy.spy(...).as('name')`
 - get the spy using the alias and confirm it was called once
 
-+++
+---
 
-## Application data store
+## Abstract common actions
 
-- inspect in DevTools 'window.app' variable
-- can you find the items in the data store as they are added?
-  - **hint** you might need 'JSON.parse(JSON.stringify(...))' to get a "simple" object
+The tests can repeat common actions (like creating items) by always going through the DOM, called **page objects**
 
-Note:
-Our goal is to show that anything one can do from the DevTools can be done from the end-to-end tests using `cy.window` to get to the application's window. Application code can even expose some objects during testing using `if (window.Cypress) ...` conditions.
+The tests can access the app and call method bypassing the DOM, called "app actions" <!-- .element: class="fragment" -->
 
-+++
-
-## Todo
-
-Write a test that:
-
-- adds 2 todos
-- gets the data store
-- confirms the objects in the data store
+The tests can be a combination of DOM and App actions. <!-- .element: class="fragment" -->
 
 +++
-
-## Advanced
+## Practice
 
 Write a test that:
 
@@ -158,10 +175,7 @@ Write a test that:
 ```js
 it('adds todos via app', () => {
   // bypass the UI and call app's actions directly from the test
-  // app.$store.dispatch('setNewTodo', <desired text>)
-  // app.$store.dispatch('addTodo')
   // using https://on.cypress.io/invoke
-  // bypass the UI and call app's actions directly from the test
   // app.$store.dispatch('setNewTodo', <desired text>)
   // app.$store.dispatch('addTodo')
   // and then check the UI
@@ -216,11 +230,11 @@ getStore()
 // do other checks
 ```
 
-+++
+---
 ## 🏁 App Access
 
 - when needed, you can access the application directly from the test
 
-Read also: https://www.cypress.io/blog/2018/11/14/testing-redux-store/
+Read also: https://www.cypress.io/blog/2018/11/14/testing-redux-store/, https://glebbahmutov.com/blog/stub-navigator-api/
 
 ➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)

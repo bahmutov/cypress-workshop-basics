@@ -161,6 +161,24 @@ it('sets data using fixture', () => {
 
 ---
 
+## Reset data before each spec
+
+Using the `experimentalInteractiveRunEvents` flag
+
+```js
+// cypress/plugins/index.js
+module.exports = (on, config) => {
+  on('before:spec', (spec) => {
+    console.log('resetting DB before spec %s', spec.name)
+    resetData()
+  })
+}
+```
+
+**Warning:** as of Cypress v7 only available in `cypress run` mode. See [https://on.cypress.io/before-spec-api](https://on.cypress.io/before-spec-api) for details.
+
+---
+
 ## Best practices
 
 - reset state before each test
