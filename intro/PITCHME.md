@@ -55,6 +55,8 @@ Please: if you have experience with Cypress.io, help others during the workshop 
 2. We do together
 3. You do and I help
 
+**Tip:** this repository has everything to work through the test exercises.
+
 ---
 
 ## Requirements

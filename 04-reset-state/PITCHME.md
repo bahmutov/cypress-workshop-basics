@@ -5,7 +5,9 @@
 - how one test can affect another test by leaving its data behind
 - when and how to reset state during testing
 
-+++
+---
+
+## The problem
 
 - keep `todomvc` app running
 - open `cypress/integration/04-reset-state/spec.js`
@@ -13,19 +15,20 @@
 
 +++
 
-![First test run](./img/passing-test.png)
+![The first test run](./img/passing-test.png)
 
 +++
 
-![Second test run](./img/failing-test.png)
+![The second test run](./img/failing-test.png)
 
 +++
 
-![Inspect first XHR call](./img/inspect-first-get-todos.png)
+![Inspect the first network call](./img/inspect-first-get-todos.png)
 
-+++
+---
 
 ```javascript
+// cypress/integration/04-reset-state/spec.js
 beforeEach(() => {
   cy.visit('/')
 })
@@ -47,14 +50,12 @@ it('adds two items', () => {
   - **tip** we are using [json-server-reset](https://github.com/bahmutov/json-server-reset#readme) middleware
   - try to reset it from command line
 
-```
+```shell
+# using https://httpie.io/ instead of curl
 $ http POST :3000/reset todos:=[]
 ```
 
-Note:
-I am using httpie to easily send the empty list to reset the database.
-
-+++
+---
 
 - how to make an arbitrary cross-domain XHR request from Cypress?
 - reset the database before each test
@@ -66,8 +67,8 @@ Students should modify `cypress/integration/04-reset-state/spec.js` and make the
 
 The answer to this and other TODO assignments are in [cypress/integration/04-reset-state/answer.js](/cypress/integration/04-reset-state/answer.js) file.
 
-+++
-## Using cy.writeFile
+---
+## Alternative: Using cy.writeFile
 
 ```
 "start": "json-server --static . --watch data.json"
@@ -98,8 +99,8 @@ Make sure you are writing the right file.
 Note:
 Most common mistake is using file path relative to the spec file, should be relative to the project's root folder.
 
-+++
-## Using cy.task
+---
+## Alternative: use cy.task
 
 You can execute Node code during browser tests by calling [`cy.task`](https://on.cypress.io/task)
 
@@ -158,7 +159,7 @@ it('sets data using fixture', () => {
 })
 ```
 
-+++
+---
 
 ## Best practices
 
