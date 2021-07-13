@@ -92,30 +92,11 @@ Selector Playground and Cypress Studio | [03-selector-playground](slides/03-sele
 Reset the database using `cy.request` | [04-reset-state](slides/04-reset-state/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=04-reset-state)
 Control the network requests | [05-xhr](slides/05-xhr/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=05-xhr)
 Access the application code and data | [06-app-data-store](slides/06-app-data-store/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=06-app-data-store)
+Running E2E tests on CI | [07-ci](slides/07-ci/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=07-ci)
+Retry-ability and flake prevention | [11-retry-ability](slides/11-retry-ability/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=11-retry-ability)
+Custom commands | [12-custom-commands](slides/12-custom-commands/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=12-custom-commands)
+The end | [end](slides/end/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=end)
 <!-- prettier-ignore-end -->
-
-### Intermediate
-| | topic                                  | folder                                                                                   | contents                                                       | slides |
-| --- | -------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ------ |
-| [🔗](#ci) | Setting up E2E tests on CI             | [07-ci](cypress/integration/07-ci)                                   | [07-ci](slides/07-ci/PITCHME.md)                                   | [link](https://testing-workshop-cypress.netlify.app?p=07-ci)
-| [🔗](#dashboard) | Setting up Cypress Dashboard           | [07-ci](cypress/integration/07-ci)                                   | [08-dashboard](slides/08-dashboard/PITCHME.md)                     | [link](https://testing-workshop-cypress.netlify.app?p=08-dashboard)
-| [🔗](#reporters) | Test reporters             | - | [09-reporters](slides/09-reporters/PITCHME.md)                     | [link](https://testing-workshop-cypress.netlify.app?p=09-reporters)
-| [🔗](#configuration) | Configuration | - | [10-configuration](slides/10-configuration/PITCHME.md) | [link](https://testing-workshop-cypress.netlify.app?p=10-configuration)
-| [🔗](#retry-ability) | Retry-ability | [11-retry-ability](cypress/integration/11-retry-ability) | [11-retry-ability](slides/11-retry-ability/PITCHME.md) | [link](https://testing-workshop-cypress.netlify.app?p=11-retry-ability)
-| [🔗](#custom-commands) | Custom commands | [12-custom-commands](cypress/integration/12-custom-commands) | [12-custom-commands](slides/12-custom-commands/PITCHME.md)| [link](https://testing-workshop-cypress.netlify.app?p=12-custom-commands)
-
-### Advanced
-| | topic                                  | folder                                                                                   | contents                                                       | slides |
-| --- | -------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ------ |
-| [🔗](#app-actions) | Page Objects vs App Actions | [13-app-actions](cypress/integration/13-app-actions) | [13-app-actions](slides/13-app-actions/PITCHME.md) | [link](https://testing-workshop-cypress.netlify.app?p=13-app-actions)
-| [🔗](#fixtures) | Fixtures | [14-fixtures](cypress/integration/14-fixtures) | [14-fixtures](slides/14-fixtures/PITCHME.md) | [link](https://testing-workshop-cypress.netlify.app?p=14-fixtures)
-| [🔗](#debugging) | Debugging | [02-adding-items/demo.js](cypress/integration/02-adding-items/demo.js) | [15-debugging](slides/15-debugging/PITCHME.md) | [link](https://testing-workshop-cypress.netlify.app?p=15-debugging)
-| [🔗](#preprocessors) | Preprocessors | [16-preprocessors](cypress/integration/16-preprocessors) | [16-preprocessors](slides/16-preprocessors/PITCHME.md) | [link](https://testing-workshop-cypress.netlify.app?p=16-preprocessors)
-| [🔗](#component-testing) | Component testing | [17-component-testing](cypress/integration/17-component-testing) | [17-component-testing](slides/17-component-testing/PITCHME.md) | [link](https://testing-workshop-cypress.netlify.app?p=17-component-testing)
-| [🔗](#backend) | Backend code | [18-backend](cypress/integration/18-backend) | [18-backend](slides/18-backend/PITCHME.md) | [link](https://testing-workshop-cypress.netlify.app?p=18-backend)
-| [🔗](#code-coverage) | Code coverage | [19-code-coverage](cypress/integration/19-code-coverage) | [19-code-coverage](slides/19-code-coverage/PITCHME.md) | [link](https://testing-workshop-cypress.netlify.app?p=19-code-coverage)
-| [🔗](#stubbing-methods) | Stubbing methods | [20-stubbing](./cypress/integration/20-stubbing) | [20-stubbing](./slides/20-stubbing/PITCHME.md) | [link](https://testing-workshop-cypress.netlify.app?p=20-stubbing)
-| | The end                                | -                                                                                        | [end](slides/end/PITCHME.md)                                       | [link](https://testing-workshop-cypress.netlify.app?p=end)
 
 ## For speakers
 
