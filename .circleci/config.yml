@@ -1,0 +1,14 @@
+version: 2.1
+orbs:
+  # https://github.com/cypress-io/circleci-orb
+  cypress: cypress-io/cypress@1
+workflows:
+  build:
+    jobs:
+      - cypress/run:
+          name: Cypress E2E Tests
+          start: npm start
+          config-file: cypress-ci.json
+          # there are no jobs following this one,
+          # so no need to store the workspace
+          no-workspace: true
