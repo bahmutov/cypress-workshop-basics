@@ -2,7 +2,7 @@
 
 ### 📚 You will learn
 
-- how to spy / stub network calls
+- how to spy on / stub network calls
 - how to wait for the network calls from tests
 - how to use network calls in assertions
 
@@ -12,7 +12,7 @@
 - open `cypress/integration/05-xhr/spec.js`
 - `cy.route` is deprecated, use `cy.intercept`
 
-+++
+---
 
 ## Situation
 
@@ -32,19 +32,15 @@ it('starts with zero items', () => {
 
 ## Problem
 
-@ul
-
 - page loads
-- web application makes XHR call `GET /todos`
+- web application makes XHR call "GET /todos"
   - meanwhile it shows an empty list of todos
-- Cypress assertion passes!
-- `GET /todos` returns with 2 items
+- Cypress assertion passes! <!-- .element: class="fragment" -->
+- "GET /todos" returns with 2 items <!-- .element: class="fragment" -->
   - they are added to the DOM
   - but the test has already finished
 
-@ulend
-
-+++
+---
 
 ## Waiting
 
@@ -66,17 +62,13 @@ it('starts with zero items', () => {
 
 ### Todo
 
-In `05-xhr/spec.js` test "starts with zero items"
+Use the test "starts with zero items" in the file `05-xhr/spec.js`
 
-@ul
-
-- spy on specific route with `cy.intercept`
+- spy on specific route with "cy.intercept" <!-- .element: class="fragment" -->
   - should we start mock server _before_ or _after_ `cy.visit`?
-- save as an alias
-- wait for this XHR alias
+- save as an alias <!-- .element: class="fragment" -->
+- wait for this XHR alias <!-- .element: class="fragment" -->
   - then check the DOM
-
-@ulend
 
 **tips:** [`cy.intercept`]('https://on.cypress.io/intercept), [Network requests guide](https://on.cypress.io/network-requests)
 
@@ -94,20 +86,20 @@ cy.get('li.todo').should('have.length', 0)
 
 Read [Introduction to Cypress](https://on.cypress.io/introduction-to-cypress) "Commands Run Serially"
 
-+++
+---
 
 ## Todo
 
-add to test "starts with zero items":
+add to the test "starts with zero items":
 
 - wait for the XHR alias like before
 - its response body should be an empty array
 
 ![Checking response body](./img/response-body.png)
 
-+++
+---
 
-## Stub network call
+## Stub the network call
 
 Update test "starts with zero items (stubbed response)"
 
@@ -146,9 +138,9 @@ it('loads several items from a fixture', () => {
 })
 ```
 
-+++
+---
 
-### Spying on adding an item XHR
+### Spying on adding an item network call
 
 When you add an item through the DOM, the app makes `POST` XHR call.
 
@@ -179,15 +171,15 @@ see instructions in the `05-xhr/spec.js` for the test
 Note:
 see instructions in the `05-xhr/spec.js` for the test
 
-+++
+---
 
 ## Bonus
 
 Network requests guide at [https://on.cypress.io/network-requests](https://on.cypress.io/network-requests). Question: which requests do you spy on, which do you stub?
 
-+++
+---
 
-## Testing Loading state
+## Testing the loading element
 
 In the application we are showing (very quickly) "Loading" state
 
@@ -205,14 +197,14 @@ In the application we are showing (very quickly) "Loading" state
 
 ⌨️ test "shows loading element"
 
-+++
-## Let's test edge data cases
+---
+## Let's test an edge data case
 
-User cannot enter blank titles. What if our database has old data records with blank titles?
+User cannot enter blank titles. What if our database has old data records with blank titles which it returns on load? Does the application show them? Does it crash?
 
 **Todo** write the test `handles todos with blank title`
 
-+++
+---
 ## 🏁 Spy and stub the network from your tests
 
 - confirm the REST calls
