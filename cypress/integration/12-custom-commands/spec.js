@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-/// <reference path="./custom-commands.d.ts" />
+/// <reference path="../../custom-commands.d.ts" />
 // beforeEach(function resetData() {
 //   cy.request('POST', '/reset', {
 //     todos: []

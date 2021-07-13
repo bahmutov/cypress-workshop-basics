@@ -5,6 +5,7 @@
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run",
+    "cy:answers": "cypress run --config ignoreTestFiles=spec.js",
     "start": "npm start --prefix todomvc -- --quiet",
     "ci": "start-test 3000",
     "dev": "start-test 3000 cy:open",

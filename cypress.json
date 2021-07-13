@@ -3,7 +3,7 @@
   "viewportHeight": 800,
   "ignoreTestFiles": ["**/answer/*", "*answer.js", "*.d.ts"],
   "baseUrl": "http://localhost:3000",
-  "env": {},
   "$schema": "https://on.cypress.io/cypress.schema.json",
-  "experimentalStudio": true
+  "experimentalStudio": true,
+  " experimentalInteractiveRunEvents": true
 }

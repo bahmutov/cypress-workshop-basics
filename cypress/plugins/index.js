@@ -50,23 +50,30 @@ const DEFAULT_DATA = {
   todos: []
 }
 
+const resetData = (dataToSet = DEFAULT_DATA) => {
+  const dbFilename = getDbFilename()
+  debug('reset data file %s with %o', dbFilename, dataToSet)
+  if (!dataToSet) {
+    console.error('Cannot save empty object in %s', dbFilename)
+    throw new Error('Cannot save empty object in resetData')
+  }
+  const str = JSON.stringify(dataToSet, null, 2) + '\n'
+  fs.writeFileSync(dbFilename, str, 'utf8')
+}
+
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // "cy.task" can be used from specs to "jump" into Node environment
   // and doing anything you might want. For example, checking "data.json" file!
+  // https://on.cypress.io/task
   on('task', {
     // saves given or default empty data object into todomvc/data.json file
     // if the server is watching this file, next reload should show the updated values
     resetData(dataToSet = DEFAULT_DATA) {
-      const dbFilename = getDbFilename()
-      debug('reset data file %s with %o', dbFilename, dataToSet)
-      if (!dataToSet) {
-        console.error('Cannot save empty object in %s', dbFilename)
-        throw new Error('Cannot save empty object in resetData')
-      }
-      const str = JSON.stringify(dataToSet, null, 2) + '\n'
-      fs.writeFileSync(dbFilename, str, 'utf8')
+      resetData(dataToSet)
 
+      // cy.task handlers should always return something
+      // otherwise it might be an accidental return
       return null
     },
 
@@ -81,9 +88,8 @@ module.exports = (on, config) => {
     }
   })
 
-  // `config` is the resolved Cypress config
-  // see https://on.cypress.io/configuration-api
-  config.fixturesFolder = 'cypress/fixtures'
-  config.modifyObstructiveCode = false
-  return Promise.resolve(config)
+  on('before:spec', (spec) => {
+    console.log('resetting DB before spec %s', spec.name)
+    resetData()
+  })
 }
