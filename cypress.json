@@ -5,5 +5,5 @@
   "baseUrl": "http://localhost:3000",
   "$schema": "https://on.cypress.io/cypress.schema.json",
   "experimentalStudio": true,
-  " experimentalInteractiveRunEvents": true
+  "experimentalInteractiveRunEvents": true
 }
