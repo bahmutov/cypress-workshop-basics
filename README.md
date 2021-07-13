@@ -113,7 +113,7 @@ npm run cy:open
 
 ...and see the list of created example specs.
 
-The slides are generated using Reveal.js from Markdown sources in the [slides](slides) folder. You can show the slides locally by running
+The slides are generated using [Reveal.js](https://revealjs.com/) from Markdown sources in the [slides](slides) folder. You can show the slides locally by running
 
 ```shell
 npm run slides
