@@ -91,4 +91,4 @@ Hint: `npx cypress run --help`
 - run Cypress in headless mode on CI with `cypress run`
 - screenshots and videos
 
-➡️ Pick the [next section](https://github.com/cypress-io/testing-workshop-cypress#content-)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)

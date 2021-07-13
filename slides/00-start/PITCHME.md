@@ -3,11 +3,11 @@
 ### 📚 You will learn
 
 - Cypress folder structure
-- Writing first test
+- Writing the first test
 - Setting up intelligent code completion
 - Cypress documentation
 
-+++
+---
 
 ## Todo: make a new project and add Cypress
 
@@ -23,9 +23,13 @@ Create a new folder
 
 ### How to open Cypress
 
-```
+```shell
 npx cypress open
+# or
+yarn cypress open
+# or
 $(npm bin)/cypress open
+# or
 ./node_modules/.bin/cypress open
 ```
 
@@ -44,11 +48,15 @@ In `package.json` I usually have
 
 And I use `npm run cy:open`
 
-+++
+**Tip:** read [https://glebbahmutov.com/blog/organize-npm-scripts/](https://glebbahmutov.com/blog/organize-npm-scripts/)
+
+---
 
 ![First time you open Cypress](./img/cypress-scaffold.png)
 
 +++
+
+## Cypress files and folders
 
 - "cypress.json" - all Cypress settings
 - "cypress/integration" - test files (specs)
@@ -59,7 +67,7 @@ And I use `npm run cy:open`
 Note:
 This section shows how Cypress scaffolds its files and folders. Then the students can ignore this folder. This is only done once to show the scaffolding.
 
-+++
+---
 
 Look at the scaffolded example test files (specs).
 
@@ -71,33 +79,36 @@ Hint: you can find latest examples in [https://github.com/cypress-io/cypress-exa
 
 ## 💡 Pro tip
 
-```text
+```shell
 # quickly scaffolds Cypress folders
 $ npx @bahmutov/cly init
 # bare scaffold
 $ npx @bahmutov/cly init -b
+# typescript scaffold
+$ npx @bahmutov/cly init --typescript
 ```
 
 Repo [github.com/bahmutov/cly](https://github.com/bahmutov/cly)
 
-+++
+---
 
 ## Cypress example kitchen sink
 
 - repo [github.com/cypress-io/cypress-example-kitchensink](https://github.com/cypress-io/cypress-example-kitchensink)
 - site [example.cypress.io](https://example.cypress.io)
-- **Tip:** also use [glebbahmutov.com/cypress-examples](https://glebbahmutov.com/cypress-examples)
 
-+++
+**Tip:** also use [glebbahmutov.com/cypress-examples](https://glebbahmutov.com/cypress-examples) that has a good code search and more recipes
+
+---
 ## First spec
 
-Create a new file
+Let's test our TodoMVC application. Create a new spec file
 
 - `cypress/integration/spec.js`
 
 +++
 
-Type into the `spec.js`
+Type into the `spec.js` our first test
 
 ```javascript
 it('loads', () => {
@@ -119,13 +130,13 @@ it('loads', () => {
   - stop the application server running in folder `todomvc`
   - reload the tests
 
-+++
-
-## Switch browser
+---
 
 ![Switch browser](./img/switch-browser.png)
 
-+++
+---
+
+Add a special `/// ...` comment
 
 ```javascript
 /// <reference types="cypress" />
@@ -168,7 +179,7 @@ it('loads', () => {
 Note:
 The check works really well in VSCode editor. I am not sure how well other editors support Cypress type checks right out of the box.
 
-+++
+---
 
 ## Docs
 
@@ -180,22 +191,30 @@ Your best friend is [https://docs.cypress.io/](https://docs.cypress.io/)
 
 ## TODO: Find at docs.cypress.io
 
-- Cypress main features and how it works docs
-- core concepts
-- command API
+- Cypress main features and how it works docs <!-- .element: class="fragment" -->
+- core concepts <!-- .element: class="fragment" -->
+- command API <!-- .element: class="fragment" -->
   - how many commands are there?
+- frequently asked questions <!-- .element: class="fragment" -->
 
 +++
 
 ## 💡 Pro tip
 
-```
+```text
 https://on.cypress.io/<command>
 ```
 
-goes right to the documentation for that command.
+The above URL goes right to the documentation for that command.
 
 +++
+
+## Todo: find at docs.cypress.io
+
+- documentation for `click`, `type`, and `contains` commands
+- assertions examples <!-- .element: class="fragment" -->
+
+---
 
 ## Todo: Find at docs.cypress.io
 
@@ -210,11 +229,11 @@ goes right to the documentation for that command.
 Note:
 Students should know where to find information later on. Main resources is the api page [https://on.cypress.io/api](https://on.cypress.io/api)
 
-+++
+---
 
 ## 🏁 Conclusions
 
 - use IntelliSense
 - use Docs are [https://docs.cypress.io/](https://docs.cypress.io/)
 
-➡️ Pick the [next section](https://github.com/cypress-io/testing-workshop-cypress#content)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)

@@ -217,3 +217,5 @@ User cannot enter blank titles. What if our database has old data records with b
 
 - confirm the REST calls
 - stub random data
+
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)

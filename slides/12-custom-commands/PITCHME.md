@@ -426,7 +426,7 @@ Video of element coverage, [https://slides.com/bahmutov/test-coverage-update](ht
 
 ## Best practices
 
-@ul
 - Making reusable function is often faster than writing a custom command
-- Know Cypress API to avoid writing what's already available
-@ulend
+- Know Cypress API to avoid writing what's already available <!-- .element: class="fragment" -->
+
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)

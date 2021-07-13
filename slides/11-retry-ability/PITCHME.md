@@ -549,3 +549,5 @@ DOM 🎉 Network 🎉 Application methods 🎉
 
 1. Merge queries into one command
 2. Alternate commands and assertions
+
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
