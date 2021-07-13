@@ -1,5 +1,15 @@
 /// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+
+import 'cypress-real-events/support'
+
 describe('Workshop slides', () => {
+  const checkSlide = (column, row) => {
+    cy.contains('.slide-number-a', String(column)).should('be.visible')
+    cy.contains('.slide-number-b', String(row)).should('be.visible')
+    return cy
+  }
+
   it('loads', () => {
     cy.visit('/')
     const title = 'Cypress Workshop: Basics'
@@ -12,5 +22,29 @@ describe('Workshop slides', () => {
     cy.hash().should('equal', '#/1/2')
 
     cy.get('.progress').should('be.visible')
+  })
+
+  it('navigates using the keyboard', () => {
+    const noLog = { log: false }
+    cy.visit('/')
+    cy.get('h1').should('be.visible')
+
+    checkSlide(1, 1)
+    cy.get('.navigate-down')
+      .should('have.class', 'enabled')
+      .and('be.visible')
+      .wait(1000, noLog)
+
+    // focus on the app
+    cy.get('h1').realClick().realPress('ArrowDown')
+    checkSlide(1, 2)
+    // no more slides down
+    cy.get('.navigate-down').should('not.be.visible').wait(1000, noLog)
+    // go back up
+    cy.realPress('ArrowUp')
+    checkSlide(1, 1).wait(1000, noLog)
+    // go to the next slide column
+    cy.realPress('ArrowRight')
+    checkSlide(2, 1).wait(1000, noLog)
   })
 })

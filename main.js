@@ -63,17 +63,25 @@ fetch(markdownFilename)
     const deck = new Reveal({
       plugins: [Markdown, RevealHighlight]
     })
-    deck.initialize({
-      // presentation sizing config
-      width: 1280,
-      height: 720,
-      minScale: 0.2,
-      maxScale: 1.1,
-      // show the slide number on the page
-      // and in the hash fragment and
-      // make sure they are the same
-      slideNumber: true,
-      hash: true,
-      hashOneBasedIndex: true
-    })
+    deck
+      .initialize({
+        // presentation sizing config
+        width: 1280,
+        height: 720,
+        minScale: 0.2,
+        maxScale: 1.1,
+        // show the slide number on the page
+        // and in the hash fragment and
+        // make sure they are the same
+        slideNumber: true,
+        hash: true,
+        hashOneBasedIndex: true
+      })
+      .then(() => {
+        if (window.Cypress) {
+          // expose the Reveal object to Cypress tests
+          // to allow waiting for it to be ready
+          window.Reveal = Reveal
+        }
+      })
   })
