@@ -18,5 +18,6 @@ jobs:
       # the server is already running, so just test the answers
       - name: Test answers 🤔
         uses: cypress-io/github-action@v2
-        # run every answer spec file, ignore the placeholder files
-        config: 'ignoreTestFiles=spec.js'
+        with:
+          # run every answer spec file, ignore the placeholder files
+          config: 'ignoreTestFiles=spec.js'
