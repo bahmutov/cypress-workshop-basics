@@ -5,10 +5,13 @@ orbs:
 workflows:
   build:
     jobs:
+      # see examples in https://github.com/cypress-io/circleci-orb#contents
       - cypress/run:
           name: Cypress E2E Tests
           start: npm start
           config-file: cypress-ci.json
+          # store videos and any screenshots after tests
+          store_artifacts: true
           # there are no jobs following this one,
           # so no need to store the workspace
           no-workspace: true
