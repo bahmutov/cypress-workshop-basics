@@ -113,6 +113,6 @@ export const removeTodo = (text) => {
     .click({ force: true })
 }
 
-// a couple of aliases for 12-custom-commands answers
+// a couple of aliases for 09-custom-commands answers
 export const resetData = resetDatabase
 export const visitSite = () => visit(true)
