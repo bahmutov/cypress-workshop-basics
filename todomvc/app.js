@@ -90,7 +90,7 @@
         }
         // artificial delay in the application
         // for test "flaky test - can pass or not depending on the app's speed"
-        // in cypress/integration/11-retry-ability/answer.js
+        // in cypress/integration/08-retry-ability/answer.js
         // increase the timeout delay to make the test fail
         // 50ms should be good
         setTimeout(() => {
