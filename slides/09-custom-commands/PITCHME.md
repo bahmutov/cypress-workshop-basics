@@ -12,7 +12,7 @@
 - keep `todomvc` app running
 - open `cypress/integration/09-custom-commands/spec.js`
 
-+++
+---
 
 ### 💯 Code reuse and clarity
 
@@ -30,11 +30,16 @@ beforeEach(function visitSite () {
 Note:
 Before each test we need to reset the server data and visit the page. The data clean up and opening the site could be a lot more complex that our simple example. We probably want to factor out `resetData` and `visitSite` into reusable functions every spec and test can use.
 
-+++
+---
 
 ### Todo: move them into `cypress/support/index.js`
 
-Now these `beforeEach` hooks will be loaded _before every_ test in every spec.
+Now these `beforeEach` hooks will be loaded _before every_ test in every spec. The test runner loads the spec files like this:
+
+```html
+<script src="cypress/support/index.js"></script>
+<script src="cypress/integration/09-custom-commands/spec.js"></script>
+```
 
 Note:
 Is this a good solution?
@@ -69,7 +74,7 @@ export function visitSite () { ... }
 
 ⌨️ and update `spec.js`
 
-+++
+---
 
 ## My opinion
 
@@ -113,7 +118,7 @@ And MS IntelliSense can understand types from JSDoc and check those!
 
 More details in: [https://slides.com/bahmutov/ts-without-ts](https://slides.com/bahmutov/ts-without-ts)
 
-+++
+---
 
 ## Use cases for custom commands
 
@@ -122,7 +127,7 @@ More details in: [https://slides.com/bahmutov/ts-without-ts](https://slides.com/
   * login sequence
   * many application actions
 
-📝 [on.cypress.io/custom-commands](https://on.cypress.io/custom-commands)
+📝 [on.cypress.io/custom-commands](https://on.cypress.io/custom-commands) and Read [https://glebbahmutov.com/blog/writing-custom-cypress-command/](https://glebbahmutov.com/blog/writing-custom-cypress-command/)
 
 +++
 
@@ -132,7 +137,7 @@ Let's write a custom command to create a todo
 // instead of this
 cy.get('.new-todo')
   .type('todo 0{enter}')
-// use this
+// use a custom command "createTodo"
 cy.createTodo('todo 0')
 ```
 
@@ -240,7 +245,7 @@ Cypress.Commands.add('createTodo', todo => {
 
 ![createTodo log](./img/create-todo-log.png)
 
-+++
+---
 
 ### Mark command completed
 
@@ -257,7 +262,7 @@ cy.get('.new-todo', { log: false })
 
 **Pro-tip:** you can have multiple command snapshots.
 
-+++
+---
 
 ### Show result in the console
 
@@ -280,13 +285,16 @@ const cmd = Cypress.log({
 
 ## 3rd party custom commands
 
+- [cypress-real-events](https://github.com/dmtrKovalenko/cypress-real-events)
+- [cypress-grep](https://github.com/bahmutov/cypress-grep)
+- [cypress-recurse](https://github.com/bahmutov/cypress-recurse)
 - [cypress-xpath](https://github.com/cypress-io/cypress-xpath)
 - [cypress-plugin-snapshots](https://github.com/meinaart/cypress-plugin-snapshots)
 - [cypress-pipe](https://github.com/NicholasBoll/cypress-pipe)
 
 [on.cypress.io/plugins#custom-commands](https://on.cypress.io/plugins#custom-commands)
 
-+++
+---
 
 ## Try `cypress-xpath`
 
@@ -312,7 +320,7 @@ it('finds list items', () => {
 })
 ```
 
-+++
+---
 
 ## Custom command with retries
 
@@ -336,7 +344,7 @@ const resolveValue = () => {
 }
 ```
 
-+++
+---
 
 ## Try `cypress-pipe`
 
@@ -364,7 +372,7 @@ setTimeout(() => {
 
 ⌨️ test "passes when object gets new property"
 
-+++
+---
 
 ### Try `cypress-plugin-snapshots`
 
@@ -390,7 +398,7 @@ it('creates todos', () => {
 - ignore "id" field, because it is dynamic
 - update snapshot if you add todo
 
-+++
+---
 
 ## Advanced concepts
 
@@ -422,11 +430,13 @@ Cypress.Commands.overwrite('type',
 
 Video of element coverage, [https://slides.com/bahmutov/test-coverage-update](https://slides.com/bahmutov/test-coverage-update)
 
-+++
+---
 
 ## Best practices
 
 - Making reusable function is often faster than writing a custom command
 - Know Cypress API to avoid writing what's already available <!-- .element: class="fragment" -->
+
+Read [https://glebbahmutov.com/blog/writing-custom-cypress-command/](https://glebbahmutov.com/blog/writing-custom-cypress-command/) and [https://glebbahmutov.com/blog/publishing-cypress-command/](https://glebbahmutov.com/blog/publishing-cypress-command/)
 
 ➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
