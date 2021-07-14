@@ -554,7 +554,7 @@ it('works in the second test', () => {
 
 ## Test retries
 
-If everything else fails and the test is still flakey
+If everything else fails and the test is still flaky
 
 - use hardcoded wait `cy.wait(1000)`
 - enable test retries
@@ -569,6 +569,24 @@ If everything else fails and the test is still flakey
 ```
 
 Read [https://on.cypress.io/test-retries](https://on.cypress.io/test-retries)
+
++++
+
+![Test retries example](./img/test-retries.png)
+
+Watch the webinar "Flaky Test Management" [https://www.youtube.com/cypress-io/webinars](https://www.youtube.com/cypress-io/webinars)
+
++++
+
+## Todo: enable test retries for specific flaky test
+
+```js
+// cypress/integration/08-retry-ability/spec.js
+it('has two labels', { retries: 2 }, () => {
+  // modify todomvc/app.js to make it flaky
+  ...
+})
+```
 
 ---
 ## 📝 Take away
@@ -598,5 +616,11 @@ DOM 🎉 Network 🎉 Application methods 🎉
 
 1. Merge queries into one command
 2. Alternate commands and assertions
+
++++
+
+## 📝 Take away
+
+1. Test retries and `cy.wait(N)` if tests are still flaky
 
 ➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)

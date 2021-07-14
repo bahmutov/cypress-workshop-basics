@@ -79,7 +79,7 @@ describe('retry-ability', () => {
   // flaky test - can pass or not depending on the app's speed
   // to make the test flaky add the timeout
   // in todomvc/app.js "addTodo({ commit, state })" method
-  it('has two labels', () => {
+  it('has two labels', { retries: 2 }, () => {
     cy.get('.new-todo').type('todo A{enter}')
     cy.get('.todo-list li') // command
       .find('label') // command
