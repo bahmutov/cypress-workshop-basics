@@ -202,7 +202,7 @@ describe('Careful with negative assertions', { retries: 2 }, () => {
     cy.get('.loading').should('not.be.visible')
   })
 
-  it.only('loading element is visible, while todos do not exist', () => {
+  it('loading element is visible, while todos do not exist', () => {
     cy.intercept('/todos', {
       delayMs: 1000,
       fixture: 'two-items.json'

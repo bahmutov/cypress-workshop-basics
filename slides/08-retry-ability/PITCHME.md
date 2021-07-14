@@ -7,12 +7,12 @@
 - retry-ability 🔑
 - aliases
 
-+++
+---
 
 - keep `todomvc` app running
 - open `cypress/integration/08-retry-ability/spec.js`
 
-+++
+---
 
 ## Todo: finish the test "shows UL"
 
@@ -48,7 +48,22 @@ expect($el).to.have.prop('disabled', false)
 .should('have.css', 'list-style-type', 'none')
 ```
 
+[https://glebbahmutov.com/cypress-examples/commands/assertions](https://glebbahmutov.com/cypress-examples/commands/assertions)
+
 +++
+
+`.and` is an alias to `.should`
+
+```js
+cy.contains('ul', 'todo A')
+  .should('be.visible')
+  .and('have.class', 'todo-list')
+  .and('have.css', 'list-style-type', 'none')
+```
+
+[https://on.cypress.io/should](https://on.cypress.io/should), [https://on.cypress.io/and](https://on.cypress.io/and)
+
+---
 
 ## There is IntelliSense
 
@@ -71,7 +86,7 @@ assert.isTrue(true, 'this value is true')
 
 [on/assertions#TDD-Assertions](https://on.cypress.io/assertions#TDD-Assertions)
 
-+++
+---
 
 ## Todo: BDD vs TDD
 
@@ -88,11 +103,22 @@ it('shows UL - TDD', function () {
 })
 ```
 
+[https://on.cypress.io/assertions](https://on.cypress.io/assertions)
+
 +++
 
-## @fa[question](do you see the difference?)
+## Do you see the difference?
 
 Which style do you prefer?
+
+```js
+cy.contains('ul', 'todo A').should('be.visible')
+cy.contains('ul', 'todo A').should($el => {
+  expect($el).to.be.visible
+  assert.isTrue(Cypress.dom.isVisible($el))
+})
+
+```
 
 ⚠️ [Chai-jQuery](https://on.cypress.io/assertions#Chai-jQuery) and [Sinon-Chai](https://on.cypress.io/assertions#Sinon-Chai) are only available in BDD mode.
 
@@ -106,7 +132,7 @@ Which style do you prefer?
 ## TDD
 ![TDD log](./img/tdd.png)
 
-+++
+---
 
 ## What if you need more complex assertions?
 
@@ -123,7 +149,7 @@ cy.get('.docs-header').find('div')
 
 +++
 
-## Todo: write complex assertion
+## Todo: write a complex assertion
 
 ```js
 it('every item starts with todo', function () {
@@ -145,7 +171,7 @@ it('every item starts with todo', function () {
 
 [https://example.cypress.io/commands/assertions](https://example.cypress.io/commands/assertions)
 
-+++
+---
 
 ## 🔑 Retry-ability
 
@@ -210,11 +236,11 @@ cy.get('.todo label')                 // command
   })
 ```
 
-+++
+---
 
 ## Retry-ability
 
-Only some commands are retried: `cy.get`, `cy.find`, `its`. They don't change the application's state.
+Only some commands are retried: `cy.get`, `cy.find`, `cy.its`, `cy.invoke`. They don't change the application's state.
 
 NOT retried: `cy.click`, `cy.task`, etc.
 
@@ -238,7 +264,7 @@ Question: can you return value from `should(cb)`?
 Note:
 `Should(cb)` does not return a value, it just passes along the value yielded by the command. If you need a value, first call `should(cb)` and then `then(cb)` to return it.
 
-+++
+---
 
 ## Automatic Waiting
 
@@ -249,7 +275,7 @@ Built-in assertion in most commands, even if they do not retry assertions that f
 Note:
 Just like a human user, Cypress tries to do sensible thing. Very rarely though you need to retry a command that is NOT retried by Cypress, in that case you can perform it yourself, see [When Can the Test Click?](https://www.cypress.io/blog/2019/01/22/when-can-the-test-click/)
 
-+++
+---
 
 ## Timeouts
 
@@ -275,9 +301,9 @@ cy.get('.mobile-nav', { timeout: 10000 })
   .and('contain', 'Home')
 ```
 
-See [Timeouts](https://on.cypress.io/introduction-to-cypress#Timeouts)
+See [https://on.cypress.io/introduction-to-cypress#Timeouts](https://on.cypress.io/introduction-to-cypress#Timeouts)
 
-+++
+---
 
 > ⚠️ Only the last command is retried ⚠️
 
@@ -287,7 +313,9 @@ See [Timeouts](https://on.cypress.io/introduction-to-cypress#Timeouts)
 
 ![one label](./img/one-label.png)
 
-⌨️ test "has the right label"
+⌨️ edit the test "has the right label" following the picture
+
+Did you write several commands before writing an assertion? <!-- .element: class="fragment" -->
 
 +++
 
@@ -300,27 +328,29 @@ it('has the right label', () => {
 })
 ```
 
+Everything looks good.
+
 +++
 
 ### Todo: write test that checks two labels
 
 ![two labels](./img/two-labels.png)
 
-⌨️ test "has two labels"
+⌨️ edit the test "has two labels" following the picture
 
 +++
 
 ```js
 it('has two labels', () => {
   cy.get('.new-todo').type('todo A{enter}')
-  cy.get('.todo-list li') // command
-    .find('label') // command
-    .should('contain', 'todo A') // assertion
+  cy.get('.todo-list li')         // command
+    .find('label')                // command
+    .should('contain', 'todo A')  // assertion
 
   cy.get('.new-todo').type('todo B{enter}')
-  cy.get('.todo-list li') // command
-    .find('label') // command
-    .should('contain', 'todo B') // assertion
+  cy.get('.todo-list li')         // command
+    .find('label')                // command
+    .should('contain', 'todo B')  // assertion
 })
 ```
 
@@ -336,7 +366,7 @@ addTodo ({ commit, state }) {
     axios.post('/todos', todo).then(() => {
       commit('ADD_TODO', todo)
     })
-  }, 0)
+  }, 0) // use 10, 30, 50, 100, 150, 200ms
 },
 ```
 
@@ -347,8 +377,8 @@ addTodo ({ commit, state }) {
 ## Todo: debug the failing test
 
 - inspect the failing command "FIND"
-- inspect previous command "GET"
-- what do you think is happening?
+- inspect previous command "GET" <!-- .element: class="fragment" -->
+- what do you think is happening? <!-- .element: class="fragment" -->
 
 Note:
 `FIND` command is never going to succeed, because it is already locked to search in the _first_ `<li>` element only. So when the second correct `<li>` element appears, `FIND` still only searches in the first one - because Cypress does not go back to retry `cy.get`.
@@ -368,15 +398,14 @@ For me it was 46ms. Flaky test like this works fine locally, yet sometimes fails
 
 ```js
 cy.get('.new-todo').type('todo B{enter}')
-cy.get('.todo-list li') // queries immediately, finds 1 <li>
-  .find('label') // retried, retried, retried with 1 <li>
-  // never succeeds with only 1st <li>
-  .should('contain', 'todo B')
+cy.get('.todo-list li')         // queries immediately, finds 1 <li>
+  .find('label')                // retried, retried, retried with 1 <li>
+  .should('contain', 'todo B')  // never succeeds with only 1st <li>
 ```
 
 How do we fix the flaky test?
 
-+++
+---
 
 ## Solution 1: merge queries
 
@@ -415,7 +444,7 @@ cy.window()
   .should('have.length', 2)
 ```
 
-From [Set flag to start tests](https://glebbahmutov.com/blog/set-flag-to-start-tests/)
+From [https://glebbahmutov.com/blog/set-flag-to-start-tests/](https://glebbahmutov.com/blog/set-flag-to-start-tests/)
 
 +++
 
@@ -437,8 +466,8 @@ cy.get('.todo-list li')         // command
 
 ⌨️ try this in test "solution 2: alternate commands and assertions"
 
-+++
-## Cypress Retries: Triple Header
+---
+## Cypress Retries: Triple Header 1/3
 
 ### 1. DOM queries
 
@@ -448,20 +477,20 @@ cy.get('li')
 ```
 
 +++
-## Cypress Retries: Triple Header
+## Cypress Retries: Triple Header 2/3
 
 ### 2. Network
 
 ```js
 // spy / stub network calls
-cy.route(...).as('new-item')
+cy.intercept(...).as('new-item')
 cy.wait('@new-item')
   .its('response.body')
   .should('have.length', 2)
 ```
 
 +++
-## Cypress Retries: Triple Header
+## Cypress Retries: Triple Header 3/3
 
 ### 3. Application
 
@@ -520,6 +549,26 @@ it('works in the second test', () => {
   cy.get('@exampleValue').should('equal', 'some value')
 })
 ```
+
+---
+
+## Test retries
+
+If everything else fails and the test is still flakey
+
+- use hardcoded wait `cy.wait(1000)`
+- enable test retries
+
+```json
+{
+  "retries": {
+    "openMode": 0,
+    "runMode": 2
+  }
+}
+```
+
+Read [https://on.cypress.io/test-retries](https://on.cypress.io/test-retries)
 
 ---
 ## 📝 Take away

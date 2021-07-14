@@ -53,7 +53,9 @@ describe('retry-ability', () => {
 
   it('has the right label', () => {
     cy.get('.new-todo').type('todo A{enter}')
-    // ?
+    // get the li elements
+    // find the label with the text
+    // which should contain the text "todo A"
   })
 
   // flaky test - can pass or not depending on the app's speed
