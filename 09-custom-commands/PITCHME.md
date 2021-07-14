@@ -10,7 +10,7 @@
 +++
 
 - keep `todomvc` app running
-- open `cypress/integration/12-custom-commands/spec.js`
+- open `cypress/integration/09-custom-commands/spec.js`
 
 +++
 
@@ -164,7 +164,7 @@ How: [https://github.com/cypress-io/cypress-example-todomvc#cypress-intellisense
 
 +++
 
-⌨️ in file `cypress/integration/12-custom-commands/custom-commands.d.ts`
+⌨️ in file `cypress/integration/09-custom-commands/custom-commands.d.ts`
 
 ```ts
 /// <reference types="cypress" />
@@ -182,7 +182,7 @@ declare namespace Cypress {
 
 +++
 
-Load the new definition file in `cypress/integration/12-custom-commands/spec.js`
+Load the new definition file in `cypress/integration/09-custom-commands/spec.js`
 
 ```js
 /// <reference path="./custom-commands.d.ts" />

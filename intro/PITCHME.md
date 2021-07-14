@@ -2,7 +2,7 @@
 
 - [github.com/bahmutov/cypress-workshop-basics](https://github.com/bahmutov/cypress-workshop-basics)
 
-Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=02-adding-items), [03-selector-playground](?p=03-selector-playground), [04-reset-state](?p=04-reset-state), [05-xhr](?p=05-xhr), [06-app-data-store](?p=06-app-data-store), [07-ci](?p=07-ci), [11-retry-ability](?p=11-retry-ability), [12-custom-commands](?p=12-custom-commands)
+Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=02-adding-items), [03-selector-playground](?p=03-selector-playground), [04-reset-state](?p=04-reset-state), [05-xhr](?p=05-xhr), [06-app-data-store](?p=06-app-data-store), [07-ci](?p=07-ci), [08-retry-ability](?p=08-retry-ability), [09-custom-commands](?p=09-custom-commands)
 
 +++
 ## Author: Gleb Bahmutov, PhD
