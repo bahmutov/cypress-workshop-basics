@@ -10,7 +10,16 @@
 - [Node 12.0.0+ (LTS)](https://nodejs.org/)
 - [git](https://git-scm.com)
 
-In order to get the code and install dependencies
+Check the Node version
+
+```
+$ node -v
+# for example v14.17.1
+$ npm -v
+# for example 6.14.13
+```
+
+In order to get the code and install NPM dependencies
 
 ```bash
 git clone git@github.com:bahmutov/cypress-workshop-basics.git

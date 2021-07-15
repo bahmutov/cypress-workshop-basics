@@ -13,6 +13,8 @@ import Reveal from 'reveal.js'
 import Markdown from 'reveal.js/plugin/markdown/markdown.esm.js'
 import RevealHighlight from 'reveal.js/plugin/highlight/highlight.esm.js'
 
+import { updateRelativeUrls } from './slides-utils'
+
 // something like
 // {BASE_URL: "/reveal-markdown-example/", MODE: "development", DEV: true, PROD: false, SSR: false}
 // https://vitejs.dev/guide/env-and-mode.html
@@ -43,10 +45,6 @@ const markdownFileBase = getBaseName(markdownFilename)
 console.log('markdown file base', markdownFileBase)
 const baseUrl = BASE_URL + markdownFileBase + '/'
 console.log('baseUrl', baseUrl)
-
-const updateRelativeUrls = (md) => {
-  return md.replace(/\.\//g, baseUrl)
-}
 
 fetch(markdownFilename)
   .then((r) => r.text())
