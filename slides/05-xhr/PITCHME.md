@@ -155,7 +155,7 @@ It is important to be able to use DevTools network tab to inspect the XHR and it
 
 - write a test "posts new item to the server" that confirms that new item is posted to the server
 
-![Post new item](/slides/05-xhr/img/post-item.png)
+![Post new item](./img/post-item.png)
 
 Note:
 see instructions in the `05-xhr/spec.js` for the test
@@ -166,7 +166,7 @@ see instructions in the `05-xhr/spec.js` for the test
 
 - write a test "posts new item to the server response" that confirms that RESPONSE when a new item is posted to the server
 
-![Post new item response](/slides/05-xhr/img/post-item-response.png)
+![Post new item response](./img/post-item-response.png)
 
 Note:
 see instructions in the `05-xhr/spec.js` for the test

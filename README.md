@@ -119,6 +119,12 @@ The slides are generated using [Reveal.js](https://revealjs.com/) from Markdown 
 npm run slides
 ```
 
+**Note:** always use relative paths to images from the slides Markdown, like
+
+```
+![Post new item response](./img/post-item-response.png)
+```
+
 ## Additional information
 
 - https://www.cypress.io/
