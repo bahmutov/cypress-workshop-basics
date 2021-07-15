@@ -42,6 +42,7 @@ const markdownFilename = './' + (PROD ? toLoad : 'slides/' + toLoad)
 const markdownFileBase = getBaseName(markdownFilename)
 console.log('markdown file base', markdownFileBase)
 const baseUrl = BASE_URL + markdownFileBase + '/'
+console.log('baseUrl', baseUrl)
 
 const updateRelativeUrls = (md) => {
   return md.replace(/\.\//g, baseUrl)
