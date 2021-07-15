@@ -424,12 +424,6 @@ Cypress.Commands.overwrite('type',
 
 [https://www.cypress.io/blog/2018/12/20/element-coverage/](https://www.cypress.io/blog/2018/12/20/element-coverage/)
 
-+++
-
-![Video](https://www.cypress.io/blog/2018/12/20/element-coverage/tested-elements.a2124117.mp4)
-
-Video of element coverage, [https://slides.com/bahmutov/test-coverage-update](https://slides.com/bahmutov/test-coverage-update)
-
 ---
 
 ## Best practices
