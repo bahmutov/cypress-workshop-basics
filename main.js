@@ -49,7 +49,7 @@ console.log('baseUrl', baseUrl)
 fetch(markdownFilename)
   .then((r) => r.text())
   .then((md) => {
-    const updatedUrlsMd = updateRelativeUrls(md)
+    const updatedUrlsMd = updateRelativeUrls(baseUrl, md)
 
     document.querySelector('.slides').innerHTML =
       '<section data-markdown data-separator="\\-\\-\\-" data-separator-vertical="\\+\\+\\+">\n' +
