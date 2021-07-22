@@ -164,3 +164,29 @@ it('handles todos with blank title', () => {
     .find('label')
     .should('have.text', '  ')
 })
+
+// a test that confirms a specific network call is NOT made
+// until the application adds a new item
+it('does not make POST /todos request on load', () => {
+  // a cy.spy() creates a "pass-through" function
+  // that can function as a network interceptor that does nothing
+  cy.intercept('POST', '/todos', cy.spy().as('post'))
+  cy.visit('/')
+  // in order to confirm the network call was not made
+  // we need to wait for something to happen, like the application
+  // loading or some time passing
+  cy.wait(1000)
+  cy.get('@post').should('not.have.been.called')
+  // add a new item through the page UI
+  cy.get('.new-todo').type('a new item{enter}')
+  // now the network call should have been made
+  cy.get('@post')
+    .should('have.been.calledOnce')
+    // confirm the network call was made with the correct data
+    // get the first object to the first call
+    .its('args.0.0.body')
+    .should('deep.include', {
+      title: 'a new item',
+      completed: false
+    })
+})
