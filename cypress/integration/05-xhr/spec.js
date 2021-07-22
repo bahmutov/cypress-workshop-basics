@@ -107,3 +107,17 @@ it('waits for network to be idle for 1 second', () => {
   // retry using should(cb) checking the time
   // that has passed since the network timestamp
 })
+
+// a test that confirms a specific network call is NOT made
+// until the application adds a new item.
+it('does not make POST /todos request on load', () => {
+  // a cy.spy() creates a "pass-through" function
+  // that can function as a network interceptor that does nothing
+  cy.intercept('POST', '/todos', cy.spy().as('post'))
+  // in order to confirm the network call was not made
+  // we need to wait for something to happen, like the application
+  // loading or some time passing
+  // add a new item through the page UI
+  // now the network call should have been made
+  // confirm the network call was made with the correct data
+})
