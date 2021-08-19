@@ -12,8 +12,8 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 - actively using Cypress since 2016
 - [gleb.dev](https://gleb.dev)
 - [@bahmutov](https://twitter.com/bahmutov)
-- [https://glebbahmutov.com/blog/tags/cypress/](https://glebbahmutov.com/blog/tags/cypress/)
-- [https://www.youtube.com/glebbahmutov](https://www.youtube.com/glebbahmutov)
+- [https://glebbahmutov.com/blog/tags/cypress/](https://glebbahmutov.com/blog/tags/cypress/) 150+ Cypress blog posts
+- [https://www.youtube.com/glebbahmutov](https://www.youtube.com/glebbahmutov) 100+ Cypress videos
 
 ---
 

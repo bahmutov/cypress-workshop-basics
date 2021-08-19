@@ -8,6 +8,21 @@
 - Cypress documentation
 
 ---
+## Quick check: Node.js
+
+```bash
+$ node -v
+v14.17.1
+$ npm -v
+6.14.13
+# optional:
+$ yarn -v
+1.22.10
+```
+
+If you need to install Node, see [Basics Requirements](https://github.com/bahmutov/cypress-workshop-basics#requirements).
+
+---
 
 ## Todo: make a new project and add Cypress
 
@@ -18,6 +33,21 @@ Create a new folder
 - `cd example`
 - `npm init --yes`
 - `npm install -D cypress`
+
++++
+### Cypress bin
+
+When you run `npm install cypress` it creates a "cypress" alias in the `node_modules/.bin" folder. You can see all tools that install aliases (depending on the platform)
+
+```text
+$ ls node_modules/.bin
+cypress			nanoid			rollup			sshpk-verify		vite
+esbuild			prettier		server-test		start-server-and-test	wait-on
+extract-zip		ps-tree			sshpk-conv		start-test
+is-ci			rimraf			sshpk-sign		uuid
+```
+
+Let's run Cypress alias
 
 +++
 
