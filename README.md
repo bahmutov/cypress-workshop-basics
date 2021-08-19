@@ -74,6 +74,10 @@ $ npm run cy:open
 > cypress open
 ```
 
+You should see the Cypress Desktop window appear and show the list of test files (specs).
+
+![Cypress Desktop](./img/cypress-desktop.png)
+
 ### Tip
 
 You can use the installed [start-server-and-test](https://github.com/bahmutov/start-server-and-test) utility to start the app, open Cypress and then shutdown the app when you exit Cypress.
