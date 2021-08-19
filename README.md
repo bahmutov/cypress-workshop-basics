@@ -61,6 +61,10 @@ and you should see in the terminal
   http://localhost:3000
 ```
 
+If you open your browser and type "localhost:3000" you should see the web application running:
+
+![TodoMVC application running in the browser](./img/app.png)
+
 From the second terminal window you should be able to open Cypress in the root of the project with
 
 ```bash
@@ -107,6 +111,12 @@ Custom commands | [09-custom-commands](slides/09-custom-commands/PITCHME.md) | [
 The end | [end](slides/end/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=end)
 <!-- prettier-ignore-end -->
 
+## For self-guided learning
+
+You can learn _everything_ in this repository without an instructor telling you what to do. Start the application, open Cypress, open the slides (see above), and follow the slides! Every section has learning objects, full set of instructions, and exercises to perform on your own.
+
+There are even the answers, but you would not cheat by looking at them, would you?
+
 ## For speakers
 
 This workshop can take all day, but you can pick the sections you are interested in teaching at will and customize it into any time duration. Everyone is coding for the most part, except for CI and the Cypress Dashboard sections, where the usage was shown via slides and actual sites.
@@ -139,10 +149,16 @@ npm run slides
 - https://www.cypress.io/
 - https://docs.cypress.io/
 - https://glebbahmutov.com/cypress-examples/
+- https://cypress.tips/
 
 ## Other workshops
 
+If your organization is interested in learning about Cypress in depth, please contact me. Besides this "Cypress Basics" workshop, I also regularly teach the following workshop.
+
 - https://github.com/cypress-io/cypress-workshop-ci
+- https://github.com/bahmutov/cypress-workshop-socketio-chat
+
+Of course, I can customize a workshop to your needs, if necessary. Please let me know by getting in touch; you can email me at gleb.bahmutov at gmail.com.
 
 [renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
 [renovate-app]: https://renovateapp.com/
