@@ -86,6 +86,19 @@ You can use the installed [start-server-and-test](https://github.com/bahmutov/st
 $ npm run dev
 ```
 
+The terminal will show the server start command, the URL to check, and the test command before you see Cypress Desktop window open.
+
+```text
+$ npm run dev
+
+> cypress-workshop-basics@1.0.0 dev /cypress-workshop-basics
+> start-test 3000 cy:open
+
+1: starting server using command "npm run start"
+and when url "[ 'http://localhost:3000' ]" is responding with
+HTTP status code 200 running tests using command "npm run cy:open"
+```
+
 ## Application
 
 [Vue.js](https://vuejs.org/) + [Vuex](https://vuex.vuejs.org/) + REST server application that we are going to test is in the folder `todomvc`. This application and its full testing is described in [this blog post](https://www.cypress.io/blog/2017/11/28/testing-vue-web-application-with-vuex-data-store-and-rest-backend/). The application should run fine without network access.
