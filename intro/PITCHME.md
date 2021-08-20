@@ -40,7 +40,7 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 
 ## Time 🕰
 
-- total workshop duration 4 hours over two days
+- total workshop duration 3+ hours
 - short breaks after each hour
 
 +++
