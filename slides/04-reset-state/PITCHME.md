@@ -43,6 +43,15 @@ it('adds two items', () => {
 ```
 
 +++
+## Anti-pattern: using UI to clean up the state
+
+- there could be 0, 1, or more items to remove
+- the items could be paginated
+- the spec becomes full of logic
+
+See the example test in the spec file, it is complicated.
+
++++
 
 ## Questions
 
