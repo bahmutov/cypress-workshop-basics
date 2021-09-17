@@ -137,3 +137,47 @@ describe('set initial data', () => {
     cy.get('li.todo').should('have.length', 2)
   })
 })
+
+describe('create todos using API', () => {
+  it('creates a random number of items', () => {
+    // reset the data on the server
+    cy.request('POST', '/reset', { todos: [] })
+    // pick a random number of todos to create between 1 and 10
+    const numTodos = Math.floor(Math.random() * 10) + 1
+    cy.log(`Creating **${numTodos}** todos`)
+    // form the todos array with random titles
+    const todos = Array.from({ length: numTodos }).map((o, k) => ({
+      title: `todo ${k}`,
+      completed: false,
+      id: `id-${k}`
+    }))
+    // tip: you can use console.table to print an array of objects
+    console.table(todos)
+    // call cy.request to post each TODO item
+    todos.forEach((todo) => {
+      cy.request('POST', '/todos', todo)
+    })
+    // visit the page and check the displayed number of todos
+    cy.visit('/')
+    cy.get('.todo').should('have.length', numTodos)
+  })
+
+  it('creates a random number of items (Lodash)', () => {
+    // reset the data on the server
+    cy.request('POST', '/reset', { todos: [] })
+    // create a random number of todos using cy.request
+    // tip: use can use Lodash methods to draw a random number
+    const numTodos = Cypress._.random(1, 10)
+    // look at the POST /todos calls the application sends
+    Cypress._.times(numTodos, (k) => {
+      cy.request('POST', '/todos', {
+        title: `todo ${k}`,
+        completed: false,
+        id: `id-${k}`
+      })
+    })
+    // visit the page and check the displayed number of todos
+    cy.visit('/')
+    cy.get('.todo').should('have.length', numTodos)
+  })
+})

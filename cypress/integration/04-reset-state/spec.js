@@ -106,3 +106,22 @@ describe('set initial data', () => {
     // check what is rendered
   })
 })
+
+describe('create todos using API', () => {
+  it('creates a random number of items', () => {
+    // reset the data on the server
+    // pick a random number of todos to create between 1 and 10
+    // form the todos array with random titles
+    // tip: you can use console.table to print an array of objects
+    // call cy.request to post each TODO item
+    // visit the page and check the displayed number of todos
+  })
+
+  it('creates a random number of items (Lodash)', () => {
+    // reset the data on the server
+    // create a random number of todos using cy.request
+    // tip: use can use Lodash methods to draw a random number
+    // look at the POST /todos calls the application sends
+    // visit the page and check the displayed number of todos
+  })
+})
