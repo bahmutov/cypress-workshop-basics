@@ -190,3 +190,41 @@ it('does not make POST /todos request on load', () => {
       completed: false
     })
 })
+
+describe('spying on load', () => {
+  // use "beforeEach" callback to cleanly create a random
+  // number of todos for each test
+  beforeEach(() => {
+    // reset the data on the server
+    cy.request('POST', '/reset', { todos: [] })
+    // create a random number of todos using cy.request
+    // tip: use can use Lodash methods to draw a random number
+    // look at the POST /todos calls the application sends
+    Cypress._.times(Cypress._.random(10), (k) => {
+      cy.request('POST', '/todos', {
+        title: `todo ${k}`,
+        completed: false,
+        id: `id-${k}`
+      })
+    })
+  })
+
+  it('shows the items loaded from the server', () => {
+    // spy on the route `GET /todos` to know how many items to expect
+    cy.intercept('GET', '/todos', (req) => {
+      // make sure the request is NOT cached by the browser
+      // because we want to see the list of items in the response
+      delete req.headers['if-none-match']
+    }).as('getTodos')
+    cy.visit('/')
+    // wait for the network call to happen
+    // confirm the response is 200, read the number of items
+    // and compare to the number of displayed todos
+    cy.wait('@getTodos')
+      .its('response')
+      .then((response) => {
+        expect(response.statusCode).to.eq(200)
+        cy.get('.todo').should('have.length', response.body.length)
+      })
+  })
+})

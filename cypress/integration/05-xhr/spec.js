@@ -121,3 +121,23 @@ it('does not make POST /todos request on load', () => {
   // now the network call should have been made
   // confirm the network call was made with the correct data
 })
+
+describe('spying on load', () => {
+  // use "beforeEach" callback to cleanly create a random
+  // number of todos for each test
+  beforeEach(() => {
+    // reset the data on the server
+    // create a random number of todos using cy.request
+    // tip: use can use Lodash methods to draw a random number
+    // look at the POST /todos calls the application sends
+  })
+
+  it('shows the items loaded from the server', () => {
+    // spy on the route `GET /todos` to know how many items to expect
+    // make sure the request is NOT cached by the browser
+    // because we want to see the list of items in the response
+    // wait for the network call to happen
+    // confirm the response is 200, read the number of items
+    // and compare to the number of displayed todos
+  })
+})
