@@ -1,7 +1,7 @@
 # cypress-workshop-basics
 [![ci status][ci image]][ci url] [![badges status][badges image]][badges url] [![slides status][slides image]][slides url] [![CircleCI](https://circleci.com/gh/bahmutov/cypress-workshop-basics/tree/main.svg?style=svg)](https://circleci.com/gh/bahmutov/cypress-workshop-basics/tree/main)
 
-[![renovate-app badge][renovate-badge]][renovate-app] ![cypress version](https://img.shields.io/badge/cypress-8.3.1-brightgreen)
+[![renovate-app badge][renovate-badge]][renovate-app] ![cypress version](https://img.shields.io/badge/cypress-8.4.1-brightgreen)
 > Basics of end-to-end testing with [Cypress.io](https://www.cypress.io) test runner
 
 ## Requirements
