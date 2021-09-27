@@ -119,3 +119,19 @@ describe('Careful with negative assertions', () => {
     // then assert it goes away (negative assertion)
   })
 })
+
+describe('timing commands', () => {
+  // reset data before each test
+
+  it('takes less than 2 seconds for the app to load', () => {
+    // intercept the GET /todos load and randomly delay the response
+    cy.visit('/')
+
+    // check the loading indicator is visible
+    // take a timestamp after the loading indicator is visible
+    // how to check if the loading element goes away in less than 2 seconds?
+    // take another timestamp when the indicator goes away.
+    // compute the elapsed time
+    // assert the elapsed time is less than 2 seconds
+  })
+})

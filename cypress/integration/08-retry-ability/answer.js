@@ -1,3 +1,4 @@
+// @ts-check
 /// <reference types="cypress" />
 describe('retry-ability', () => {
   beforeEach(function resetData() {
@@ -252,5 +253,42 @@ describe('aliases', () => {
     it('works in the second test', () => {
       cy.get('@exampleValue').should('equal', 'some value')
     })
+  })
+})
+
+describe('timing commands', () => {
+  beforeEach(function resetData() {
+    cy.request('POST', '/reset', {
+      todos: []
+    })
+  })
+
+  it('takes less than 2 seconds for the app to load', () => {
+    cy.intercept('GET', '/todos', {
+      fixture: 'two-items.json',
+      delay: Cypress._.random(1000, 1999)
+    })
+    cy.visit('/')
+
+    let started
+    cy.get('.loading')
+      .should('be.visible')
+      .then(() => {
+        // take a timestamp after the loading indicator is visible
+        started = +new Date()
+      })
+    // how to check if the loading element goes away in less than 2 seconds?
+    cy.get('.loading')
+      .should('not.be.visible')
+      .then(() => {
+        // take another timestamp when the indicator goes away.
+        // compute the elapsed time
+        // assert the elapsed time is less than 2 seconds
+        const finished = +new Date()
+        const elapsed = finished - started
+        expect(elapsed, 'loading takes less than 2 seconds').to.be.lessThan(
+          2000
+        )
+      })
   })
 })
