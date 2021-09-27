@@ -123,6 +123,9 @@ describe('Careful with negative assertions', () => {
 describe('timing commands', () => {
   // reset data before each test
 
+  // see solution in the video
+  // "Time Part Of A Cypress Test Or A Single Command"
+  // https://youtu.be/tjK_FCYikzI
   it('takes less than 2 seconds for the app to load', () => {
     // intercept the GET /todos load and randomly delay the response
     cy.visit('/')
