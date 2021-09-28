@@ -45,6 +45,7 @@ it('starts with zero items', () => {
 ## Waiting
 
 ```javascript
+// 05-xhr/spec.js
 it('starts with zero items', () => {
   cy.visit('/')
   cy.wait(1000)
@@ -53,6 +54,23 @@ it('starts with zero items', () => {
 ```
 
 ![Waiting works](./img/waiting.png)
+
++++
+
+## Wait for application signal
+
+```js
+// todomvc/app.js
+axios.get('/todos')
+  ...
+  .finally(() => {
+    // an easy way for the application to signal
+    // that it is done loading
+    document.body.classList.add('loaded')
+  })
+```
+
+**TODO:** write a test that waits for the body to have class "loaded" after the visit
 
 +++
 
