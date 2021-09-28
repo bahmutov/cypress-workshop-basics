@@ -181,3 +181,59 @@ describe('create todos using API', () => {
     cy.get('.todo').should('have.length', numTodos)
   })
 })
+
+describe('conditional reset data using XHR call', () => {
+  function validate() {
+    return cy
+      .request('/todos')
+      .its('body.length')
+      .then((n) => n === 0)
+  }
+
+  function reset() {
+    cy.request('POST', '/reset', {
+      todos: []
+    })
+  }
+
+  /**
+   * A little utility function to run the "Set" commands
+   * only if the "Validate" command chain yields false
+   * @param {Function} validateFn
+   * @param {Function} setFn
+   * @returns Cypress.Chainable<any>
+   */
+  function validateAndSet(validateFn, setFn) {
+    return validateFn().then((valid) => {
+      if (!valid) {
+        cy.log('**need to set**')
+        return setFn()
+      } else {
+        return cy.log('**validated**')
+      }
+    })
+  }
+
+  beforeEach(() => {
+    validateAndSet(validate, reset)
+  })
+
+  it('adds two items', () => {
+    cy.visit('/')
+    addItem('first item')
+    addItem('second item')
+    cy.get('li.todo').should('have.length', 2)
+  })
+
+  it('starts with zero items', () => {
+    cy.visit('/')
+    cy.get('body').should('have.class', 'loaded')
+    cy.get('li.todo').should('have.length', 0)
+  })
+
+  it('starts with zero items', () => {
+    cy.visit('/')
+    cy.get('body').should('have.class', 'loaded')
+    cy.get('li.todo').should('have.length', 0)
+  })
+})
