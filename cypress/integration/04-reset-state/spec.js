@@ -125,3 +125,40 @@ describe('create todos using API', () => {
     // visit the page and check the displayed number of todos
   })
 })
+
+// problem with cy.session + setup + validate combination
+// SKIP https://github.com/cypress-io/cypress/issues/17805
+describe.skip('ANTI-PATTERN: reset state through the UI using cy.session', () => {
+  function clearTodos() {
+    cy.request('POST', '/reset', { todos: [] })
+    // cy.visit('/')
+    // cy.get('body').should('have.class', 'loaded')
+    // cy.get('li.todo').then(($todos) => {
+    //   cy.wrap($todos)
+    //     .find('.destroy')
+    //     // there might be multiple items to click
+    //     // and the destroy button is not visible
+    //     // until the user hovers over it, thus
+    //     // we need to force it to be clickable
+    //     .click({ multiple: true, force: true })
+    // })
+  }
+
+  function validate() {
+    // cy.request('/todos').its('body', { timeout: 0 }).should('have.length', 0)
+    return false
+  }
+
+  beforeEach(() => {
+    cy.session('reset-todos', clearTodos, { validate })
+  })
+
+  it('adds two items starting with zero', () => {
+    cy.visit('/')
+    // this test does not clean up after itself
+    // leaving two items for the other test
+    addItem('first item')
+    addItem('second item')
+    cy.get('li.todo').should('have.length', 2)
+  })
+})

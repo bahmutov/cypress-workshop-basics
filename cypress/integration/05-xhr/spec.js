@@ -16,6 +16,14 @@ it('starts with zero items (waits)', () => {
   cy.get('li.todo').should('have.length', 0)
 })
 
+it('starts with zero items (check body.loaded)', () => {
+  cy.visit('/')
+  // the application sets "loaded" class on the body
+  // in the test we can check for this class
+  // then check the number of items
+  cy.get('li.todo').should('have.length', 0)
+})
+
 it('starts with zero items', () => {
   // start Cypress network proxy with cy.server()
   // spy on route `GET /todos`

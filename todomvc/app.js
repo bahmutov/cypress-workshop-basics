@@ -66,6 +66,11 @@
               console.error(e.message)
               console.error(e.response.data)
             })
+            .finally(() => {
+              // an easy way for the application to signal
+              // that it is done loading
+              document.body.classList.add('loaded')
+            })
         }, state.delay)
       },
 
