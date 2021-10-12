@@ -4,6 +4,25 @@
 [![renovate-app badge][renovate-badge]][renovate-app] ![cypress version](https://img.shields.io/badge/cypress-8.5.0-brightgreen)
 > Basics of end-to-end testing with [Cypress.io](https://www.cypress.io) test runner
 
+## Introduction
+
+Web sites that do not work are bad. Full end-to-end automated tests are the best way to gain the confidence that the entire system will work when the real user visits the site. This workshop introduces you to the Cypress.io Test Runner and teaches writing realistic tests that are readable, reliable, and fast.
+
+### Topics
+
+- Installing Cypress and writing the first test
+- Cypress documentation, examples, and recipes
+- Selecting the DOM elements and interacting with the page
+- Controlling the application state
+- Removing test flake
+- Spying and stubbing the network communication from tests
+- Running Cypress tests on Continuous Integration system
+- Factoring out pieces of tests into custom commands
+
+### Target audience
+
+This workshop will be very useful for every web developer and every test looking to automate web application testing. Only a minimal knowledge of JavaScript is required, although previous experience with web programming and browser DevTools is very helpful.
+
 ## Requirements
 
 - Any computer: Mac, Windows, Linux
@@ -167,6 +186,8 @@ npm run slides
 - https://docs.cypress.io/
 - https://glebbahmutov.com/cypress-examples/
 - https://cypress.tips/
+- https://www.youtube.com/glebbahmutov
+- https://slides.com/bahmutov
 
 ## Other workshops
 
@@ -176,6 +197,10 @@ If your organization is interested in learning about Cypress in depth, please co
 - https://github.com/bahmutov/cypress-workshop-socketio-chat
 
 Of course, I can customize a workshop to your needs, if necessary. Please let me know by getting in touch; you can email me at gleb.bahmutov at gmail.com.
+
+## Author
+
+Gleb Bahmutov has PhD in Computer Science and has worked at Cypress.io for four years as VP of Engineering and Distinguished Engineer, and was heavily involved in all areas of the Test Runner development, as well as Cypress Dashboard features, plugin writing, and CI integration. He has spoken about Cypress approximately a hundred times at meetups and conferences, wrote 100s of blog posts about testing, and has recorded more than 150 Cypress videos available for free on his YouTube channel. Today, Gleb is still heavily using Cypress at a large company making sure its web applications are always working correctly.
 
 [renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
 [renovate-app]: https://renovateapp.com/
