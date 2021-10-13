@@ -32,6 +32,15 @@ it('can mark an item as completed', () => {
   cy.contains('li.todo', 'hard').should('not.have.class', 'completed')
 })
 
+it('shows the expected elements', () => {
+  // remove duplicate commands that get an element
+  // and check if it is visible
+  const selectors = ['header', 'footer', '.new-todo']
+  selectors.forEach((selector) => {
+    cy.get(selector).should('be.visible')
+  })
+})
+
 /**
  * Adds a todo item
  * @param {string} text

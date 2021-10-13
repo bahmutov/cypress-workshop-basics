@@ -42,6 +42,14 @@ it('can add many items', () => {
   // check number of items
 })
 
+it('shows the expected elements', () => {
+  // TODO: remove duplicate commands that get an element
+  // and check if it is visible
+  cy.get('header').should('be.visible')
+  cy.get('footer').should('be.visible')
+  cy.get('.new-todo').should('be.visible')
+})
+
 it('adds item with random text', () => {
   // use a helper function with Math.random()
   // or Cypress._.random() to generate unique text label
