@@ -35,6 +35,7 @@ it('can mark an item as completed', () => {
 it('shows the expected elements', () => {
   // remove duplicate commands that get an element
   // and check if it is visible
+  // https://youtu.be/DnmnzemS_HA
   const selectors = ['header', 'footer', '.new-todo']
   selectors.forEach((selector) => {
     cy.get(selector).should('be.visible')

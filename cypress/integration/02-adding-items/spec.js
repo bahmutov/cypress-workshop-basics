@@ -45,6 +45,7 @@ it('can add many items', () => {
 it('shows the expected elements', () => {
   // TODO: remove duplicate commands that get an element
   // and check if it is visible
+  // https://youtu.be/DnmnzemS_HA
   cy.get('header').should('be.visible')
   cy.get('footer').should('be.visible')
   cy.get('.new-todo').should('be.visible')
