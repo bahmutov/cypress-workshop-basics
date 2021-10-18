@@ -220,7 +220,14 @@ In the application we are showing (very quickly) "Loading" state
 
 User cannot enter blank titles. What if our database has old data records with blank titles which it returns on load? Does the application show them? Does it crash?
 
-**Todo** write the test `handles todos with blank title`
+**Todo:** write the test `handles todos with blank title`
+
+---
+## Wait for Network Idle
+
+You can spy on every network request and keep track of its timestamp. Waiting for network idle means waiting for the network request to be older than N milliseconds before continuing the test.
+
+**Todo:** implement the test "waits for the network to be idle for 2 seconds"
 
 ---
 ## 🏁 Spy and stub the network from your tests
