@@ -227,7 +227,7 @@ User cannot enter blank titles. What if our database has old data records with b
 
 You can spy on every network request and keep track of its timestamp. Waiting for network idle means waiting for the network request to be older than N milliseconds before continuing the test.
 
-**Todo:** implement the test "waits for the network to be idle for 2 seconds"
+**Todo:** implement the test "waits for the network to be idle for 2 seconds". Bonus for logging the timings.
 
 ---
 ## 🏁 Spy and stub the network from your tests
