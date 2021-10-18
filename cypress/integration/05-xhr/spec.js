@@ -149,3 +149,29 @@ describe('spying on load', () => {
     // and compare to the number of displayed todos
   })
 })
+
+describe('waits for network idle', () => {
+  // we want to wait for the app to finish all network calls
+  // before proceeding with the test commands
+
+  beforeEach(() => {
+    // before each test, stub the network call to load zero items
+  })
+
+  it('waits for the network to be idle for 2 seconds', () => {
+    // keep track of the timestamp of the network call
+    // intercept all calls (or maybe a specific pattern)
+    // and in the callback save the current timestamp
+    // load the page, but delay loading of the data by some random number
+    // using /?delay=<number> query param
+    // wait for network to be idle for 1 second
+    // using a .should(cb) assertion that looks at the current timestamp
+    // vs the timestamp of the last network call
+    // see assertion examples at
+    // https://glebbahmutov.com/cypress-examples/commands/assertions.html
+    // TIP: cy.wrap('message').should(cb) works really well
+    // by now everything should have been loaded
+    // we can check the page and use a very short timeout
+    // because the page is ready to be tested
+  })
+})
