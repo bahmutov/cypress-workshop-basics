@@ -10,6 +10,8 @@ Web sites that do not work are bad. Full end-to-end automated tests are the best
 
 ### Topics
 
+This workshop covers the topics relevant to both beginners and experienced Cypress users. Over the half or full-day workshop we will cover the following topics through the hands-on exercises:
+
 - Installing Cypress and writing the first test
 - Cypress documentation, examples, and recipes
 - Selecting the DOM elements and interacting with the page
