@@ -124,6 +124,14 @@ describe('create todos using API', () => {
     // look at the POST /todos calls the application sends
     // visit the page and check the displayed number of todos
   })
+
+  it('can modify JSON fixture as text and create todo', () => {
+    // load the "two-items.json" from a fixture without converting it to JSON
+    // replace the first item's title with some other text
+    // replace the second item's title with some other text
+    // convert the string to JSON and reset the data on the server
+    // visit the page and confirm each item is present
+  })
 })
 
 // problem with cy.session + setup + validate combination

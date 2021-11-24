@@ -180,6 +180,28 @@ describe('create todos using API', () => {
     cy.visit('/')
     cy.get('.todo').should('have.length', numTodos)
   })
+
+  it('can modify JSON fixture as text and create todo', () => {
+    // load the "two-items.json" from a fixture without converting it to JSON
+    cy.fixture('two-items.json', null)
+      .invoke({ log: false }, 'toString')
+      // replace the first item's title with some other text
+      .invoke({ log: false }, 'replace', 'first item from fixture', 'First!')
+      // replace the second item's title with some other text
+      .invoke({ log: false }, 'replace', 'second item from fixture', 'Second!')
+      // convert the string to JSON and reset the data on the server
+      .then(JSON.parse)
+      .then((todos) => {
+        // visit the page and confirm each item is present
+        cy.task('resetData', { todos }, { log: false })
+        cy.visit('/')
+        // verify the page
+        cy.get('li.todo').should('have.length', todos.length)
+        todos.forEach((todo) => {
+          cy.contains('li.todo', todo.title)
+        })
+      })
+  })
 })
 
 describe('conditional reset data using XHR call', () => {
