@@ -195,7 +195,7 @@ npm run slides
 
 If your organization is interested in learning about Cypress in depth, please contact me. Besides this "Cypress Basics" workshop, I also regularly teach the following workshop.
 
-- https://github.com/cypress-io/cypress-workshop-ci
+- https://github.com/bahmutov/cypress-workshop-ci
 - https://github.com/bahmutov/cypress-workshop-socketio-chat
 
 Of course, I can customize a workshop to your needs, if necessary. Please let me know by getting in touch; you can email me at gleb.bahmutov at gmail.com.
