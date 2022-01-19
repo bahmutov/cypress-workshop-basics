@@ -1,8 +1,8 @@
 name: ci
 on: push
 jobs:
-  // test main CI specs in one job
-  // and test the answers in another job
+  # test main CI specs in one job
+  # and test the answers in another job
   test:
     runs-on: ubuntu-20.04
     steps:
