@@ -31,3 +31,9 @@ jobs:
           wait-on: 'http://localhost:3000'
           # run every answer spec file, ignore the placeholder files
           config: 'ignoreTestFiles=spec.js'
+          # record the test results to Cypress Dashboard
+          record: true
+          group: Answers
+          tags: answers
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
