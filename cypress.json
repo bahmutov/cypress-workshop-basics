@@ -6,5 +6,6 @@
   "$schema": "https://on.cypress.io/cypress.schema.json",
   "experimentalStudio": true,
   "experimentalInteractiveRunEvents": true,
-  "experimentalSessionSupport": true
+  "experimentalSessionSupport": true,
+  "projectId": "89mmxs"
 }
