@@ -34,6 +34,6 @@ jobs:
           # record the test results to Cypress Dashboard
           record: true
           group: Answers
-          tags: answers
+          tag: answers
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
