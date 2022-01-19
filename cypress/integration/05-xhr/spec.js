@@ -175,3 +175,13 @@ describe('waits for network idle', () => {
     // because the page is ready to be tested
   })
 })
+
+describe('visit non-html page', () => {
+  // before each test, create todos from the fixture data
+  // the REST API serves each todo at /todos/:id
+  // for example, can you visit the page at /todos/1 using cy.visit()?
+  // you might need to "fix" the response type header
+  it('visits the todo JSON response', function () {
+    // do not forget to verify the page contents and the URL
+  })
+})
