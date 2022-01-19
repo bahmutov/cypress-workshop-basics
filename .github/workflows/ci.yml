@@ -1,6 +1,8 @@
 name: ci
 on: push
 jobs:
+  // test main CI specs in one job
+  // and test the answers in another job
   test:
     runs-on: ubuntu-20.04
     steps:
@@ -15,9 +17,17 @@ jobs:
           start: 'npm start'
           wait-on: 'http://localhost:3000'
 
-      # the server is already running, so just test the answers
+  test-answers:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+
+      # https://github.com/cypress-io/github-action
       - name: Test answers 🤔
         uses: cypress-io/github-action@v2
         with:
+          start: 'npm start'
+          wait-on: 'http://localhost:3000'
           # run every answer spec file, ignore the placeholder files
           config: 'ignoreTestFiles=spec.js'
