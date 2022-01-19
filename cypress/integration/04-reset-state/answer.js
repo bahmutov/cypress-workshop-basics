@@ -76,7 +76,8 @@ describe('reset data using XHR call', () => {
   })
 })
 
-describe('reset data using cy.writeFile', () => {
+// It seems json-server can easily crash on CI if you overwrite the file
+describe.skip('reset data using cy.writeFile', () => {
   beforeEach(() => {
     const emptyTodos = {
       todos: []
