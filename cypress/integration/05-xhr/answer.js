@@ -290,6 +290,8 @@ describe('waits for network idle', () => {
   })
 })
 
+// read the blog post "Visit Non-HTML Page"
+// https://glebbahmutov.com/blog/visit-non-html-page/
 describe(
   'visit non-html page',
   { viewportWidth: 400, viewportHeight: 100 },
@@ -304,11 +306,34 @@ describe(
       cy.task('resetData', { todos: this.todos })
     })
 
+    /*
+      Skipping because this will cause an error:
+
+        cy.visit() failed trying to load:
+
+          http://localhost:3000/todos/1
+
+        The content-type of the response we received from your web server was:
+
+          > application/json
+
+        This was considered a failure because responses must have content-type: 'text/html'
+    */
+    it.skip('tries to visit JSON resource', () => {
+      cy.visit('/todos/1')
+    })
+
     it('visits the todo JSON response', function () {
       cy.intercept('GET', '/todos/*', (req) => {
         req.continue((res) => {
           if (res.headers['content-type'].includes('application/json')) {
             res.headers['content-type'] = 'text/html'
+            const text = `<body><pre>${JSON.stringify(
+              res.body,
+              null,
+              2
+            )}</pre></body>`
+            res.send(text)
           }
         })
       }).as('todo')
