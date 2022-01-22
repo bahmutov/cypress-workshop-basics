@@ -10,6 +10,7 @@
     "start": "npm start --prefix todomvc -- --quiet",
     "ci": "start-test 3000",
     "dev": "start-test 3000 cy:open",
+    "dev:answers": "start-test 3000 cy:answers:open",
     "postinstall": "npm install --prefix todomvc",
     "reset": "npm run reset --prefix todomvc",
     "slides": "vite --strictPort --port 3100",
@@ -37,6 +38,7 @@
   },
   "homepage": "https://github.com/bahmutov/cypress-workshop-basics#readme",
   "devDependencies": {
+    "cy-spok": "1.4.3",
     "cypress": "9.3.1",
     "cypress-real-events": "1.6.0",
     "highlight.js": "11.4.0",
