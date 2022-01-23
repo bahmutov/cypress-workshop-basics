@@ -373,6 +373,8 @@ describe(
   }
 )
 
+// read the blog post "How To Check Network Requests Using Cypress"
+// https://glebbahmutov.com/blog/network-requests-with-cypress/
 describe('Refactor network code example', () => {
   beforeEach(() => {
     cy.intercept('GET', '/todos', []).as('todos')
