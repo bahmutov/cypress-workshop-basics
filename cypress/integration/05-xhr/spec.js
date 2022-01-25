@@ -176,6 +176,32 @@ describe('waits for network idle', () => {
   })
 })
 
+describe('refactor example', () => {
+  // this test is incorrect on purpose
+  // can you refactor it to do what you think it should be doing?
+  it.skip('confirms the right Todo item is sent to the server', () => {
+    cy.intercept('GET', '/todos', []).as('todos')
+    cy.visit('/')
+    cy.intercept('POST', '/todos').as('postTodo')
+    const title = 'new todo'
+    const completed = false
+    cy.get('.new-todo').type(title + '{enter}')
+    const id = cy.wait('@postTodo').then((intercept) => {
+      // get the field from the intercept object
+      const { statusCode, body } = intercept.response
+      // confirm the status code is 201
+      expect(statusCode).to.eq(201)
+      // confirm some properties of the response data
+      expect(body.title).to.equal(title)
+      expect(body.completed).to.equal(completed)
+      // return the field from the body object
+      return body.id
+    })
+    console.log(id)
+    cy.request('/todos/' + id) // validate the response
+  })
+})
+
 describe('visit non-html page', () => {
   // before each test, create todos from the fixture data
   // the REST API serves each todo at /todos/:id
