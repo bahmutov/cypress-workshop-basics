@@ -187,3 +187,18 @@ describe('visit non-html page', () => {
     // do not forget to verify the page contents and the URL
   })
 })
+
+describe('test periodic loading', () => {
+  // application periodically loads todos from the server
+  // we do not want to wait 1 minute for the load call
+  // instead we want to speed up the application's clock
+  it('loads todos every minute', () => {
+    // answer different network calls to load Todos with different responses
+    cy.visit('/')
+    // confirm the first call has happened
+    // make the application think an entire minute has passed
+    // confirm the second call has happened
+    // another minute passes
+    // confirm the third call has happened
+  })
+})

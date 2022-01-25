@@ -25,7 +25,7 @@ This workshop covers the topics relevant to both beginners and experienced Cypre
 
 ### Target audience
 
-This workshop will be very useful for every web developer and every test looking to automate web application testing. Only a minimal knowledge of JavaScript is required, although previous experience with web programming and browser DevTools is very helpful.
+This workshop will be very useful for every web developer and every tester looking to automate web application testing. Only a minimal knowledge of JavaScript is required, although previous experience with web programming and browser DevTools is very helpful.
 
 ## Requirements
 

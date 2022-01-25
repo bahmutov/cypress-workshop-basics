@@ -158,6 +158,11 @@
       this.$store.dispatch('setDelay', delay).then(() => {
         this.$store.dispatch('loadTodos')
       })
+
+      // how would you test the periodic loading of todos?
+      setInterval(() => {
+        this.$store.dispatch('loadTodos')
+      }, 60000)
     },
 
     // computed properties
