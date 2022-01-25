@@ -218,6 +218,21 @@ In the application we are showing (very quickly) "Loading" state
 
 ---
 
+## Refactor a failing test
+
+```js
+// can you fix this test?
+const id = cy.wait('@postTodo').then((intercept) => {
+  // assert the response fields
+  return response.body.id
+})
+console.log(id)
+```
+
+⌨️ test "refactor example"
+
+---
+
 ## Let's test an edge data case
 
 User cannot enter blank titles. What if our database has old data records with blank titles which it returns on load? Does the application show them? Does it crash?
