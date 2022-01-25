@@ -224,7 +224,7 @@ In the application we are showing (very quickly) "Loading" state
 // can you fix this test?
 const id = cy.wait('@postTodo').then((intercept) => {
   // assert the response fields
-  return response.body.id
+  return intercept.response.body.id
 })
 console.log(id)
 ```
@@ -259,6 +259,8 @@ setInterval(() => {
 - learn about controlling the web page clock using [cy.clock](https://on.cypress.io/clock) command
 - set up a test "loads todos every minute" that intercepts the `GET /todos` with different responses using `times: 1` option
 - advance the clock by 1 minute and confirm different responses are displayed
+
+⌨️ test "test periodic loading"
 
 ---
 
