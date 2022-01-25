@@ -142,6 +142,7 @@ it('starts with zero items (fixture)', () => {
   cy.get('li.todo').should('have.length', 0)
 })
 ```
+
 **tip:** use [`cy.fixture`](https://on.cypress.io/fixture) command
 
 +++
@@ -216,6 +217,7 @@ In the application we are showing (very quickly) "Loading" state
 ⌨️ test "shows loading element"
 
 ---
+
 ## Let's test an edge data case
 
 User cannot enter blank titles. What if our database has old data records with blank titles which it returns on load? Does the application show them? Does it crash?
@@ -223,6 +225,28 @@ User cannot enter blank titles. What if our database has old data records with b
 **Todo:** write the test `handles todos with blank title`
 
 ---
+
+## Test periodic network requests
+
+The application loads Todos every minute
+
+```js
+// how would you test the periodic loading of todos?
+setInterval(() => {
+  this.$store.dispatch('loadTodos')
+}, 60000)
+```
+
++++
+
+## Todo
+
+- learn about controlling the web page clock using [cy.clock](https://on.cypress.io/clock) command
+- set up a test "loads todos every minute" that intercepts the `GET /todos` with different responses using `times: 1` option
+- advance the clock by 1 minute and confirm different responses are displayed
+
+---
+
 ## Wait for Network Idle
 
 You can spy on every network request and keep track of its timestamp. Waiting for network idle means waiting for the network request to be older than N milliseconds before continuing the test.
@@ -230,6 +254,7 @@ You can spy on every network request and keep track of its timestamp. Waiting fo
 **Todo:** implement the test "waits for the network to be idle for 2 seconds". Bonus for logging the timings.
 
 ---
+
 ## 🏁 Spy and stub the network from your tests
 
 - confirm the REST calls
