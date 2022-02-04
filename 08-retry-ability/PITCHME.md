@@ -363,16 +363,11 @@ it('has two labels', () => {
 
 ## Add delay to the app
 
+We can insert an artificial pause after "Enter" to slow down creating a new Todo item.
+
 ```js
-// todomvc/app.js
-addTodo ({ commit, state }) {
-  // ...
-  setTimeout(() => {
-    axios.post('/todos', todo).then(() => {
-      commit('ADD_TODO', todo)
-    })
-  }, 0) // use 10, 30, 50, 100, 150, 200ms
-},
+// use 10, 30, 50, 100, 150, 200ms
+cy.visit('/?addTodoDelay=100')
 ```
 
 > Is the test passing now?
@@ -505,7 +500,7 @@ cy.wait('@new-item')
 // access and spy / stub application code
 cy.spy(...).as('some-method')
 cy.get('@some-method')
-  .should('have.been.calledOnce)
+  .should('have.been.calledOnce')
 ```
 
 ---
