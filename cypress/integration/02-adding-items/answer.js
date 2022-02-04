@@ -64,6 +64,39 @@ it('starts with zero items', () => {
   cy.get('li.todo').should('have.length', 0)
 })
 
+it('disables the built-in assertion', () => {
+  // try to get a non-existent element
+  // without failing the test
+  // pass it to the `.then($el)` callback
+  // to check it yourself
+  cy.get('does-not-exist')
+    .should(Cypress._.noop)
+    .then(($el) => {
+      if (!$el.length) {
+        cy.log('There is no element')
+      }
+    })
+})
+
+it('adds one more todo item', () => {
+  // make sure the application has loaded first
+  // maybe using cy.wait() or by spying on the network call
+  // or by checking something in the DOM
+  cy.wait(1000)
+  // take the initial number of items (could be zero!)
+  // add one more todo via UI
+  // take the new number of items
+  // confirm it is the initial number + 1
+  cy.get('li.todo')
+    .should(Cypress._.noop)
+    .its('length')
+    .then((n) => {
+      addItem('my new item')
+      // now we for sure have at least one item
+      cy.get('li.todo').should('have.length', n + 1)
+    })
+})
+
 it('does not allow adding blank todos', () => {
   cy.on('uncaught:exception', (e) => {
     // what will happen if this assertion fails?

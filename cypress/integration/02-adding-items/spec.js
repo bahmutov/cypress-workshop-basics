@@ -60,10 +60,28 @@ it('adds item with random text', () => {
 
 it('starts with zero items', () => {
   // check if the list is empty initially
-  //   find the selector for the individual TODO items
-  //   in the list
+  //   find the selector for the individual TODO items in the list
   //   use cy.get(...) and it should have length of 0
   //   https://on.cypress.io/get
+})
+
+it('disables the built-in assertion', () => {
+  // try to get a non-existent element
+  // without failing the test
+  // pass it to the `.then($el)` callback
+  // to check it yourself
+})
+
+it('adds one more todo item', () => {
+  // make sure the application has loaded first
+  // maybe using cy.wait() or by spying on the network call
+  // or by checking something in the DOM
+  cy.wait(1000)
+
+  // take the initial number of items (could be zero!)
+  // add one more todo via UI
+  // take the new number of items
+  // confirm it is the initial number + 1
 })
 
 it('does not allow adding blank todos', () => {
