@@ -8,7 +8,10 @@ describe('retry-ability', () => {
   })
 
   beforeEach(function visitSite() {
+    // do not delay adding new items after pressing Enter
     cy.visit('/')
+    // enable a delay when adding new items
+    // cy.visit('/?addTodoDelay=1000')
   })
 
   it('shows UL', function () {

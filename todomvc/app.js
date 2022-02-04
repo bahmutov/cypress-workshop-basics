@@ -8,6 +8,12 @@
     return Math.random().toString().substr(2, 10)
   }
 
+  /**
+   * When adding new todo items, we can force the delay by using
+   * the URL query parameter `addTodoDelay=<ms>`.
+   */
+  let addTodoDelay = 0
+
   const store = new Vuex.Store({
     state: {
       loading: false,
@@ -103,7 +109,7 @@
           axios.post('/todos', todo).then(() => {
             commit('ADD_TODO', todo)
           })
-        }, 0) // TODO: read the delay from the page search parameter like ?delay=2000
+        }, addTodoDelay)
       },
       addEntireTodo({ commit }, todoFields) {
         const todo = {
@@ -154,6 +160,7 @@
       const uri = window.location.search.substring(1)
       const params = new URLSearchParams(uri)
       const delay = parseFloat(params.get('delay') || '0')
+      addTodoDelay = parseFloat(params.get('addTodoDelay') || '0')
 
       this.$store.dispatch('setDelay', delay).then(() => {
         this.$store.dispatch('loadTodos')
