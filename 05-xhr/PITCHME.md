@@ -170,7 +170,7 @@ It is important to be able to use DevTools network tab to inspect the XHR and it
 
 +++
 
-**Todo 1/2**
+**Todo 1/3**
 
 - write a test "posts new item to the server" that confirms that new item is posted to the server
 
@@ -181,9 +181,20 @@ see instructions in the `05-xhr/spec.js` for the test
 
 +++
 
-**Todo 2/2**
+**Todo 2/3**
 
 - write a test "posts new item to the server response" that confirms that RESPONSE when a new item is posted to the server
+
+![Post new item response](./img/post-item-response.png)
+
+Note:
+see instructions in the `05-xhr/spec.js` for the test
+
++++
+
+**Todo 3/3**
+
+- after you waited for the intercept once, you can use `cy.get('@alias')` to get its as many times as needed. Verify the request body and the response body of the intercept. Implement the test "'confirms the request and the response"
 
 ![Post new item response](./img/post-item-response.png)
 
@@ -224,7 +235,7 @@ In the application we are showing (very quickly) "Loading" state
 // can you fix this test?
 const id = cy.wait('@postTodo').then((intercept) => {
   // assert the response fields
-  return response.body.id
+  return intercept.response.body.id
 })
 console.log(id)
 ```
@@ -259,6 +270,8 @@ setInterval(() => {
 - learn about controlling the web page clock using [cy.clock](https://on.cypress.io/clock) command
 - set up a test "loads todos every minute" that intercepts the `GET /todos` with different responses using `times: 1` option
 - advance the clock by 1 minute and confirm different responses are displayed
+
+⌨️ test "test periodic loading"
 
 ---
 
