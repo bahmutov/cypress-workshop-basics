@@ -135,6 +135,36 @@ describe('retry-ability', () => {
   })
 })
 
+describe('should vs then', () => {
+  it('retries should(cb) but does not return value', () => {
+    cy.wrap(42)
+      .should((x) => {
+        expect(x).to.equal(42)
+        // the return here does nothing
+        // the original subject 42 is yielded instead
+        return 10
+      })
+      // assert the value is 42
+      .should('equal', 42)
+  })
+
+  it('first use should(cb) then then(cb) to change the value', () => {
+    cy.wrap(42)
+      .should((x) => {
+        expect(x).to.equal(42)
+        // the returned value is ignored
+        return 10
+      })
+      .then((x) => {
+        // check the current value
+        expect(x).to.equal(42)
+        return 10
+      })
+      // assert the value is 10
+      .should('equal', 10)
+  })
+})
+
 describe('Careful with negative assertions', { retries: 2 }, () => {
   beforeEach(function resetData() {
     // cy.intercept('/todos', { body: [], delayMs: 5000 })

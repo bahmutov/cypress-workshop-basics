@@ -94,7 +94,7 @@ Finish test "shows UL - TDD"
 
 ```js
 it('shows UL - TDD', function () {
-  cy.contains('ul', 'todo A').then($ul => {
+  cy.contains('ul', 'todo A').then(($ul) => {
     // use TDD assertions
     // $ul is visible
     // $ul has class "todo-list"
@@ -113,11 +113,10 @@ Which style do you prefer?
 
 ```js
 cy.contains('ul', 'todo A').should('be.visible')
-cy.contains('ul', 'todo A').should($el => {
+cy.contains('ul', 'todo A').should(($el) => {
   expect($el).to.be.visible
   assert.isTrue(Cypress.dom.isVisible($el))
 })
-
 ```
 
 ⚠️ [Chai-jQuery](https://on.cypress.io/assertions#Chai-jQuery) and [Sinon-Chai](https://on.cypress.io/assertions#Sinon-Chai) are only available in BDD mode.
@@ -125,11 +124,13 @@ cy.contains('ul', 'todo A').should($el => {
 +++
 
 ## BDD
+
 ![BDD log](./img/bdd.png)
 
 +++
 
 ## TDD
+
 ![TDD log](./img/tdd.png)
 
 ---
@@ -139,7 +140,8 @@ cy.contains('ul', 'todo A').should($el => {
 Write you own [should(cb)](http://on.cypress.io/should#Function) assertion
 
 ```js
-cy.get('.docs-header').find('div')
+cy.get('.docs-header')
+  .find('div')
   .should(($div) => {
     expect($div).to.have.length(1)
     const className = $div[0].className
@@ -154,7 +156,7 @@ cy.get('.docs-header').find('div')
 ```js
 it('every item starts with todo', function () {
   // ...
-  cy.get('.todo label').should($labels => {
+  cy.get('.todo label').should(($labels) => {
     // confirm that there are 4 labels
     // and that each one starts with "todo-"
   })
@@ -169,7 +171,7 @@ it('every item starts with todo', function () {
 - text between two cells is unknown but should be the same
 - displayed value should be the same as API has returned
 
-[https://example.cypress.io/commands/assertions](https://example.cypress.io/commands/assertions)
+[https://example.cypress.io/commands/assertions](https://example.cypress.io/commands/assertions), [[cypress-examples assertions](https://glebbahmutov.com/cypress-examples/commands/assertions.html)](https://glebbahmutov.com/cypress-examples/commands/assertions.html)
 
 ---
 
@@ -185,14 +187,14 @@ Add link to retry-ability page when finished https://github.com/cypress-io/cypre
 
 ```javascript
 it('creates 2 items', function () {
-  cy.visit('/')                       // command
-  cy.focused()                        // command
+  cy.visit('/') // command
+  cy.focused() // command
     .should('have.class', 'new-todo') // assertion
-  cy.get('.new-todo')                 // command
-    .type('todo A{enter}')            // command
-    .type('todo B{enter}')            // command
-  cy.get('.todo-list li')             // command
-    .should('have.length', 2)         // assertion
+  cy.get('.new-todo') // command
+    .type('todo A{enter}') // command
+    .type('todo B{enter}') // command
+  cy.get('.todo-list li') // command
+    .should('have.length', 2) // assertion
 })
 ```
 
@@ -201,7 +203,7 @@ it('creates 2 items', function () {
 ### Look at the last command + assertion
 
 ```javascript
-cy.get('.todo-list li')     // command
+cy.get('.todo-list li') // command
   .should('have.length', 2) // assertion
 ```
 
@@ -215,9 +217,9 @@ If not shown, this is a good moment to slow down the app and show how the assert
 Command `cy.contains` will be retried _until 3 assertions_ that follow it all pass.
 
 ```js
-cy.contains('ul', 'todo A')                   // command
-  .should('be.visible')                       // assertion
-  .and('have.class', 'todo-list')             // assertion
+cy.contains('ul', 'todo A') // command
+  .should('be.visible') // assertion
+  .and('have.class', 'todo-list') // assertion
   .and('have.css', 'list-style-type', 'none') // assertion
 ```
 
@@ -226,11 +228,12 @@ cy.contains('ul', 'todo A')                   // command
 Command `cy.get` will be retried _until 5 assertions_ that follow it all pass.
 
 ```js
-cy.get('.todo label')                 // command
-  .should($labels => {
+cy.get('.todo label') // command
+  .should(($labels) => {
     expect($labels).to.have.length(4) // assertion
 
-    $labels.each((k, el) => {         // 4 assertions
+    $labels.each((k, el) => {
+      // 4 assertions
       expect(el.textContent).to.match(/^todo /)
     })
   })
@@ -254,6 +257,8 @@ NOT retried: `cy.click`, `cy.task`, etc.
 - `then(cb)` does not retry
 
 ### Todo: demonstrate this
+
+Use the tests "should vs then"
 
 +++
 
@@ -322,9 +327,9 @@ Did you write several commands before writing an assertion? <!-- .element: class
 ```js
 it('has the right label', () => {
   cy.get('.new-todo').type('todo A{enter}')
-  cy.get('.todo-list li')         // command
-    .find('label')                // command
-    .should('contain', 'todo A')  // assertion
+  cy.get('.todo-list li') // command
+    .find('label') // command
+    .should('contain', 'todo A') // assertion
 })
 ```
 
@@ -343,14 +348,14 @@ Everything looks good.
 ```js
 it('has two labels', () => {
   cy.get('.new-todo').type('todo A{enter}')
-  cy.get('.todo-list li')         // command
-    .find('label')                // command
-    .should('contain', 'todo A')  // assertion
+  cy.get('.todo-list li') // command
+    .find('label') // command
+    .should('contain', 'todo A') // assertion
 
   cy.get('.new-todo').type('todo B{enter}')
-  cy.get('.todo-list li')         // command
-    .find('label')                // command
-    .should('contain', 'todo B')  // assertion
+  cy.get('.todo-list li') // command
+    .find('label') // command
+    .should('contain', 'todo B') // assertion
 })
 ```
 
@@ -398,9 +403,9 @@ For me it was 46ms. Flaky test like this works fine locally, yet sometimes fails
 
 ```js
 cy.get('.new-todo').type('todo B{enter}')
-cy.get('.todo-list li')         // queries immediately, finds 1 <li>
-  .find('label')                // retried, retried, retried with 1 <li>
-  .should('contain', 'todo B')  // never succeeds with only 1st <li>
+cy.get('.todo-list li') // queries immediately, finds 1 <li>
+  .find('label') // retried, retried, retried with 1 <li>
+  .should('contain', 'todo B') // never succeeds with only 1st <li>
 ```
 
 How do we fix the flaky test?
@@ -433,9 +438,9 @@ The test should pass now, even with longer delay, because `cy.get` is retried.
 // dangerous ⚠️
 // only the last "its" will be retried
 cy.window()
-  .its('app')             // runs once
-  .its('model')           // runs once
-  .its('todos')           // retried
+  .its('app') // runs once
+  .its('model') // runs once
+  .its('todos') // retried
   .should('have.length', 2)
 
 // ✅ recommended
@@ -452,31 +457,32 @@ From [https://glebbahmutov.com/blog/set-flag-to-start-tests/](https://glebbahmut
 
 ```js
 cy.get('.new-todo').type('todo A{enter}')
-cy.get('.todo-list li')         // command
-  .should('have.length', 1)     // assertion
-  .find('label')                // command
-  .should('contain', 'todo A')  // assertion
+cy.get('.todo-list li') // command
+  .should('have.length', 1) // assertion
+  .find('label') // command
+  .should('contain', 'todo A') // assertion
 
 cy.get('.new-todo').type('todo B{enter}')
-cy.get('.todo-list li')         // command
-  .should('have.length', 2)     // assertion
-  .find('label')                // command
-  .should('contain', 'todo B')  // assertion
+cy.get('.todo-list li') // command
+  .should('have.length', 2) // assertion
+  .find('label') // command
+  .should('contain', 'todo B') // assertion
 ```
 
 ⌨️ try this in test "solution 2: alternate commands and assertions"
 
 ---
+
 ## Cypress Retries: Triple Header 1/3
 
 ### 1. DOM queries
 
 ```js
-cy.get('li')
-  .should('have.length', 2)
+cy.get('li').should('have.length', 2)
 ```
 
 +++
+
 ## Cypress Retries: Triple Header 2/3
 
 ### 2. Network
@@ -490,6 +496,7 @@ cy.wait('@new-item')
 ```
 
 +++
+
 ## Cypress Retries: Triple Header 3/3
 
 ### 3. Application
@@ -502,6 +509,7 @@ cy.get('@some-method')
 ```
 
 ---
+
 ## Aliases
 
 Values and DOM elements can be saved under an alias using [.as](https://on.cypress.io/as) command.
@@ -589,6 +597,7 @@ it('has two labels', { retries: 2 }, () => {
 ```
 
 ---
+
 ## 📝 Take away
 
 Most commands have built-in sensible waits:
@@ -602,8 +611,7 @@ Most commands have built-in sensible waits:
 Many commands also retry themselves until the assertions that follow pass
 
 ```js
-cy.get('li')
-  .should('have.length', 2)
+cy.get('li').should('have.length', 2)
 ```
 
 DOM 🎉 Network 🎉 Application methods 🎉

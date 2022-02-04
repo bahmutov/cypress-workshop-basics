@@ -120,6 +120,29 @@ describe('Careful with negative assertions', () => {
   })
 })
 
+describe('should vs then', () => {
+  it('retries should(cb) but does not return value', () => {
+    cy.wrap(42).should((x) => {
+      // the return here does nothing
+      // the original subject 42 is yielded instead
+    })
+    // assert the value is 42
+  })
+
+  it('first use should(cb) then then(cb) to change the value', () => {
+    cy.wrap(42)
+      .should((x) => {
+        // the returned value is ignored
+      })
+      .then((x) => {
+        // check the current value
+        return 10
+      })
+      // assert the value is 10
+      .should('equal', 10)
+  })
+})
+
 describe('timing commands', () => {
   // reset data before each test
 
