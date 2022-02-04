@@ -63,6 +63,7 @@ it('can mark an item as completed', () => {
   // confirms the other items are still incomplete
 })
 ```
+
 +++
 
 ## Refactor code 1/3
@@ -104,6 +105,7 @@ it('can delete an item', () => {
   // confirm the other item still exists
 })
 ```
+
 ---
 
 ## Todo: use random text
@@ -117,7 +119,52 @@ it('adds item with random text', () => {
 })
 ```
 
+---
+
+## Todo: no items
+
+```js
+it('starts with zero items', () => {
+  // check if the list is empty initially
+  //   find the selector for the individual TODO items in the list
+  //   use cy.get(...) and it should have length of 0
+  //   https://on.cypress.io/get
+})
+```
+
+---
+
+## Default assertions
+
+```js
+cy.get('li.todo')
+// is the same as
+cy.get('li.todo').should('exist')
+```
+
+See [cy.get Assertions](https://on.cypress.io/get#Assertions)
+
 +++
+
+What if you do not know if an element exists? You can disable the built-in assertions using a "dummy" `should(cb)` assertion.
+
+```js
+cy.get('li.todo').should(() => {})
+// or using the bundled Lodash
+cy.get('li.todo').should(Cypress._.noop)
+```
+
+Todo: write test "disables the built-in assertion".
+
++++
+
+## Todo: number of items increments by one
+
+How do you check if an unknown number of items grows by one? There might be no items at first.
+
+Implement the test "adds one more todo item"
+
+---
 
 ## 💡 Pro tips
 
@@ -125,11 +172,13 @@ it('adds item with random text', () => {
 - set up IntelliSense in `cypress.json` using [https://on.cypress.io/intelligent-code-completion](https://on.cypress.io/intelligent-code-completion)
 
 ---
+
 ## Adding blank item
 
 The application does not allow adding items with blank titles. What happens when the user does it? Hint: open DevTools console.
 
 +++
+
 ## Todo: finish this test
 
 ```js
@@ -145,6 +194,7 @@ it('does not allow adding blank todos', () => {
 ```
 
 ---
+
 ## Bonus
 
 Unit tests vs end-to-end tests
@@ -165,15 +215,17 @@ test('add', () => {
 ### End-to-end tests
 
 ```javascript
-const addItem = text => {
+const addItem = (text) => {
   cy.get('.new-todo').type(`${text}{enter}`)
 }
 it('can mark items as completed', () => {
   const ITEM_SELECTOR = 'li.todo'
   addItem('simple')
   addItem('difficult')
-  cy.contains(ITEM_SELECTOR, 'simple').should('exist')
-    .find('input[type="checkbox"]').check()
+  cy.contains(ITEM_SELECTOR, 'simple')
+    .should('exist')
+    .find('input[type="checkbox"]')
+    .check()
   // have to force click because the button does not appear unless we hover
   cy.contains(ITEM_SELECTOR, 'simple').find('.destroy').click({ force: true })
   cy.contains(ITEM_SELECTOR, 'simple').should('not.exist')
@@ -240,6 +292,7 @@ describe('Feature A', () => {
 ```
 
 ---
+
 ## 🏁 Write your tests like a user
 
 - go through UI
