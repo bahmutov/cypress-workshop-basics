@@ -170,7 +170,7 @@ It is important to be able to use DevTools network tab to inspect the XHR and it
 
 +++
 
-**Todo 1/2**
+**Todo 1/3**
 
 - write a test "posts new item to the server" that confirms that new item is posted to the server
 
@@ -181,9 +181,20 @@ see instructions in the `05-xhr/spec.js` for the test
 
 +++
 
-**Todo 2/2**
+**Todo 2/3**
 
 - write a test "posts new item to the server response" that confirms that RESPONSE when a new item is posted to the server
+
+![Post new item response](./img/post-item-response.png)
+
+Note:
+see instructions in the `05-xhr/spec.js` for the test
+
++++
+
+**Todo 3/3**
+
+- after you waited for the intercept once, you can use `cy.get('@alias')` to get its as many times as needed. Verify the request body and the response body of the intercept. Implement the test "'confirms the request and the response"
 
 ![Post new item response](./img/post-item-response.png)
 

@@ -79,6 +79,21 @@ it('posts new item to the server', () => {
   // hint: use cy.wait(...).its(...).should('have.contain', ...)
 })
 
+it('posts new item to the server response', () => {
+  // spy on "POST /todos", save as alias
+  cy.visit('/')
+  cy.get('.new-todo').type('test api{enter}')
+  // get the intercept and confirm the response body
+})
+
+it('confirms the request and the response', () => {
+  // spy on "POST /todos", save as alias
+  cy.visit('/')
+  cy.get('.new-todo').type('test api{enter}')
+  // wait for the intercept and verify its request body
+  // get the same intercept again and verify its response body
+})
+
 it('handles 404 when loading todos', () => {
   // when the app tries to load items
   // set it up to fail with 404 to GET /todos

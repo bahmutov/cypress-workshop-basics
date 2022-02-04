@@ -85,6 +85,23 @@ it('posts new item to the server response', () => {
   })
 })
 
+it('confirms the request and the response', () => {
+  // spy on "POST /todos", save as alias
+  cy.intercept('POST', '/todos').as('new-item')
+  cy.visit('/')
+  cy.get('.new-todo').type('test api{enter}')
+  // wait for the intercept and verify its request body
+  cy.wait('@new-item').its('request.body').should('deep.include', {
+    title: 'test api',
+    completed: false
+  })
+  // get the same intercept again and verify its response body
+  cy.get('@new-item').its('response.body').should('deep.include', {
+    title: 'test api',
+    completed: false
+  })
+})
+
 it('loads several items from a fixture', () => {
   // stub route `GET /todos` with data from a fixture file
   // THEN visit the page
