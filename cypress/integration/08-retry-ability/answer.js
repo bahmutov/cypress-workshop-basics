@@ -313,11 +313,11 @@ describe('timing commands', () => {
       .then(() => {
         // take another timestamp when the indicator goes away.
         // compute the elapsed time
-        // assert the elapsed time is less than 2 seconds
+        // assert the elapsed time is less than 2 seconds (be lenient)
         const finished = +new Date()
         const elapsed = finished - started
         expect(elapsed, 'loading takes less than 2 seconds').to.be.lessThan(
-          2000
+          2100
         )
       })
   })
