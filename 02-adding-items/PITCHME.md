@@ -156,7 +156,15 @@ cy.get('li.todo').should(Cypress._.noop)
 
 Todo: write test "disables the built-in assertion".
 
-+++
+---
+
+## Todo: delete all items at the start
+
+Todo: write the test "deletes all items at the start"
+
+There might be two implementations (cy.each vs click on multiple elements)
+
+---
 
 ## Todo: number of items increments by one
 
