@@ -250,6 +250,19 @@ Revisit the discussion about what kind of tests one should write. E2E tests can 
 
 +++
 
+## Todo: run unit tests in Cypress
+
+Does this test run in Cypress?
+
+```javascript
+import add from './add'
+test('add', () => {
+  expect(add(2, 3)).toBe(5)
+})
+```
+
++++
+
 ### Bonus
 
 - Core concepts [https://on.cypress.io/writing-and-organizing-tests](https://on.cypress.io/writing-and-organizing-tests)
@@ -289,6 +302,17 @@ describe('Feature A', () => {
     it('works', () => {})
   })
 })
+```
+
++++
+
+## Support file
+
+Support file is included before each spec file.
+
+```html
+<script src="cypress/support/index.js"></script>
+<script src="cypress/integration/spec.js"></script>
 ```
 
 ---

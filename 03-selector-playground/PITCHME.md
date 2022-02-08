@@ -69,7 +69,7 @@ The updated test should look something like the next image
 ## Cypress is just JavaScript
 
 ```js
-import {selectors, tid} from './common-selectors'
+import { selectors, tid } from './common-selectors'
 it('finds element', () => {
   cy.get(selectors.todoInput).type('something{enter}')
 
@@ -80,6 +80,7 @@ it('finds element', () => {
 ```
 
 ---
+
 ## Cypress Studio
 
 Record tests by clicking on the page
@@ -90,12 +91,16 @@ Record tests by clicking on the page
 }
 ```
 
+Watch 📹 [Record A Test Using Cypress Studio](https://www.youtube.com/watch?v=kBYtqsK-8Aw) and read [https://on.cypress.io/studio](https://on.cypress.io/studio).
+
 +++
+
 ## Start recording
 
 ![open Cypress Studio](./img/start-studio.png)
 
 ---
+
 ## 🏁 Selecting Elements
 
 - Use Selector Playground
