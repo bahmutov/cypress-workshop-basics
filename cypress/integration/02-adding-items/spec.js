@@ -72,6 +72,28 @@ it('disables the built-in assertion', () => {
   // to check it yourself
 })
 
+it('deletes all items at the start', () => {
+  // visit the page
+  // wait for the page to load the todos
+  // using cy.wait() for now
+  // get all todo items (there might not be any!)
+  // for each todo item click the remove button
+  // tip: use cy.each and cy.wrap commands
+  // confirm that the item is gone from the dom
+  // using "should not exist" or "should have length 0" assertion
+})
+
+it('deletes all items at the start (click multiple elements)', () => {
+  // visit the page
+  // wait for the page to load the todos
+  // using cy.wait() for now
+  // get all todo elements and their destroy buttons
+  // (there might not be any!)
+  // the click on them all at once
+  // see https://on.cypress.io/click documentation
+  // confirm that the item is gone from the dom
+})
+
 it('adds one more todo item', () => {
   // make sure the application has loaded first
   // maybe using cy.wait() or by spying on the network call
