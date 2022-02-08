@@ -5,6 +5,7 @@
 Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=02-adding-items), [03-selector-playground](?p=03-selector-playground), [04-reset-state](?p=04-reset-state), [05-xhr](?p=05-xhr), [06-app-data-store](?p=06-app-data-store), [07-ci](?p=07-ci), [08-retry-ability](?p=08-retry-ability), [09-custom-commands](?p=09-custom-commands), [end](?p=end)
 
 +++
+
 ## Author: Gleb Bahmutov, PhD
 
 - Ex-VP of Engineering at Cypress
@@ -20,7 +21,7 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 ## What we are going to cover 1/2
 
 - example TodoMVC
-  * web app, data store, REST calls
+  - web app, data store, REST calls
 - basic page load test
 - selector playground
 - resetting state before the test
@@ -40,12 +41,21 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 
 ## Time 🕰
 
-- total workshop duration 3+ hours
+- total workshop duration 4x 2+ hours
 - short breaks after each hour
+- time for questions at the end of each day
 
 +++
 
-Please: if you have experience with Cypress.io, help others during the workshop 🙏
+<!-- Please: if you have experience with Cypress.io, help others during the workshop 🙏 -->
+
+## Poll: have you used Cypress before?
+
+- 👏 This is my first time
+- 👍 Using for less than 1 month
+- ❤️ Using it for less than 1 year
+- 😂 Using for longer than 1 year
+- 🎉 Using for longer than 2 years
 
 ---
 
@@ -56,6 +66,8 @@ Please: if you have experience with Cypress.io, help others during the workshop 
 3. You do and I help
 
 **Tip:** this repository has everything to work through the test exercises.
+
+[bahmutov/cypress-workshop-basics](https://github.com/bahmutov/cypress-workshop-basics)
 
 ---
 

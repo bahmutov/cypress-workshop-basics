@@ -8,6 +8,7 @@
 - Cypress documentation
 
 ---
+
 ## Quick check: Node.js
 
 ```bash
@@ -20,7 +21,7 @@ $ yarn -v
 1.22.10
 ```
 
-If you need to install Node, see [Basics Requirements](https://github.com/bahmutov/cypress-workshop-basics#requirements).
+If you need to install Node, see [Basics Requirements](https://github.com/bahmutov/cypress-workshop-basics#requirements) and 📹 [Install Node and Cypress](https://www.youtube.com/watch?v=09KbTRLrgWA)
 
 ---
 
@@ -35,6 +36,7 @@ Create a new folder
 - `npm install -D cypress`
 
 +++
+
 ### Cypress bin
 
 When you run `npm install cypress` it creates a "cypress" alias in the `node_modules/.bin" folder. You can see all tools that install aliases (depending on the platform)
@@ -90,9 +92,11 @@ And I use `npm run cy:open`
 
 - "cypress.json" - all Cypress settings
 - "cypress/integration" - test files (specs)
-- "cypress/fixtures" - mock data
-- "cypress/plugins" - extending Cypress
-- "cypress/support" - shared commands, utilities
+- "cypress/fixtures" - mock data <!-- .element: class="fragment" -->
+- "cypress/plugins" - extending Cypress in Node<!-- .element: class="fragment" -->
+- "cypress/support" - shared commands, utilities <!-- .element: class="fragment" -->
+
+Read blog post [Cypress is just ...](https://glebbahmutov.com/blog/cypress-is/)
 
 Note:
 This section shows how Cypress scaffolds its files and folders. Then the students can ignore this folder. This is only done once to show the scaffolding.
@@ -103,9 +107,7 @@ Look at the scaffolded example test files (specs).
 
 Run specs for topics that look interesting
 
-Hint: you can find latest examples in [https://github.com/cypress-io/cypress-example-kitchensink](https://github.com/cypress-io/cypress-example-kitchensink)
-
-+++
+---
 
 ## 💡 Pro tip
 
@@ -127,9 +129,10 @@ Repo [github.com/bahmutov/cly](https://github.com/bahmutov/cly)
 - repo [github.com/cypress-io/cypress-example-kitchensink](https://github.com/cypress-io/cypress-example-kitchensink)
 - site [example.cypress.io](https://example.cypress.io)
 
-**Tip:** also use [glebbahmutov.com/cypress-examples](https://glebbahmutov.com/cypress-examples) that has a good code search and more recipes
+**Tip:** also use [glebbahmutov.com/cypress-examples](https://glebbahmutov.com/cypress-examples) that has a good code search, more command examples, and longer recipes
 
 ---
+
 ## First spec
 
 Let's test our TodoMVC application. Create a new spec file
@@ -258,6 +261,14 @@ The above URL goes right to the documentation for that command.
 
 Note:
 Students should know where to find information later on. Main resources is the api page [https://on.cypress.io/api](https://on.cypress.io/api)
+
+---
+
+## My Cypress search
+
+[cypress.tips/search](https://cypress.tips/search)
+
+![Cypress tips search](./img/cypress-tips-search.png)
 
 ---
 

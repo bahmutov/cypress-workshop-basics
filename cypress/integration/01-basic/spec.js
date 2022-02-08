@@ -2,6 +2,9 @@
 // @ts-check
 it('loads', () => {
   // application should be running at port 3000
+  // see the documentation for "cy.visit" command
+  // in the Cypress docs at https://on.cypress.io/visit
+  // TIP: all commands are linked from https://on.cypress.io/api
   cy.visit('localhost:3000')
 
   // passing assertions
@@ -10,7 +13,7 @@ it('loads', () => {
 
   // this assertion fails on purpose
   // can you fix it?
-  // https://on.cypress.io/get
+  // https://on.cypress.io/contains
   cy.contains('h1', 'Todos App')
 
   // can you write "cy.contains" using regular expression?
