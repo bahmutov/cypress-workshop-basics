@@ -151,6 +151,8 @@ Custom commands | [09-custom-commands](slides/09-custom-commands/PITCHME.md) | [
 The end | [end](slides/end/PITCHME.md) | [link](https://glebbahmutov.com/cypress-workshop-basics/?p=end)
 <!-- prettier-ignore-end -->
 
+Take a short [quiz](https://glebbahmutov.com/cypress-workshop-basics/?p=quizes)
+
 ## For self-guided learning
 
 You can learn _everything_ in this repository without an instructor telling you what to do. Start the application, open Cypress, open the slides (see above), and follow the slides! Every section has learning objects, full set of instructions, and exercises to perform on your own.
