@@ -227,6 +227,8 @@ In the application we are showing (very quickly) "Loading" state
 
 ⌨️ test "shows loading element"
 
+**Note:** most querying commands have the built-in `should('exist')` assertion, thus in this case we need to use `should('be.visible')` and `should('not.be.visible')` assertions.
+
 ---
 
 ## Refactor a failing test

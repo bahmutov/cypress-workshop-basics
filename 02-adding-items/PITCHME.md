@@ -181,6 +181,16 @@ Implement the test "adds one more todo item"
 
 ---
 
+## Checking the saved items
+
+The application saves the items in "todomvc/data.json" file. Can we verify that a new item has been saved?
+
+Todo: write the test "saves the added todos"
+
+**Tip:** use [cy.task](https://on.cypress.io/task) in the plugins file
+
+---
+
 ## Adding blank item
 
 The application does not allow adding items with blank titles. What happens when the user does it? Hint: open DevTools console.
