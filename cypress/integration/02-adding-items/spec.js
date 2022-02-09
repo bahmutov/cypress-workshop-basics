@@ -106,6 +106,14 @@ it('adds one more todo item', () => {
   // confirm it is the initial number + 1
 })
 
+it('saves the added todos', () => {
+  // use a random label
+  // make sure the application has saved the item
+  cy.wait(1000)
+  // get the saved todos using cy.task from the plugins file
+  // confirm the list includes an item with "title: randomLabel"
+})
+
 it('does not allow adding blank todos', () => {
   // https://on.cypress.io/catalog-of-events#App-Events
   cy.on('uncaught:exception', () => {

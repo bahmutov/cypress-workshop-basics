@@ -85,6 +85,17 @@ module.exports = (on, config) => {
         ms
       )
       return hasRecordAsync(title, ms)
+    },
+
+    /**
+     * Call this method using cy.task('getSavedTodos') command.
+     * Make sure the backend had plenty of time to save the data.
+     */
+    getSavedTodos() {
+      const s = fs.readFileSync(getDbFilename(), 'utf8')
+      const data = JSON.parse(s)
+      console.log('returning %d saved todos', data.todos.length)
+      return data.todos
     }
   })
 

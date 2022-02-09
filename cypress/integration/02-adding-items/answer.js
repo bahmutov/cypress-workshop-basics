@@ -133,6 +133,23 @@ it('adds one more todo item', () => {
     })
 })
 
+it('saves the added todos', () => {
+  // use a random label
+  const randomLabel = `Item ${Math.random().toString().slice(2, 14)}`
+
+  addItem(randomLabel)
+  // make sure the application has saved the item
+  cy.wait(1000)
+  // get the saved todos using cy.task from the plugins file
+  cy.task('getSavedTodos')
+    .should('have.length.greaterThan', 0)
+    // confirm the list includes an item with "title: randomLabel"
+    .and((list) => {
+      const found = Cypress._.find(list, (item) => item.title === randomLabel)
+      expect(found, 'has the new item').to.be.an('object')
+    })
+})
+
 it('does not allow adding blank todos', () => {
   cy.on('uncaught:exception', (e) => {
     // what will happen if this assertion fails?
