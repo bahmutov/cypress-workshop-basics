@@ -128,6 +128,15 @@
           commit('REMOVE_TODO', todo)
         })
       },
+      async removeCompleted({ commit, state }) {
+        const remainingTodos = state.todos.filter((todo) => !todo.completed)
+        const completedTodos = state.todos.filter((todo) => todo.completed)
+
+        for (const todo of completedTodos) {
+          await axios.delete(`/todos/${todo.id}`)
+        }
+        commit('SET_TODOS', remainingTodos)
+      },
       clearNewTodo({ commit }) {
         commit('CLEAR_NEW_TODO')
       },
@@ -218,6 +227,10 @@
       // utility method for create a todo with title and completed state
       addEntireTodo(title, completed = false) {
         this.$store.dispatch('addEntireTodo', { title, completed })
+      },
+
+      removeCompleted() {
+        this.$store.dispatch('removeCompleted')
       }
     }
   })

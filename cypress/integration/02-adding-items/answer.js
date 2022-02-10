@@ -167,7 +167,7 @@ it('does not allow adding blank todos', () => {
   addItem(' ')
 })
 
-it.only('shows remaining count only if there are items', () => {
+it('shows remaining count only if there are items', () => {
   // make sure the application has loaded first
   cy.wait(1000)
   // there are no todos
@@ -183,6 +183,31 @@ it.only('shows remaining count only if there are items', () => {
   // delete the single todo
   cy.contains('.todo', 'one').find('.destroy').click({ force: true })
   // the footer is gone
+  cy.get('.footer').should('not.be.visible')
+})
+
+it('clears completed items', () => {
+  // make sure the application has loaded first
+  cy.wait(1000)
+  // there are no todos
+  cy.get('.todo-list').should('not.be.visible')
+  // add two items
+  // make both items completed
+  const items = ['first', 'second']
+  items.forEach((title) => {
+    addItem(title)
+    cy.contains('.todo', title).find('.toggle').click()
+  })
+  // click the "Clear completed" button
+  cy.get('.clear-completed').click()
+  // the todo items should be gone
+  cy.get('.todo-list').should('not.be.visible')
+  // the footer should be gone
+  cy.get('.footer').should('not.be.visible')
+  // reload the page just to be sure the server has removed the items
+  cy.reload().wait(1000)
+  // there should be no items
+  cy.get('.todo-list').should('not.be.visible')
   cy.get('.footer').should('not.be.visible')
 })
 
