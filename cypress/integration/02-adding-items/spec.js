@@ -23,6 +23,7 @@ it('can mark an item as completed', () => {
   // marks the first item as completed
   // confirms the first item has the expected completed class
   // confirms the other items are still incomplete
+  // check the number of remaining items
 })
 
 it('can delete an item', () => {
@@ -122,6 +123,17 @@ it('does not allow adding blank todos', () => {
   })
 
   // try adding an item with just spaces
+})
+
+it('shows remaining count only if there are items', () => {
+  // make sure the application has loaded first
+  cy.wait(1000)
+  // there are no todos
+  // there is no footer
+  // add one todo item
+  // the footer should be visible and have the count of 1
+  // delete the single todo
+  // the footer is gone
 })
 
 // what a challenge?

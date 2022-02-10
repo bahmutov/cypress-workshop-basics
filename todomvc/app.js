@@ -183,12 +183,20 @@
       },
       todos() {
         return this.$store.getters.todos
+      },
+      remaining() {
+        return this.$store.getters.todos.filter((todo) => !todo.completed)
+          .length
       }
     },
 
     // methods that implement data logic.
     // note there's no DOM manipulation here at all.
     methods: {
+      pluralize: function (word, count) {
+        return word + (count === 1 ? '' : 's')
+      },
+
       setNewTodo(e) {
         this.$store.dispatch('setNewTodo', e.target.value)
       },
