@@ -136,5 +136,19 @@ it('shows remaining count only if there are items', () => {
   // the footer is gone
 })
 
+it('clears completed items', () => {
+  // make sure the application has loaded first
+  cy.wait(1000)
+  // there are no todos
+  // add two items
+  // make both items completed
+  const items = ['first', 'second']
+  // click the "Clear completed" button
+  // the todo items should be gone
+  // the footer should be gone
+  // reload the page just to be sure the server has removed the items
+  // there should be no items
+})
+
 // what a challenge?
 // test more UI at http://todomvc.com/examples/vue/

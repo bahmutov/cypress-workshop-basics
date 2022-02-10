@@ -30,10 +30,6 @@ it('can mark an item as completed', () => {
   cy.contains('li.todo', 'simple').should('have.class', 'completed')
   // confirms the other items are still incomplete
   cy.contains('li.todo', 'hard').should('not.have.class', 'completed')
-
-  // check the number of remaining items
-  cy.log('**completed items count**')
-  cy.contains('[data-cy="remaining-count"]', '1').should('be.visible')
 })
 
 it('shows the expected elements', () => {
@@ -167,24 +163,89 @@ it('does not allow adding blank todos', () => {
   addItem(' ')
 })
 
-it.only('shows remaining count only if there are items', () => {
-  // make sure the application has loaded first
-  cy.wait(1000)
-  // there are no todos
-  cy.get('.todo-list').should('not.be.visible')
-  // there is no footer
-  cy.get('.footer').should('not.be.visible')
-  // add one todo item
-  addItem('one')
-  // the footer should be visible and have the count of 1
-  cy.get('.footer')
-    .should('be.visible')
-    .contains('[data-cy="remaining-count"]', '1')
-  // delete the single todo
-  cy.contains('.todo', 'one').find('.destroy').click({ force: true })
-  // the footer is gone
-  cy.get('.footer').should('not.be.visible')
-})
+describe('Tests from clean slate', () => {
+  // these tests really need to start from zero items
+  // thus we use a beforeEach hook to remove any existing items
+  beforeEach(() => {
+    // this approach uses the page to delete any items
+    // which is not the best approach. Next section "reset-state"
+    // will teach a better way of cleaning the state
 
+    // make sure the application has loaded first
+    cy.wait(1000)
+    cy.get('li.todo')
+      .should(Cypress._.noop)
+      // for each todo item click the remove button
+      .each(($item) => {
+        cy.wrap($item).find('.destroy').click({ force: true })
+      })
+    // confirm that the item is gone from the dom
+    cy.get('li.todo').should('not.exist')
+  })
+
+  it('shows the remaining count', () => {
+    // adds a few items
+    addItem('simple')
+    addItem('difficult')
+
+    cy.contains('[data-cy="remaining-count"]', '2').should('be.visible')
+
+    // marks the first item as completed
+    cy.contains('li.todo', 'simple').should('exist').find('.toggle').check()
+
+    // confirms the first item has the expected completed class
+    cy.contains('li.todo', 'simple').should('have.class', 'completed')
+    // confirms the other items are still incomplete
+    cy.contains('li.todo', 'difficult').should('not.have.class', 'completed')
+
+    // check the number of remaining items
+    cy.log('**completed items count**')
+    cy.contains('[data-cy="remaining-count"]', '1').should('be.visible')
+  })
+
+  it('shows remaining count only if there are items', () => {
+    // make sure the application has loaded first
+    cy.wait(1000)
+    // there are no todos
+    cy.get('.todo-list').should('not.be.visible')
+    // there is no footer
+    cy.get('.footer').should('not.be.visible')
+    // add one todo item
+    addItem('one')
+    // the footer should be visible and have the count of 1
+    cy.get('.footer')
+      .should('be.visible')
+      .contains('[data-cy="remaining-count"]', '1')
+    // delete the single todo
+    cy.contains('.todo', 'one').find('.destroy').click({ force: true })
+    // the footer is gone
+    cy.get('.footer').should('not.be.visible')
+  })
+
+  it('clears completed items', () => {
+    // make sure the application has loaded first
+    cy.wait(1000)
+    // there are no todos
+    cy.get('.todo-list').should('not.be.visible')
+    // add two items
+    // make both items completed
+    const items = ['first', 'second']
+    items.forEach((title) => {
+      addItem(title)
+      cy.contains('.todo', title).find('.toggle').click()
+    })
+    // click the "Clear completed" button
+    cy.get('.clear-completed').click()
+    // the todo items should be gone
+    cy.get('.todo-list').should('not.be.visible')
+    // the footer should be gone
+    cy.get('.footer').should('not.be.visible')
+    // reload the page just to be sure the server has removed the items
+    cy.reload().wait(1000)
+    // there should be no items
+    cy.get('.todo-list').should('not.be.visible')
+    cy.get('.footer').should('not.be.visible')
+  })
+})
 // what a challenge?
 // test more UI at http://todomvc.com/examples/vue/
