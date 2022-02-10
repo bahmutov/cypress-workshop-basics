@@ -260,3 +260,63 @@ describe('conditional reset data using XHR call', () => {
     cy.get('li.todo').should('have.length', 0)
   })
 })
+
+describe('routing', () => {
+  beforeEach(() => {
+    // reset the app to have a few todos
+    cy.fixture('three-items').then((todos) => {
+      cy.request('POST', '/reset', { todos })
+    })
+  })
+
+  it('shows todos based on selected filter', () => {
+    cy.visit('/')
+    // by default, all todos are shown
+    cy.get('[data-cy="filter-all"]').should('have.class', 'selected')
+    cy.get('.todo').should('have.length', 3)
+
+    cy.log('**active todos**')
+    cy.contains('[data-cy="filter-active"]', 'Active').click()
+    cy.location('hash').should('eq', '#/active')
+    cy.get('[data-cy="filter-active"]').should('have.class', 'selected')
+    cy.get('.todo').should('have.length', 2)
+    cy.get('.todo.completed').should('have.length', 0)
+
+    cy.log('**completed todos**')
+    cy.contains('[data-cy="filter-completed"]', 'Completed').click()
+    cy.location('hash').should('eq', '#/completed')
+    cy.get('[data-cy="filter-completed"]').should('have.class', 'selected')
+    cy.get('.todo').should('have.length', 1)
+    cy.get('.todo:not(.completed)').should('have.length', 0)
+
+    cy.log('**all todos again**')
+    cy.contains('[data-cy="filter-all"]', 'All').click()
+    cy.location('hash').should('eq', '#/all')
+    cy.get('.todo').should('have.length', 3)
+    cy.get('.todo:not(.completed)').should('have.length', 2)
+    cy.get('.todo.completed').should('have.length', 1)
+  })
+
+  it('navigates to /active', () => {
+    // visit the active route and make sure it loads
+    cy.visit('/#/active')
+    cy.get('[data-cy="filter-active"]').should('have.class', 'selected')
+    cy.get('.todo').should('have.length', 2)
+    cy.get('.todo.completed').should('have.length', 0)
+  })
+
+  it('navigates to /completed', () => {
+    // visit the completed route and make sure it loads
+    cy.visit('/#/completed')
+    cy.get('[data-cy="filter-completed"]').should('have.class', 'selected')
+    cy.get('.todo').should('have.length', 1)
+    cy.get('.todo.completed').should('have.length', 1)
+  })
+
+  it('navigates to /all', () => {
+    // visit the all route and make sure it loads
+    cy.visit('/#/all')
+    cy.get('[data-cy="filter-all"]').should('have.class', 'selected')
+    cy.get('.todo').should('have.length', 3)
+  })
+})
