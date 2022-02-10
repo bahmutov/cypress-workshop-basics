@@ -53,7 +53,7 @@
       <section class="main" v-show="todos.length" v-cloak>
         <ul class="todo-list">
           <li
-            v-for="todo in todos"
+            v-for="todo in filteredTodos"
             class="todo"
             :key="todo.id"
             :class="{ completed: todo.completed }"
@@ -75,22 +75,32 @@
           <strong v-text="remaining" data-cy="remaining-count"></strong>
           {{pluralize('item', remaining)}} left
         </span>
-        <!-- <ul class="filters">
+        <ul class="filters">
           <li>
-            <a href="#/all" :class="{selected: visibility == 'all'}">All</a>
+            <a
+              data-cy="filter-all"
+              href="#/all"
+              :class="{selected: visibility == 'all'}"
+              >All</a
+            >
           </li>
           <li>
-            <a href="#/active" :class="{selected: visibility == 'active'}"
+            <a
+              data-cy="filter-active"
+              href="#/active"
+              :class="{selected: visibility == 'active'}"
               >Active</a
             >
           </li>
           <li>
-            <a href="#/completed" :class="{selected: visibility == 'completed'}"
+            <a
+              data-cy="filter-completed"
+              href="#/completed"
+              :class="{selected: visibility == 'completed'}"
               >Completed</a
             >
           </li>
         </ul>
-      -->
         <button
           class="clear-completed"
           @click="removeCompleted"
@@ -112,6 +122,7 @@
     </footer>
 
     <script src="vendor/polyfill.min.js"></script>
+    <script src="vendor/director.js"></script>
     <script src="vendor/vue.js"></script>
     <script src="vendor/vuex.js"></script>
     <script src="vendor/axios.min.js"></script>

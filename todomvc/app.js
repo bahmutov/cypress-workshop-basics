@@ -157,11 +157,29 @@
     }
   })
 
+  // a few helper utilities
+  const filters = {
+    all: function (todos) {
+      return todos
+    },
+    active: function (todos) {
+      return todos.filter(function (todo) {
+        return !todo.completed
+      })
+    },
+    completed: function (todos) {
+      return todos.filter(function (todo) {
+        return todo.completed
+      })
+    }
+  }
+
   // app Vue instance
   const app = new Vue({
     store,
     data: {
-      file: null
+      file: null,
+      visibility: 'all'
     },
     el: '.todoapp',
 
@@ -192,6 +210,9 @@
       },
       todos() {
         return this.$store.getters.todos
+      },
+      filteredTodos() {
+        return filters[this.visibility](this.$store.getters.todos)
       },
       remaining() {
         return this.$store.getters.todos.filter((todo) => !todo.completed)
@@ -234,6 +255,28 @@
       }
     }
   })
+
+  // use the Router from the vendor/director.js library
+  ;(function (app, Router) {
+    'use strict'
+
+    var router = new Router()
+
+    ;['all', 'active', 'completed'].forEach(function (visibility) {
+      router.on(visibility, function () {
+        app.visibility = visibility
+      })
+    })
+
+    router.configure({
+      notfound: function () {
+        window.location.hash = ''
+        app.visibility = 'all'
+      }
+    })
+
+    router.init()
+  })(app, Router)
 
   // if you want to expose "app" globally only
   // during end-to-end tests you can guard it using "window.Cypress" flag

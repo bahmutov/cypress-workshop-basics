@@ -170,3 +170,40 @@ describe.skip('ANTI-PATTERN: reset state through the UI using cy.session', () =>
     cy.get('li.todo').should('have.length', 2)
   })
 })
+
+describe('routing', () => {
+  beforeEach(() => {
+    // reset the app to have a few todos
+    // load the fixture "three-items.json" using cy.fixture command
+    // call the server and set the "todos" to the list of items
+  })
+
+  it('shows todos based on selected filter', () => {
+    // visit the page
+    // by default, all todos are shown
+    // and the "all" filter has the selected class
+    // click on the "active" filter
+    // make sure the URL changes correctly using cy.location command
+    // make sure the "active" filter has the selected class
+    // check the shown items
+    // repeat for "completed" filter, and then back to "all" filter
+  })
+
+  it('navigates to /active', () => {
+    // visit the active route and make sure it loads
+    // validate the application is showing the active todos
+    // and the "active" filter has the selected class
+  })
+
+  it('navigates to /completed', () => {
+    // visit the completed route and make sure it loads
+    // validate the application is showing the completed todos
+    // and the "completed" filter has the selected class
+  })
+
+  it('navigates to /all', () => {
+    // visit the all route and make sure it loads
+    // validate the application is showing the all todos
+    // and the "all" filter has the selected class
+  })
+})
