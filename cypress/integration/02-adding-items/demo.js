@@ -23,4 +23,8 @@ it('adds items', function () {
     .type('todo D{enter}')
   cy.get('.todo-list li') // command
     .should('have.length', 4) // assertion
+  cy.log('**complete items**')
+  cy.contains('[data-cy="remaining-count"]', '4')
+  cy.contains('.todo', 'todo B').find('.toggle').click()
+  cy.contains('[data-cy="remaining-count"]', '3')
 })

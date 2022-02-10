@@ -30,6 +30,10 @@ it('can mark an item as completed', () => {
   cy.contains('li.todo', 'simple').should('have.class', 'completed')
   // confirms the other items are still incomplete
   cy.contains('li.todo', 'hard').should('not.have.class', 'completed')
+
+  // check the number of remaining items
+  cy.log('**completed items count**')
+  cy.contains('[data-cy="remaining-count"]', '1').should('be.visible')
 })
 
 it('shows the expected elements', () => {
@@ -161,6 +165,25 @@ it('does not allow adding blank todos', () => {
     return !e.message.includes('Cannot add a blank todo')
   })
   addItem(' ')
+})
+
+it.only('shows remaining count only if there are items', () => {
+  // make sure the application has loaded first
+  cy.wait(1000)
+  // there are no todos
+  cy.get('.todo-list').should('not.be.visible')
+  // there is no footer
+  cy.get('.footer').should('not.be.visible')
+  // add one todo item
+  addItem('one')
+  // the footer should be visible and have the count of 1
+  cy.get('.footer')
+    .should('be.visible')
+    .contains('[data-cy="remaining-count"]', '1')
+  // delete the single todo
+  cy.contains('.todo', 'one').find('.destroy').click({ force: true })
+  // the footer is gone
+  cy.get('.footer').should('not.be.visible')
 })
 
 // what a challenge?

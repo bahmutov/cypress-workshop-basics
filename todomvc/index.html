@@ -72,8 +72,8 @@
 
       <footer class="footer" v-show="todos.length">
         <span class="todo-count">
-          <strong v-text="remaining"></strong> {{pluralize('item', remaining)}}
-          left
+          <strong v-text="remaining" data-cy="remaining-count"></strong>
+          {{pluralize('item', remaining)}} left
         </span>
         <!-- <ul class="filters">
           <li>
