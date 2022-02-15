@@ -215,6 +215,8 @@ describe('spying on load', () => {
     cy.intercept('GET', '/todos', (req) => {
       // make sure the request is NOT cached by the browser
       // because we want to see the list of items in the response
+      // Tip: to prevent the server from returning "304 Not Modified"
+      // remove the caching headers from the outgoing request
       delete req.headers['if-none-match']
     }).as('getTodos')
     cy.visit('/')

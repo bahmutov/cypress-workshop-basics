@@ -25,7 +25,6 @@ it('starts with zero items (check body.loaded)', () => {
 })
 
 it('starts with zero items', () => {
-  // start Cypress network proxy with cy.server()
   // spy on route `GET /todos`
   //  with cy.intercept(...).as(<alias name>)
   // THEN visit the page
@@ -37,14 +36,13 @@ it('starts with zero items', () => {
 })
 
 it('starts with zero items (stubbed response)', () => {
-  // start Cypress network server
-  // stub `GET /todos` with []
+  // using cy.intercept() stub `GET /todos` with []
   // save the stub as an alias
 
   // THEN visit the page
   cy.visit('/')
 
-  // wait for the route alias
+  // wait for the intercept alias
   // grab its response body
   // and make sure the body is an empty list
 })
@@ -150,9 +148,17 @@ describe('spying on load', () => {
   // number of todos for each test
   beforeEach(() => {
     // reset the data on the server
+    cy.request('POST', '/reset', { todos: [] })
     // create a random number of todos using cy.request
     // tip: use can use Lodash methods to draw a random number
     // look at the POST /todos calls the application sends
+    Cypress._.times(Cypress._.random(10), (k) => {
+      cy.request('POST', '/todos', {
+        title: `todo ${k}`,
+        completed: false,
+        id: `id-${k}`
+      })
+    })
   })
 
   it('shows the items loaded from the server', () => {
@@ -162,6 +168,8 @@ describe('spying on load', () => {
     // wait for the network call to happen
     // confirm the response is 200, read the number of items
     // and compare to the number of displayed todos
+    // Tip: to prevent the server from returning "304 Not Modified"
+    // remove the caching headers from the outgoing request
   })
 })
 
