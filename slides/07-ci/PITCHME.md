@@ -298,4 +298,12 @@ jobs:
 
 Find the CI you use on [https://on.cypress.io/continuous-integration](https://on.cypress.io/continuous-integration) and [https://github.com/cypress-io/cypress-example-kitchensink#ci-status](https://github.com/cypress-io/cypress-example-kitchensink#ci-status)
 
+---
+
+## 🏁 Cypress on CI
+
+- presentation [CircleCI Orbs vs GitHub Actions vs Netlify Build Plugins CI Setup](https://slides.com/bahmutov/ci-triple)
+- my [GitHub Actions blog posts](https://glebbahmutov.com/blog/tags/github/)
+- my [CircleCI blog posts](https://glebbahmutov.com/blog/tags/circle/)
+
 ➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
