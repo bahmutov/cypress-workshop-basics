@@ -12,6 +12,8 @@
 - open `cypress/integration/05-xhr/spec.js`
 - `cy.route` is deprecated, use `cy.intercept`
 
+📖 Fun read: [https://glebbahmutov.com/blog/cypress-intercept-problems/](https://glebbahmutov.com/blog/cypress-intercept-problems/)
+
 ---
 
 ## Situation
@@ -46,7 +48,7 @@ it('starts with zero items', () => {
 
 ```javascript
 // 05-xhr/spec.js
-it('starts with zero items', () => {
+it('starts with zero items (waits)', () => {
   cy.visit('/')
   cy.wait(1000)
   cy.get('li.todo').should('have.length', 0)
@@ -72,6 +74,8 @@ axios.get('/todos')
 
 **TODO:** write a test that waits for the body to have class "loaded" after the visit
 
+⌨️ test "starts with zero items (check body.loaded)"
+
 +++
 
 **better** to wait on a specific XHR request. Network is just observable public effect, just like DOM.
@@ -83,7 +87,7 @@ axios.get('/todos')
 Use the test "starts with zero items" in the file `05-xhr/spec.js`
 
 - spy on specific route with "cy.intercept" <!-- .element: class="fragment" -->
-  - should we start mock server _before_ or _after_ `cy.visit`?
+  - should we set the spy _before_ or _after_ `cy.visit`?
 - save as an alias <!-- .element: class="fragment" -->
 - wait for this XHR alias <!-- .element: class="fragment" -->
   - then check the DOM
@@ -205,7 +209,17 @@ see instructions in the `05-xhr/spec.js` for the test
 
 ## Bonus
 
-Network requests guide at [https://on.cypress.io/network-requests](https://on.cypress.io/network-requests). Question: which requests do you spy on, which do you stub?
+Network requests guide at [https://on.cypress.io/network-requests](https://on.cypress.io/network-requests), blog post [https://glebbahmutov.com/blog/network-requests-with-cypress/](https://glebbahmutov.com/blog/network-requests-with-cypress/)
+
+**Question:** which requests do you spy on, which do you stub?
+
+---
+
+## Caching
+
+⚠️ Be careful with the browser caching the data. If the browser caches the data, the server might return "304" HTTP code.
+
+⌨️ test "shows the items loaded from the server"
 
 ---
 
