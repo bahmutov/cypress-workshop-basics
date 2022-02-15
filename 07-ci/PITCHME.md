@@ -7,16 +7,33 @@
 - How to start server and run Cypress tests
 - CircleCI Orb example
 - GitHub Actions example
+- GitHub reusable workflows
+
+---
+
+## Poll: what CI do you use?
+
+- ❤️ GitHub Actions
+- 👏 CircleCI
+- 👍 Jenkins
+- 🎉 Something else
 
 ---
 
 ## Todo if possible
 
 - sign up for free account on CircleCI
-- use the specs from folder `cypress/ci-tests`
-  - UI spec
-  - Data store spec
-  - API calls spec
+- use your fork of https://github.com/bahmutov/testing-app-example
+
+Or make your copy of it using
+
+```
+$ npx degit https://github.com/bahmutov/testing-app-example test-app-my-example
+$ cd test-app-my-example
+$ npm i
+$ npm start
+# create GitHub repo and push "test-app-my-example"
+```
 
 ---
 
@@ -29,21 +46,12 @@ See [https://on.cypress.io/command-line](https://on.cypress.io/command-line)
 
 +++
 
-## Config files
+## Set up Cypress
 
-- by default, all Cypress settings are in `cypress.json`
-- for CI this repo has `cypress-ci.json`
-
-It overrides the integration folder
-
-```text
-"integrationFolder": "cypress/ci-tests"
 ```
-
-Todo: run Cypres with
-
-```shell
-$ npx cypress run --config-file cypress-ci.json
+$ npm i -D cypress
+$ npx @bahmutov/cly init -b
+# add a test or two
 ```
 
 ---
@@ -51,8 +59,7 @@ $ npx cypress run --config-file cypress-ci.json
 ## Set up CircleCI
 
 - sign up for CircleCI
-- fork this repo [bahmutov/cypress-workshop-basics](https://github.com/bahmutov/cypress-workshop-basics)
-- add project to CircleCI
+- add your project to CircleCI
 
 ![Add project](./img/add-project.png)
 
@@ -63,18 +70,9 @@ $ npx cypress run --config-file cypress-ci.json
 - [https://on.cypress.io/continuous-integration](https://on.cypress.io/continuous-integration)
 - [https://on.cypress.io/ci](https://on.cypress.io/ci) (alias)
 
-+++
-
-## Todo
-
-Read file `.circleci/circle.yml`
-
-- uses CircleCI V2 [https://circleci.com/docs/2.0/sample-config/](https://circleci.com/docs/2.0/sample-config/)
-- Docker file from [https://github.com/cypress-io/cypress-docker-images](https://github.com/cypress-io/cypress-docker-images)
-
 ---
 
-## On CI:
+## On every CI:
 
 - install and cache dependencies
 - start `todomvc` server in the background
@@ -93,9 +91,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - dependencies-
+            - dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - dependencies-
       - run:
           name: Install dependencies
           # https://docs.npmjs.com/cli/ci
@@ -119,7 +117,7 @@ jobs:
     background: true
 - run:
     name: Run Cypress tests
-    command: npx cypress run --config-file cypress-ci.json
+    command: npx cypress run
 ```
 
 +++
@@ -146,7 +144,7 @@ Alternative: use [start-server-and-test](https://github.com/bahmutov/start-serve
 
 ## CircleCI Cypress Orb
 
-A *much simpler* CI configuration.
+A _much simpler_ CI configuration.
 
 ```yaml
 version: 2.1
@@ -160,7 +158,8 @@ workflows:
     jobs:
       # "cypress" is the name of the imported orb
       # "run" is the name of the job defined in Cypress orb
-      - cypress/run
+      - cypress/run:
+          start: npm start
 ```
 
 See [https://github.com/cypress-io/circleci-orb](https://github.com/cypress-io/circleci-orb)
@@ -264,6 +263,25 @@ jobs:
 ```
 
 Check [.github/workflows/ci.yml](https://github.com/bahmutov/cypress-workshop-basics/blob/main/.github/workflows/ci.yml)
+
+---
+
+## GitHub Reusable Workflows
+
+```yml
+name: ci
+on: [push]
+jobs:
+  test:
+    # use the reusable workflow to check out the code, install dependencies
+    # and run the Cypress tests
+    # https://github.com/bahmutov/cypress-workflows
+    uses: bahmutov/cypress-workflows/.github/workflows/standard.yml@v1
+    with:
+      start: npm start
+```
+
+[https://github.com/bahmutov/cypress-workflows](https://github.com/bahmutov/cypress-workflows)
 
 ---
 
