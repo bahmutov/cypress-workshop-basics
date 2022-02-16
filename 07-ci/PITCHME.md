@@ -76,7 +76,8 @@ $ npx @bahmutov/cly init -b
 
 - install and cache dependencies
 - start `todomvc` server in the background
-- run Cypress using the config file `cypress-ci.json`
+- run Cypress using `npx cypress run`
+- (maybe) stop the `todomvc` server
 
 +++
 
@@ -134,7 +135,7 @@ Alternative: use [start-server-and-test](https://github.com/bahmutov/start-serve
 {
   "scripts": {
     "start": "npm start --prefix todomvc -- --quiet",
-    "test": "cypress run --config-file cypress-ci.json",
+    "test": "cypress run",
     "ci": "start-test 3000"
   }
 }
@@ -259,7 +260,6 @@ jobs:
         with:
           start: npm start
           wait-on: 'http://localhost:3000'
-          config-file: 'cypress-ci.json'
 ```
 
 Check [.github/workflows/ci.yml](https://github.com/bahmutov/cypress-workshop-basics/blob/main/.github/workflows/ci.yml)
