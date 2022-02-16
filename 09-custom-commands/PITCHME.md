@@ -1,4 +1,4 @@
-## ☀️ Part 12: Custom commands
+## ☀️ Custom commands
 
 ### 📚 You will learn
 
@@ -17,12 +17,13 @@
 ### 💯 Code reuse and clarity
 
 ```js
-beforeEach(function resetData () {
+// name the beforeEach functions
+beforeEach(function resetData() {
   cy.request('POST', '/reset', {
     todos: []
   })
 })
-beforeEach(function visitSite () {
+beforeEach(function visitSite() {
   cy.visit('/')
 })
 ```
@@ -51,7 +52,7 @@ Is this a good solution?
 And load from the spec file:
 
 ```js
-// automatically runs "beforeEach" hooks
+// automatically runs the "beforeEach" hooks
 import '../../support/hooks'
 
 it('enters 10 todos', function () {
@@ -68,11 +69,18 @@ A better solution, because only the spec file that needs these hooks can load th
 
 ```js
 // cypress/support/hooks.js
+// each function registers the "beforeEach" hooks
 export function resetData () { ... }
 export function visitSite () { ... }
 ```
 
-⌨️ and update `spec.js`
+⌨️ and update the `spec.js`
+
+```js
+import { resetData, visitSite } from '...'
+resetData()
+visitSite()
+```
 
 ---
 
@@ -82,7 +90,11 @@ export function visitSite () { ... }
 
 ```js
 import {
-  enterTodo, getTodoApp, getTodoItems, resetDatabase, visit
+  enterTodo,
+  getTodoApp,
+  getTodoItems,
+  resetDatabase,
+  visit
 } from '../../support/utils'
 it('loads the app', () => {
   resetDatabase()
@@ -93,6 +105,8 @@ it('loads the app', () => {
   getTodoItems().should('have.length', 2)
 })
 ```
+
+Todo: look at the "cypress/support/utils.js"
 
 Note:
 Some functions can return `cy` instance, some don't, whatever is convenient. I also find small functions that return complex selectors very useful to keep selectors from duplication.
@@ -109,7 +123,6 @@ And then IntelliSense works immediately
 
 ![IntelliSense](./img/intellisense.jpeg)
 
-
 +++
 
 And MS IntelliSense can understand types from JSDoc and check those!
@@ -124,8 +137,8 @@ More details in: [https://slides.com/bahmutov/ts-without-ts](https://slides.com/
 
 - share code in entire project without individual imports
 - complex logic with custom logging into Command Log
-  * login sequence
-  * many application actions
+  - login sequence
+  - many application actions
 
 📝 [on.cypress.io/custom-commands](https://on.cypress.io/custom-commands) and Read [https://glebbahmutov.com/blog/writing-custom-cypress-command/](https://glebbahmutov.com/blog/writing-custom-cypress-command/)
 
@@ -135,8 +148,7 @@ Let's write a custom command to create a todo
 
 ```js
 // instead of this
-cy.get('.new-todo')
-  .type('todo 0{enter}')
+cy.get('.new-todo').type('todo 0{enter}')
 // use a custom command "createTodo"
 cy.createTodo('todo 0')
 ```
@@ -146,7 +158,7 @@ cy.createTodo('todo 0')
 ## Todo: write and use "createTodo"
 
 ```js
-Cypress.Commands.add('createTodo', todo => {
+Cypress.Commands.add('createTodo', (todo) => {
   cy.get('.new-todo').type(`${todo}{enter}`)
 })
 it('creates a todo', () => {
@@ -214,9 +226,8 @@ Otherwise Cypress will try load ".d.ts" file as spec and without TypeScript load
 ## Better Command Log
 
 ```js
-Cypress.Commands.add('createTodo', todo => {
-  cy.get('.new-todo', { log: false })
-    .type(`${todo}{enter}`, { log: false })
+Cypress.Commands.add('createTodo', (todo) => {
+  cy.get('.new-todo', { log: false }).type(`${todo}{enter}`, { log: false })
   cy.log('createTodo', todo)
 })
 ```
@@ -226,18 +237,17 @@ Cypress.Commands.add('createTodo', todo => {
 ## Even better Command Log
 
 ```js
-Cypress.Commands.add('createTodo', todo => {
+Cypress.Commands.add('createTodo', (todo) => {
   const cmd = Cypress.log({
     name: 'create todo',
     message: todo,
-    consoleProps () {
+    consoleProps() {
       return {
         'Create Todo': todo
       }
     }
   })
-  cy.get('.new-todo', { log: false })
-    .type(`${todo}{enter}`, { log: false })
+  cy.get('.new-todo', { log: false }).type(`${todo}{enter}`, { log: false })
 })
 ```
 
@@ -252,11 +262,8 @@ Cypress.Commands.add('createTodo', todo => {
 ```js
 cy.get('.new-todo', { log: false })
   .type(`${todo}{enter}`, { log: false })
-  .then($el => {
-    cmd
-      .set({ $el })
-      .snapshot()
-      .end()
+  .then(($el) => {
+    cmd.set({ $el }).snapshot().end()
   })
 ```
 
@@ -270,15 +277,15 @@ cy.get('.new-todo', { log: false })
 // result will get value when command ends
 let result
 const cmd = Cypress.log({
-  consoleProps () {
+  consoleProps() {
     return { result }
   }
 })
-// custom logic then:
-.then(value => {
-  result = value
-  cmd.end()
-})
+  // custom logic then:
+  .then((value) => {
+    result = value
+    cmd.end()
+  })
 ```
 
 +++
@@ -315,8 +322,7 @@ With `cypress-xpath`
 
 ```js
 it('finds list items', () => {
-  cy.xpath('//ul[@class="todo-list"]//li')
-    .should('have.length', 3)
+  cy.xpath('//ul[@class="todo-list"]//li').should('have.length', 3)
 })
 ```
 
@@ -336,9 +342,9 @@ cy.xpath('...') // command
 ```js
 // use cy.verifyUpcomingAssertions
 const resolveValue = () => {
-  return Cypress.Promise.try(getValue).then(value => {
+  return Cypress.Promise.try(getValue).then((value) => {
     return cy.verifyUpcomingAssertions(value, options, {
-      onRetry: resolveValue,
+      onRetry: resolveValue
     })
   })
 }
@@ -381,9 +387,7 @@ setTimeout(() => {
 ```js
 it('creates todos', () => {
   // add a few todos
-  cy.window()
-    .its('app.todos')
-    .toMatchSnapshot()
+  cy.window().its('app.todos').toMatchSnapshot()
 })
 ```
 
@@ -408,12 +412,11 @@ it('creates todos', () => {
 [on.cypress.io/custom-commands](https://on.cypress.io/custom-commands), [https://www.cypress.io/blog/2018/12/20/element-coverage/](https://www.cypress.io/blog/2018/12/20/element-coverage/)
 
 +++
+
 ## Example: overwrite `cy.type`
 
 ```js
-Cypress.Commands.overwrite('type',
-  (type, $el, text, options) => {
-
+Cypress.Commands.overwrite('type', (type, $el, text, options) => {
   // just adds element selector to the
   // list of seen elements
   rememberSelector($el)
@@ -432,5 +435,12 @@ Cypress.Commands.overwrite('type',
 - Know Cypress API to avoid writing what's already available <!-- .element: class="fragment" -->
 
 Read [https://glebbahmutov.com/blog/writing-custom-cypress-command/](https://glebbahmutov.com/blog/writing-custom-cypress-command/) and [https://glebbahmutov.com/blog/publishing-cypress-command/](https://glebbahmutov.com/blog/publishing-cypress-command/)
+
++++
+
+## Good plugins
+
+- https://cypresstips.substack.com/p/my-favorite-cypress-plugins
+- https://cypresstips.substack.com/p/my-favorite-cypress-plugins-part
 
 ➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
