@@ -1,4 +1,12 @@
 /// <reference types="cypress" />
+/**
+ * Adds a todo item
+ * @param {string} text
+ */
+const addItem = (text) => {
+  cy.get('.new-todo').type(`${text}{enter}`)
+}
+
 // application should be running at port 3000
 // and the "localhost:3000" is set as "baseUrl" in "cypress.json"
 beforeEach(() => {
@@ -8,6 +16,16 @@ beforeEach(() => {
 })
 beforeEach(() => {
   cy.visit('/')
+})
+
+it('logs a todo add message to the console', () => {
+  // get the window object from the app's iframe
+  // using https://on.cypress.io/window
+  // get its console object and spy on the "log" method
+  // using https://on.cypress.io/spy
+  // add a new todo item
+  // get the spy and check that it was called
+  // with the expected arguments
 })
 
 it('has window.app property', () => {
@@ -28,14 +46,6 @@ it('starts with an empty store', () => {
   // the list of todos in the Vuex store should be empty
   cy.window()
 })
-
-/**
- * Adds a todo item
- * @param {string} text
- */
-const addItem = (text) => {
-  cy.get('.new-todo').type(`${text}{enter}`)
-}
 
 it('adds items to store', () => {
   addItem('something')

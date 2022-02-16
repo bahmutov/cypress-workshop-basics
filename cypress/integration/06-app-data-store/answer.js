@@ -30,6 +30,27 @@ describe('App Data Store', { retries: 2 }, () => {
       })
   })
 
+  it('logs a todo add message to the console', () => {
+    // get the window object from the app's iframe
+    // using https://on.cypress.io/window
+    // get its console object and spy on the "log" method
+    // using https://on.cypress.io/spy
+    cy.window()
+      .its('console')
+      .then((console) => {
+        cy.spy(console, 'log').as('log')
+      })
+    // add a new todo item
+    // get the spy and check that it was called
+    // with the expected arguments
+    addItem('new todo')
+    cy.get('@log').should(
+      'have.been.calledWith',
+      'tracking event "%s"',
+      'todo.add'
+    )
+  })
+
   afterEach(function () {
     // makes debugging failing tests much simpler
     cy.screenshot(this.currentTest.fullTitle(), { capture: 'runner' })

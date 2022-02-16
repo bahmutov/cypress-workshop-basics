@@ -3,7 +3,7 @@
 ### 📚 You will learn
 
 - how to access the running application from test code
-- how to stub a method in the application
+- how to spy on or stub an application method
 - how to drive application by dispatching actions
 
 +++
@@ -11,6 +11,24 @@
 - keep `todomvc` app running
 - open `cypress/integration/06-app-data-store/spec.js`
 - test that Vuex data store is working correctly
+
+---
+
+## Spy on console.log
+
+```js
+it('logs a todo add message to the console', () => {
+  // get the window object from the app's iframe
+  // using https://on.cypress.io/window
+  // get its console object and spy on the "log" method
+  // using https://on.cypress.io/spy
+  // add a new todo item
+  // get the spy and check that it was called
+  // with the expected arguments
+})
+```
+
+Read [https://on.cypress.io/stubs-spies-and-clocks](https://on.cypress.io/stubs-spies-and-clocks) and [https://glebbahmutov.com/cypress-examples/commands/spies-stubs-clocks.html](https://glebbahmutov.com/cypress-examples/commands/spies-stubs-clocks.html)
 
 ---
 
@@ -24,6 +42,10 @@
 window.app = app
 // }
 ```
+
++++
+
+![window.app object](./img/window-app.png)
 
 +++
 
@@ -120,18 +142,6 @@ cy.window()
 - how does a new item get its id?
 - can you override random id generator from DevTools? <!-- .element: class="fragment" -->
 
-+++
-
-## Iframed contexts
-
-![Contexts](./img/contexts.png)
-
-+++
-
-## Application under test
-
-![Application under test](./img/app-in-window.png)
-
 ---
 
 ## Stub application's random generator
@@ -161,7 +171,10 @@ The tests can access the app and call method bypassing the DOM, called "app acti
 
 The tests can be a combination of DOM and App actions. <!-- .element: class="fragment" -->
 
+Read [https://glebbahmutov.com/blog/realworld-app-action/](https://glebbahmutov.com/blog/realworld-app-action/)
+
 +++
+
 ## Practice
 
 Write a test that:
@@ -183,14 +196,13 @@ it('adds todos via app', () => {
 ```
 
 +++
+
 ## Todo: test edge data case
 
 ```js
 it('handles todos with blank title', () => {
   // add todo that the user cannot add via UI
-  cy.window()
-    .its('app.$store')
-    .invoke('dispatch', 'setNewTodo', '  ')
+  cy.window().its('app.$store').invoke('dispatch', 'setNewTodo', '  ')
   // app.$store.dispatch('addTodo')
   // confirm the UI
 })
@@ -203,7 +215,7 @@ it('handles todos with blank title', () => {
 Note that the web application might NOT have updated the data right away. For example:
 
 ```js
-getStore().then(store => {
+getStore().then((store) => {
   store.dispatch('setNewTodo', 'a new todo')
   store.dispatch('addTodo')
   store.dispatch('clearNewTodo')
@@ -224,17 +236,20 @@ In a flaky test https://github.com/cypress-io/cypress-example-recipes/issues/246
 ```js
 // add new todo using dispatch
 // retry until new item is in the list
-getStore()
-  .its('state.todos')
-  .should('have.length', 1)
+getStore().its('state.todos').should('have.length', 1)
 // do other checks
 ```
 
 ---
+
 ## 🏁 App Access
 
 - when needed, you can access the application directly from the test
 
-Read also: https://www.cypress.io/blog/2018/11/14/testing-redux-store/, https://glebbahmutov.com/blog/stub-navigator-api/
+Read also:
+
+- https://www.cypress.io/blog/2018/11/14/testing-redux-store/,
+- https://glebbahmutov.com/blog/stub-navigator-api/
+- https://glebbahmutov.com/blog/realworld-app-action/
 
 ➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
