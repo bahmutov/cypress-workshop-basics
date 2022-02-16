@@ -126,6 +126,8 @@ HTTP status code 200 running tests using command "npm run cy:open"
 
 [Vue.js](https://vuejs.org/) + [Vuex](https://vuex.vuejs.org/) + REST server application that we are going to test is in the folder `todomvc`. This application and its full testing is described in [this blog post](https://www.cypress.io/blog/2017/11/28/testing-vue-web-application-with-vuex-data-store-and-rest-backend/). The application should run fine without network access.
 
+If you are looking for the application by itself, check out [bahmutov/testing-app-example](https://github.com/bahmutov/testing-app-example).
+
 ## Slides
 
 The slides are deployed to GitHub Pages and can be seen at [https://glebbahmutov.com/cypress-workshop-basics/](https://glebbahmutov.com/cypress-workshop-basics/).
