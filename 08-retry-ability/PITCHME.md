@@ -1,4 +1,4 @@
-## ☀️ Part 11: Retry-ability
+## ☀️ Retry-ability
 
 ### 📚 You will learn
 
@@ -171,7 +171,10 @@ it('every item starts with todo', function () {
 - text between two cells is unknown but should be the same
 - displayed value should be the same as API has returned
 
-[https://example.cypress.io/commands/assertions](https://example.cypress.io/commands/assertions), [[cypress-examples assertions](https://glebbahmutov.com/cypress-examples/commands/assertions.html)](https://glebbahmutov.com/cypress-examples/commands/assertions.html)
+See
+
+- [https://example.cypress.io/commands/assertions](https://example.cypress.io/commands/assertions)
+- https://glebbahmutov.com/cypress-examples/commands/assertions.html
 
 ---
 
@@ -266,8 +269,45 @@ Use the tests "should vs then"
 
 Question: can you return value from `should(cb)`?
 
+```js
+// will this test work?
+cy.contains('.todo', 'Write tests')
+  .should(($el) => {
+    expect($el).to.be.visible
+    return $el.text()
+  })
+  .should('equal', 'Write tests')
+```
+
 Note:
 `Should(cb)` does not return a value, it just passes along the value yielded by the command. If you need a value, first call `should(cb)` and then `then(cb)` to return it.
+
++++
+
+## .should(cb) vs .then(cb)
+
+If you want to change the current subject with retries, first use the `.should(cb)` then `.then(cb)`
+
+```js
+// will this test work?
+cy.contains('.todo', 'Write tests')
+  .should(($el) => {
+    expect($el).to.be.visible
+  })
+  .then(($el) => $el.text())
+  .should('equal', 'Write tests')
+```
+
++++
+
+Often when refactoring `.should(cb)` and `.then(cb)` you replace it with simpler chain of command:
+
+```js
+cy.contains('.todo', 'Write tests')
+  .should('be.visible')
+  .invoke('text')
+  .should('equal', 'Write tests')
+```
 
 ---
 
