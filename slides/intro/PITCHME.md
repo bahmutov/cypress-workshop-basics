@@ -35,15 +35,15 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 - running E2E tests on CI
 - retry-ability and flake-free tests
 - custom commands
-- - any questions
+  - any questions
 
 ---
 
 ## Time 🕰
 
-- total workshop duration 4x 2+ hours
+- total workshop duration 6-10 hours
 - short breaks after each hour
-- time for questions at the end of each day
+- time for questions during the workshop and after each section
 
 +++
 
@@ -68,6 +68,8 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 **Tip:** this repository has everything to work through the test exercises.
 
 [bahmutov/cypress-workshop-basics](https://github.com/bahmutov/cypress-workshop-basics)
+
+🎉 If you can fill all "cypress/integration/.../spec.js" tests, you know Cypress. <!-- .element: class="fragment" -->
 
 ---
 
