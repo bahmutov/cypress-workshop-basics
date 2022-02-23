@@ -67,6 +67,8 @@ $(npm bin)/cypress open
 
 +++
 
+## 💡 Pro tip
+
 In `package.json` I usually have
 
 ```json
@@ -218,7 +220,7 @@ The check works really well in VSCode editor. I am not sure how well other edito
 
 Your best friend is [https://docs.cypress.io/](https://docs.cypress.io/)
 
-![Doc search](/todomvc/img/docs-search.png)
+![Doc search](./img/docs-search.png)
 
 +++
 
