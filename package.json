@@ -45,7 +45,7 @@
     "prettier": "2.5.1",
     "reveal.js": "4.2.1",
     "start-server-and-test": "1.14.0",
-    "vite": "2.8.4"
+    "vite": "2.8.6"
   },
   "engines": {
     "node": ">=12"
