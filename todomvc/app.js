@@ -46,6 +46,10 @@
         let todos = state.todos
         todos.splice(todos.indexOf(todo), 1)
       },
+      TOGGLE_TODO(state, todo) {
+        const found = state.todos.find((t) => t.id === todo.id)
+        found.completed = !found.completed
+      },
       CLEAR_NEW_TODO(state) {
         state.newTodo = ''
       }
@@ -127,6 +131,15 @@
           console.log('removed todo', todo.id, 'from the server')
           commit('REMOVE_TODO', todo)
         })
+      },
+      updateCompleted({ commit }, todo) {
+        track('todo.toggle', todo.title)
+
+        axios
+          .patch(`/todos/${todo.id}`, { completed: !todo.completed })
+          .then(() => {
+            commit('TOGGLE_TODO', todo)
+          })
       },
       async removeCompleted({ commit, state }) {
         const remainingTodos = state.todos.filter((todo) => !todo.completed)
@@ -243,6 +256,10 @@
 
       removeTodo(todo) {
         this.$store.dispatch('removeTodo', todo)
+      },
+
+      updateCompleted(todo) {
+        this.$store.dispatch('updateCompleted', todo)
       },
 
       // utility method for create a todo with title and completed state
