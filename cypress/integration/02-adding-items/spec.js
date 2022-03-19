@@ -150,5 +150,20 @@ it('clears completed items', () => {
   // there should be no items
 })
 
+it('adds and deletes items using REST API calls', () => {
+  // reset the backend data using POST /request call
+  // https://on.cypress.io/request
+  // add an item using POST /todos call
+  // passing the title and the completed: false properties
+  // from the response get the body and confirm
+  // it has the expected properties, including the "id"
+  // get the "id" property and confirm it is a number
+  // TIP: add a short wait for our simple server to
+  // really save the added item
+  // then use the "id" property to get the item
+  // and then use the DELETE /todos/:id call to delete it
+  // the status of the response should be 200
+})
+
 // what a challenge?
 // test more UI at http://todomvc.com/examples/vue/

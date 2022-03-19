@@ -247,5 +247,31 @@ describe('Tests from clean slate', () => {
     cy.get('.footer').should('not.be.visible')
   })
 })
+
+it('adds and deletes items using REST API calls', () => {
+  // reset the backend data using POST /request call
+  // https://on.cypress.io/request
+  cy.request('POST', '/reset', { todos: [] })
+  // add an item using POST /todos call
+  // passing the title and the completed: false properties
+  cy.request('POST', '/todos', { title: 'first', completed: false })
+    // from the response get the body and confirm
+    // it has the expected properties, including the "id"
+    .its('body')
+    .should('have.keys', ['id', 'title', 'completed'])
+    // get the "id" property and confirm it is a number
+    .its('id')
+    .should('be.a', 'number')
+    // TIP: add a short wait for our simple server to
+    // really save the added item
+    .wait(100)
+    // then use the "id" property to get the item
+    // and then use the DELETE /todos/:id call to delete it
+    // the status of the response should be 200
+    .then((id) => {
+      cy.request('GET', `/todos/${id}`).its('body.title').should('eq', 'first')
+      cy.request('DELETE', `/todos/${id}`).its('status').should('equal', 200)
+    })
+})
 // what a challenge?
 // test more UI at http://todomvc.com/examples/vue/
