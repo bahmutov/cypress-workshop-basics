@@ -150,6 +150,8 @@ it('clears completed items', () => {
   // there should be no items
 })
 
+// watch the video "Write An API Test Using Cypress"
+// https://youtu.be/OWTrczUUVpA
 it('adds and deletes items using REST API calls', () => {
   // reset the backend data using POST /request call
   // https://on.cypress.io/request
