@@ -10,6 +10,9 @@ import {
   visit
 } from '../support/utils'
 
+// do not truncate the assertion messages
+chai.config.truncateThreshold = 200
+
 // testing the central Vuex data store
 describe('UI to Vuex store', { retries: 2 }, () => {
   beforeEach(resetDatabase)
@@ -34,12 +37,19 @@ describe('UI to Vuex store', { retries: 2 }, () => {
         // best practice: only check if certain keys are included
         // using "include.keys", rather than the strict "have.keys"
         // But for the smaller app it is acceptable to be strict
-        .should('have.keys', ['loading', 'newTodo', 'todos', 'delay'])
+        .should('have.keys', [
+          'loading',
+          'newTodo',
+          'todos',
+          'delay',
+          'renderDelay'
+        ])
     })
 
     it('starts empty', () => {
       // let's remove properties that are unimportant to the app's data
-      const omitLoading = (state) => Cypress._.omit(state, 'loading', 'delay')
+      const omitLoading = (state) =>
+        Cypress._.omit(state, 'loading', 'delay', 'renderDelay')
 
       getStore().its('state').then(omitLoading).should('deep.equal', {
         todos: [],
@@ -152,7 +162,8 @@ describe('UI to Vuex store', { retries: 2 }, () => {
         loading: false,
         todos: [],
         newTodo: '',
-        delay: 0
+        delay: 0,
+        renderDelay: 0
       })
     })
 
@@ -184,6 +195,7 @@ describe('UI to Vuex store', { retries: 2 }, () => {
 
       getStore().should('deep.equal', {
         delay: 0,
+        renderDelay: 0,
         loading: false,
         todos: [
           {
@@ -267,6 +279,7 @@ describe('UI to Vuex store', { retries: 2 }, () => {
       // assert store
       getStore().should('deep.equal', {
         delay: 0,
+        renderDelay: 0,
         loading: false,
         todos: [
           {
@@ -298,6 +311,7 @@ describe('UI to Vuex store', { retries: 2 }, () => {
         .its('state')
         .should('deep.equal', {
           delay: 0,
+          renderDelay: 0,
           loading: false,
           todos: [
             {
@@ -331,6 +345,7 @@ describe('UI to Vuex store', { retries: 2 }, () => {
         .its('state')
         .should('deep.equal', {
           delay: 0,
+          renderDelay: 0,
           loading: false,
           todos: [
             {

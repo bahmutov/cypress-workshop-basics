@@ -12,7 +12,7 @@ it('starts with zero items (waits)', () => {
   cy.get('li.todo').should('have.length', 0)
 })
 
-it('starts with zero items', () => {
+it('starts with zero items (network wait)', () => {
   // start Cypress network server
   // spy on route `GET /todos`
   // THEN visit the page
@@ -21,6 +21,8 @@ it('starts with zero items', () => {
   cy.wait('@todos') // wait for `GET /todos` response
     // inspect the server's response
     .its('response.body')
+    // hmm, why is the returned length 0?
+    // tip: browser caching
     .should('have.length', 0)
   // then check the DOM
   // note that we don't have to use "cy.wait(...).then(...)"
@@ -29,13 +31,70 @@ it('starts with zero items', () => {
   cy.get('li.todo').should('have.length', 0)
 })
 
+it('starts with zero items (delay)', () => {
+  cy.intercept('GET', '/todos').as('todos')
+  cy.visit('/?delay=2000')
+  cy.wait('@todos')
+  cy.get('li.todo').should('have.length', 0)
+})
+
+it('starts with zero items (delay plus render delay)', () => {
+  cy.intercept('GET', '/todos').as('todos')
+  cy.visit('/?delay=2000&renderDelay=1500')
+  cy.wait('@todos')
+  cy.get('li.todo').should('have.length', 0)
+})
+
 it('starts with zero items (check body.loaded)', () => {
-  cy.visit('/')
+  // cy.visit('/')
+  // or use delays to simulate the delayed load and render
+  cy.visit('/?delay=2000&renderDelay=1500')
   // the application sets "loaded" class on the body
-  // in the test we can check for this class
-  cy.get('body').should('have.class', 'loaded')
+  // in the test we can check for this class.
+  // Increase the command timeout to prevent flaky tests
+  cy.get('body', { timeout: 7_000 }).should('have.class', 'loaded')
   // then check the number of items
   cy.get('li.todo').should('have.length', 0)
+})
+
+it('starts with zero items (check the window)', () => {
+  // use delays to simulate the delayed load and render
+  cy.visit('/?delay=2000&renderDelay=1500')
+  cy.window().its('todos', { timeout: 7_000 })
+  // then check the number of items
+  cy.get('li.todo').should('have.length', 0)
+})
+
+it('starts with N items', () => {
+  // use delays to simulate the delayed load and render
+  cy.visit('/?delay=2000&renderDelay=1500')
+  // access the loaded Todo items
+  cy.window()
+    // you can drill down nested properties using "."
+    .its('todos.length')
+    .then((n) => {
+      // then check the number of items
+      cy.get('li.todo').should('have.length', n)
+    })
+})
+
+it('starts with N items and checks the page', () => {
+  // use delays to simulate the delayed load and render
+  cy.visit('/?delay=2000&renderDelay=1500')
+  // access the loaded Todo items
+  cy.window()
+    .its('todos')
+    .then((todos) => {
+      // then check the number of items
+      cy.get('li.todo').should('have.length', todos.length)
+      todos.forEach((todo) => {
+        if (todo.completed) {
+          cy.contains('.todo', todo.title).should('have.class', 'completed')
+        } else {
+          cy.contains('.todo', todo.title).should('not.have.class', 'completed')
+        }
+      })
+    })
 })
 
 it('starts with zero items (stubbed response)', () => {

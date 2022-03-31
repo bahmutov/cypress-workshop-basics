@@ -30,11 +30,24 @@
       SET_DELAY(state, delay) {
         state.delay = delay
       },
+      SET_RENDER_DELAY(state, ms) {
+        state.renderDelay = ms
+      },
       SET_LOADING(state, flag) {
         state.loading = flag
+        if (flag === false) {
+          // an easy way for the application to signal
+          // that it is done loading
+          document.body.classList.add('loaded')
+        }
       },
       SET_TODOS(state, todos) {
         state.todos = todos
+        // expose the todos via the global "window" object
+        // but only if we are running Cypress tests
+        if (window.Cypress) {
+          window.todos = todos
+        }
       },
       SET_NEW_TODO(state, todo) {
         state.newTodo = todo
@@ -54,6 +67,9 @@
       setDelay({ commit }, delay) {
         commit('SET_DELAY', delay)
       },
+      setRenderDelay({ commit }, ms) {
+        commit('SET_RENDER_DELAY', ms)
+      },
 
       loadTodos({ commit, state }) {
         console.log('loadTodos start, delay is %d', state.delay)
@@ -64,8 +80,9 @@
             .get('/todos')
             .then((r) => r.data)
             .then((todos) => {
-              commit('SET_TODOS', todos)
-              commit('SET_LOADING', false)
+              setTimeout(() => {
+                commit('SET_TODOS', todos)
+              }, state.renderDelay)
             })
             .catch((e) => {
               console.error('could not load todos')
@@ -73,9 +90,9 @@
               console.error(e.response.data)
             })
             .finally(() => {
-              // an easy way for the application to signal
-              // that it is done loading
-              document.body.classList.add('loaded')
+              setTimeout(() => {
+                commit('SET_LOADING', false)
+              }, state.renderDelay)
             })
         }, state.delay)
       },
@@ -187,10 +204,13 @@
       const uri = window.location.search.substring(1)
       const params = new URLSearchParams(uri)
       const delay = parseFloat(params.get('delay') || '0')
+      const renderDelay = parseFloat(params.get('renderDelay') || '0')
       addTodoDelay = parseFloat(params.get('addTodoDelay') || '0')
 
-      this.$store.dispatch('setDelay', delay).then(() => {
-        this.$store.dispatch('loadTodos')
+      this.$store.dispatch('setRenderDelay', renderDelay).then(() => {
+        this.$store.dispatch('setDelay', delay).then(() => {
+          this.$store.dispatch('loadTodos')
+        })
       })
 
       // how would you test the periodic loading of todos?
