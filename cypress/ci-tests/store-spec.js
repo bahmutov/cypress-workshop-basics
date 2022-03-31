@@ -158,6 +158,8 @@ describe('UI to Vuex store', { retries: 2 }, () => {
     })
 
     it('can compare the entire store', () => {
+      // make sure the application has finished loading
+      cy.get('body').should('have.class', 'loaded')
       getStore().should('deep.equal', {
         loading: false,
         todos: [],
