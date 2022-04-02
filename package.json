@@ -41,7 +41,7 @@
   "homepage": "https://github.com/bahmutov/cypress-workshop-basics#readme",
   "devDependencies": {
     "cy-spok": "1.5.2",
-    "cypress": "9.5.2",
+    "cypress": "9.5.3",
     "cypress-real-events": "1.7.0",
     "highlight.js": "11.5.0",
     "prettier": "2.6.1",
