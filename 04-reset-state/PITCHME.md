@@ -32,7 +32,7 @@
 beforeEach(() => {
   cy.visit('/')
 })
-const addItem = text => {
+const addItem = (text) => {
   cy.get('.new-todo').type(`${text}{enter}`)
 }
 it('adds two items', () => {
@@ -43,6 +43,7 @@ it('adds two items', () => {
 ```
 
 +++
+
 ## Anti-pattern: using UI to clean up the state
 
 - there could be 0, 1, or more items to remove
@@ -77,6 +78,7 @@ Students should modify `cypress/integration/04-reset-state/spec.js` and make the
 The answer to this and other TODO assignments are in [cypress/integration/04-reset-state/answer.js](/cypress/integration/04-reset-state/answer.js) file.
 
 ---
+
 ## Alternative: Using cy.writeFile
 
 ```
@@ -86,6 +88,7 @@ The answer to this and other TODO assignments are in [cypress/integration/04-res
 If we overwrite `todomvc/data.json` and reload the web app we should see new data
 
 +++
+
 ## TODO: use cy.writeFile to reset todos
 
 ```js
@@ -109,6 +112,7 @@ Note:
 Most common mistake is using file path relative to the spec file, should be relative to the project's root folder.
 
 ---
+
 ## Alternative: use cy.task
 
 You can execute Node code during browser tests by calling [`cy.task`](https://on.cypress.io/task)
@@ -128,6 +132,7 @@ cy.task('hello', 'World')
 ```
 
 +++
+
 ## TODO reset data using cy.task
 
 Find "resetData" task in cypress/plugins/index.js
@@ -136,25 +141,29 @@ Find "resetData" task in cypress/plugins/index.js
 describe('reset data using a task', () => {
   beforeEach(() => {
     // call the task "resetData"
+    // https://on.cypress.io/task
+    // cy.task("resetData", ...)
     cy.visit('/')
   })
 })
 ```
 
 +++
+
 ## TODO set data using cy.task
 
 Pass an object when calling `cy.task('resetData')`
 
 ```js
 it('sets data to complex object right away', () => {
-  cy.task('resetData', /* object*/)
+  cy.task('resetData' /* object*/)
   cy.visit('/')
   // check what is rendered
 })
 ```
 
 +++
+
 ## TODO set data from fixture
 
 Pass an object when calling `cy.task('resetData')`
@@ -162,7 +171,9 @@ Pass an object when calling `cy.task('resetData')`
 ```js
 it('sets data using fixture', () => {
   // load todos from "cypress/fixtures/two-items.json"
-  // and the call the task to set todos
+  // https://on.cypress.io/fixture
+  // and then call the task to set todos
+  // https://on.cypress.io/task
   cy.visit('/')
   // check what is rendered
 })
