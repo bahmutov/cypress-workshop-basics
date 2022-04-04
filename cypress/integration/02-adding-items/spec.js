@@ -10,17 +10,25 @@ it('loads', () => {
 // IMPORTANT ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
 
 it('adds two items', () => {
+  // visit the site
+  // https://on.cypress.io/visit
   // repeat twice
   //    get the input field
+  //    https://on.cypress.io/get
   //    type text and "enter"
+  //    https://on.cypress.io/type
   //    assert that the new Todo item
   //    has been added added to the list
   // cy.get(...).should('have.length', 2)
 })
 
 it('can mark an item as completed', () => {
+  // visit the site
   // adds a few items
   // marks the first item as completed
+  // https://on.cypress.io/get
+  // https://on.cypress.io/find
+  // https://on.cypress.io/first
   // confirms the first item has the expected completed class
   // confirms the other items are still incomplete
   // check the number of remaining items
@@ -64,6 +72,8 @@ it('starts with zero items', () => {
   //   find the selector for the individual TODO items in the list
   //   use cy.get(...) and it should have length of 0
   //   https://on.cypress.io/get
+  //   ".should('have.length', 0)"
+  //   or ".should('not.exist')"
 })
 
 it('disables the built-in assertion', () => {

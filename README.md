@@ -30,7 +30,7 @@ This workshop will be very useful for every web developer and every tester looki
 ## Requirements
 
 - Any computer: Mac, Windows, Linux
-- [Node 12.0.0+ (LTS)](https://nodejs.org/), see my [Node install video](https://youtu.be/09KbTRLrgWA), and my [Node versions using NVM video](https://youtu.be/CNnCz6StbbY)
+- [Node 14+ (LTS)](https://nodejs.org/), see my [Node install video](https://youtu.be/09KbTRLrgWA), and my [Node versions using NVM video](https://youtu.be/CNnCz6StbbY)
 - [git](https://git-scm.com)
 
 Check the Node version

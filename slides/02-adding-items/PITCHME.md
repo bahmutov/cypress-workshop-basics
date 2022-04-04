@@ -35,12 +35,18 @@ We will reset the previously saved Todo items in section "4 Reset State".
 ## Todo: Make this test work
 
 ```js
+// cypress/integration/02-adding-items/spec.js
 it.only('adds two items', () => {
+  // visit the site
+  // https://on.cypress.io/visit
   // repeat twice
   //    get the input field
+  //    https://on.cypress.io/get
   //    type text and "enter"
+  //    https://on.cypress.io/type
   //    assert that the new Todo item
   //    has been added added to the list
+  // cy.get(...).should('have.length', 2)
 })
 ```
 
@@ -57,10 +63,15 @@ not change the subject.
 
 ```js
 it('can mark an item as completed', () => {
+  // visit the site
   // adds a few items
   // marks the first item as completed
+  // https://on.cypress.io/get
+  // https://on.cypress.io/find
+  // https://on.cypress.io/first
   // confirms the first item has the expected completed class
   // confirms the other items are still incomplete
+  // check the number of remaining items
 })
 ```
 
@@ -129,6 +140,8 @@ it('starts with zero items', () => {
   //   find the selector for the individual TODO items in the list
   //   use cy.get(...) and it should have length of 0
   //   https://on.cypress.io/get
+  //   ".should('have.length', 0)"
+  //   or ".should('not.exist')"
 })
 ```
 
@@ -187,7 +200,7 @@ The application saves the items in "todomvc/data.json" file. Can we verify that 
 
 Todo: write the test "saves the added todos"
 
-**Tip:** use [cy.task](https://on.cypress.io/task) in the plugins file
+**Tip:** use [cy.task](https://on.cypress.io/task) in the plugins file or [cy.readFile](https://on.cypress.io/readfile)
 
 ---
 
@@ -332,6 +345,8 @@ Support file is included before each spec file.
 <script src="cypress/support/index.js"></script>
 <script src="cypress/integration/spec.js"></script>
 ```
+
+**Tip:** Want to reset the data and visit the site before each test? Put the commands into `beforeEach` hook inside the suport file.
 
 ---
 

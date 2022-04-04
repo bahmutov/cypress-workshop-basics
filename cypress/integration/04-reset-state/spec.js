@@ -101,7 +101,9 @@ describe('set initial data', () => {
 
   it('sets data using fixture', () => {
     // TODO load todos from "cypress/fixtures/two-items.json"
+    // https://on.cypress.io/fixture
     // and then call the task to set todos
+    // https://on.cypress.io/task
     cy.visit('/')
     // check what is rendered
   })

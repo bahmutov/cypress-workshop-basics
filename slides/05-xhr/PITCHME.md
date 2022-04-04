@@ -12,7 +12,7 @@
 - open `cypress/integration/05-xhr/spec.js`
 - `cy.route` is deprecated, use `cy.intercept`
 
-📖 Fun read: [https://glebbahmutov.com/blog/cypress-intercept-problems/](https://glebbahmutov.com/blog/cypress-intercept-problems/)
+📖 Fun read: [Cypress Network Requests Guide](https://on.cypress.io/network-requests) and [https://glebbahmutov.com/blog/cypress-intercept-problems/](https://glebbahmutov.com/blog/cypress-intercept-problems/)
 
 ---
 
@@ -56,6 +56,12 @@ it('starts with zero items (waits)', () => {
 ```
 
 ![Waiting works](./img/waiting.png)
+
++++
+
+There might be multiple delays: loading the page, fetching todos, rendering data on the page.
+
+![Page load diagram](./img/get-todos.png)
 
 +++
 
@@ -131,6 +137,8 @@ There are multiple tests in the "spec.js" that you can go through
 - 'starts with zero items (check the window)'
 - 'starts with N items'
 - 'starts with N items and checks the page'
+
+**Tip:** read [https://glebbahmutov.com/blog/app-loaded/](https://glebbahmutov.com/blog/app-loaded/)
 
 ---
 
@@ -261,12 +269,15 @@ In the application we are showing (very quickly) "Loading" state
 ## Refactor a failing test
 
 ```js
+// cypress/integration/05-xhr/spec.js
 // can you fix this test?
-const id = cy.wait('@postTodo').then((intercept) => {
-  // assert the response fields
-  return intercept.response.body.id
+it.skip('confirms the right Todo item is sent to the server', () => {
+  const id = cy.wait('@postTodo').then((intercept) => {
+    // assert the response fields
+    return intercept.response.body.id
+  })
+  console.log(id)
 })
-console.log(id)
 ```
 
 ⌨️ test "refactor example"
@@ -294,9 +305,15 @@ setInterval(() => {
 
 +++
 
+## Application clock
+
+- learn about controlling the web page clock [https://on.cypress.io/stubs-spies-and-clocks](https://on.cypress.io/stubs-spies-and-clocks)
+- use [cy.clock](https://on.cypress.io/clock) and [cy.tick](https://on.cypress.io/tick) commands
+
++++
+
 ## Todo
 
-- learn about controlling the web page clock using [cy.clock](https://on.cypress.io/clock) command
 - set up a test "loads todos every minute" that intercepts the `GET /todos` with different responses using `times: 1` option
 - advance the clock by 1 minute and confirm different responses are displayed
 

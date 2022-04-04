@@ -311,11 +311,19 @@ describe('test periodic loading', () => {
   // instead we want to speed up the application's clock
   it('loads todos every minute', () => {
     // answer different network calls to load Todos with different responses
+    // note: intercepts are applied in reverse order
+    // cy.intercept({ times: 1 }, 'second response')
+    // cy.intercept({ times: 1 }, 'first response')
+    // pause the application clock
+    // leave the date unchanged, and only "freeze" the setInterval function
+    cy.clock(null, ['setInterval'])
     cy.visit('/')
     // confirm the first call has happened
     // make the application think an entire minute has passed
+    cy.tick(60_000)
     // confirm the second call has happened
     // another minute passes
+    cy.tick(60_000)
     // confirm the third call has happened
   })
 })

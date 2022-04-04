@@ -13,8 +13,9 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 - actively using Cypress since 2016
 - [gleb.dev](https://gleb.dev)
 - [@bahmutov](https://twitter.com/bahmutov)
-- [https://glebbahmutov.com/blog/tags/cypress/](https://glebbahmutov.com/blog/tags/cypress/) 150+ Cypress blog posts
-- [https://www.youtube.com/glebbahmutov](https://www.youtube.com/glebbahmutov) 100+ Cypress videos
+- [https://glebbahmutov.com/blog/tags/cypress/](https://glebbahmutov.com/blog/tags/cypress/) 200+ Cypress blog posts
+- [https://www.youtube.com/glebbahmutov](https://www.youtube.com/glebbahmutov) 300+ Cypress videos
+- [cypress.tips](https://cypress.tips) with links, search, my courses
 
 ---
 
@@ -42,7 +43,10 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 ## Time 🕰
 
 - total workshop duration 6-10 hours
-- short breaks after each hour
+- two days
+  - 10-12 part 1
+  - 12-12:30 lunch
+  - 12:30-14:30 part 2
 - time for questions during the workshop and after each section
 
 +++
@@ -78,7 +82,7 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 You will need:
 
 - `git` to clone this repo
-- Node v12+ to install dependencies
+- Node v14+ to install dependencies
 
 ```text
 git clone <repo url>
