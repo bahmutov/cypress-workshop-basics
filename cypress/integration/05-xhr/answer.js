@@ -13,12 +13,12 @@ it('starts with zero items (waits)', () => {
 })
 
 it('starts with zero items (network wait)', () => {
-  // start Cypress network server
   // spy on route `GET /todos`
-  // THEN visit the page
   cy.intercept('GET', '/todos').as('todos')
+  // THEN visit the page
   cy.visit('/')
-  cy.wait('@todos') // wait for `GET /todos` response
+  // wait for `GET /todos` response
+  cy.wait('@todos')
     // inspect the server's response
     .its('response.body')
     // hmm, why is the returned length 0?
@@ -32,16 +32,29 @@ it('starts with zero items (network wait)', () => {
 })
 
 it('starts with zero items (delay)', () => {
+  // spy on the network call GET /todos
   cy.intercept('GET', '/todos').as('todos')
+  // visit the page with /?delay=2000 query parameter
+  // this will delay the GET /todos call by 2 seconds
   cy.visit('/?delay=2000')
+  // wait for todos call
   cy.wait('@todos')
+  // confirm there are no items on the page
   cy.get('li.todo').should('have.length', 0)
 })
 
 it('starts with zero items (delay plus render delay)', () => {
+  // spy on the GET /todos call and give it an alias
   cy.intercept('GET', '/todos').as('todos')
+  // visit the page with query parameters
+  // to delay the GET call and delay rendering the received items
+  // /?delay=2000&renderDelay=1500
   cy.visit('/?delay=2000&renderDelay=1500')
+  // wait for the network call to happen
   cy.wait('@todos')
+  // confirm there are no todos
+  // Question: can the items appear on the page
+  // AFTER you have checked?
   cy.get('li.todo').should('have.length', 0)
 })
 
@@ -60,8 +73,18 @@ it('starts with zero items (check body.loaded)', () => {
 it('starts with zero items (check the window)', () => {
   // use delays to simulate the delayed load and render
   cy.visit('/?delay=2000&renderDelay=1500')
+  // the application code sets the "window.todos"
+  // when it finishes loading the items
+  // (see app.js)
+  //  if (window.Cypress) {
+  //    window.todos = todos
+  //  }
+  // thus we can check from the test if the "window"
+  // object has property "todos"
+  // https://on.cypress.io/window
+  // https://on.cypress.io/its
   cy.window().its('todos', { timeout: 7_000 })
-  // then check the number of items
+  // then check the number of items rendered on the page
   cy.get('li.todo').should('have.length', 0)
 })
 
@@ -69,11 +92,17 @@ it('starts with N items', () => {
   // use delays to simulate the delayed load and render
   cy.visit('/?delay=2000&renderDelay=1500')
   // access the loaded Todo items
+  // from the window object
+  // using https://on.cypress.io/window
   cy.window()
     // you can drill down nested properties using "."
+    // https://on.cypress.io/its
+    // "todos.length"
     .its('todos.length')
     .then((n) => {
       // then check the number of items
+      // rendered on the page - it should be the same
+      // as "todos.length"
       cy.get('li.todo').should('have.length', n)
     })
 })
@@ -82,11 +111,19 @@ it('starts with N items and checks the page', () => {
   // use delays to simulate the delayed load and render
   cy.visit('/?delay=2000&renderDelay=1500')
   // access the loaded Todo items
+  // from the window object
+  // https://on.cypress.io/window
+  // https://on.cypress.io/its "todos"
   cy.window()
     .its('todos')
+    // use https://on.cypress.io/then callback
     .then((todos) => {
-      // then check the number of items
+      // then check the number of items on the page
+      // it should be the same as "window.todos" length
       cy.get('li.todo').should('have.length', todos.length)
+      // go through the list of items
+      // and for each item confirm it is rendered correctly
+      // and the "completed" class is set correctly
       todos.forEach((todo) => {
         if (todo.completed) {
           cy.contains('.todo', todo.title).should('have.class', 'completed')

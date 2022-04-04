@@ -121,6 +121,19 @@ add to the test "starts with zero items":
 
 ---
 
+## Todo
+
+There are multiple tests in the "spec.js" that you can go through
+
+- 'starts with zero items (delay)'
+- 'starts with zero items (delay plus render delay)'
+- 'starts with zero items (check body.loaded)'
+- 'starts with zero items (check the window)'
+- 'starts with N items'
+- 'starts with N items and checks the page'
+
+---
+
 ## Stub the network call
 
 Update test "starts with zero items (stubbed response)"

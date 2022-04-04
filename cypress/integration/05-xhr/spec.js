@@ -16,15 +16,7 @@ it('starts with zero items (waits)', () => {
   cy.get('li.todo').should('have.length', 0)
 })
 
-it('starts with zero items (check body.loaded)', () => {
-  cy.visit('/')
-  // the application sets "loaded" class on the body
-  // in the test we can check for this class
-  // then check the number of items
-  cy.get('li.todo').should('have.length', 0)
-})
-
-it('starts with zero items', () => {
+it('starts with zero items (network wait)', () => {
   // spy on route `GET /todos`
   //  with cy.intercept(...).as(<alias name>)
   // THEN visit the page
@@ -33,6 +25,82 @@ it('starts with zero items', () => {
   //  using "@<alias name>" string
   // then check the DOM
   cy.get('li.todo').should('have.length', 0)
+})
+
+it('starts with zero items (delay)', () => {
+  // spy on the network call GET /todos
+  // visit the page with /?delay=2000 query parameter
+  // this will delay the GET /todos call by 2 seconds
+  cy.visit('/?delay=2000')
+  // wait for todos call
+  // confirm there are no items on the page
+})
+
+it('starts with zero items (delay plus render delay)', () => {
+  // spy on the GET /todos call and give it an alias
+  // visit the page with query parameters
+  // to delay the GET call and delay rendering the received items
+  // /?delay=2000&renderDelay=1500
+  cy.visit('/?delay=2000&renderDelay=1500')
+  // wait for the network call to happen
+  // confirm there are no todos
+  // Question: can the items appear on the page
+  // AFTER you have checked?
+})
+
+it('starts with zero items (check body.loaded)', () => {
+  // cy.visit('/')
+  // or use delays to simulate the delayed load and render
+  cy.visit('/?delay=2000&renderDelay=1500')
+  // the application sets "loaded" class on the body
+  // in the test we can check for this class
+  // THEN check the number of items
+  cy.get('li.todo').should('have.length', 0)
+})
+
+it('starts with zero items (check the window)', () => {
+  // use delays to simulate the delayed load and render
+  cy.visit('/?delay=2000&renderDelay=1500')
+  // the application code sets the "window.todos"
+  // when it finishes loading the items
+  // (see app.js)
+  //  if (window.Cypress) {
+  //    window.todos = todos
+  //  }
+  // thus we can check from the test if the "window"
+  // object has property "todos"
+  // https://on.cypress.io/window
+  // https://on.cypress.io/its
+  // then check the number of items rendered on the page
+})
+
+it('starts with N items', () => {
+  // use delays to simulate the delayed load and render
+  cy.visit('/?delay=2000&renderDelay=1500')
+  // access the loaded Todo items
+  // from the window object
+  // using https://on.cypress.io/window
+  // you can drill down nested properties using "."
+  // https://on.cypress.io/its
+  // "todos.length"
+  // then check the number of items
+  // rendered on the page - it should be the same
+  // as "todos.length"
+})
+
+it('starts with N items and checks the page', () => {
+  // use delays to simulate the delayed load and render
+  cy.visit('/?delay=2000&renderDelay=1500')
+  // access the loaded Todo items
+  // from the window object
+  // https://on.cypress.io/window
+  // https://on.cypress.io/its "todos"
+  // use https://on.cypress.io/then callback
+  // then check the number of items on the page
+  // it should be the same as "window.todos" length
+  // go through the list of items
+  // and for each item confirm it is rendered correctly
+  // and the "completed" class is set correctly
 })
 
 it('starts with zero items (stubbed response)', () => {
