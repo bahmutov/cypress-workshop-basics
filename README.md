@@ -192,6 +192,7 @@ npm run slides
 
 - https://www.cypress.io/
 - https://docs.cypress.io/
+- https://learn.cypress.io/
 - https://glebbahmutov.com/cypress-examples/
 - https://cypress.tips/
 - https://www.youtube.com/glebbahmutov

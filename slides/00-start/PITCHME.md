@@ -218,7 +218,7 @@ The check works really well in VSCode editor. I am not sure how well other edito
 
 ## Docs
 
-Your best friend is [https://docs.cypress.io/](https://docs.cypress.io/)
+Your best friend is [https://docs.cypress.io/](https://docs.cypress.io/) search
 
 ![Doc search](./img/docs-search.png)
 
