@@ -196,6 +196,7 @@ npm run slides
 - https://cypress.tips/
 - https://www.youtube.com/glebbahmutov
 - https://slides.com/bahmutov
+- https://cypresstips.substack.com/
 
 ## Other workshops
 

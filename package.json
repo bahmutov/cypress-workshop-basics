@@ -18,7 +18,8 @@
     "slides:build": "vite build",
     "cy:slides": "cypress open --config-file cypress-slides.json",
     "cy:ci": "cypress open --config-file cypress-ci.json",
-    "dev:ci": "start-test 3000 cy:ci"
+    "dev:ci": "start-test 3000 cy:ci",
+    "names": "find-cypress-specs --names"
   },
   "private": true,
   "repository": {
@@ -43,6 +44,7 @@
     "cy-spok": "1.5.2",
     "cypress": "9.5.3",
     "cypress-real-events": "1.7.0",
+    "find-cypress-specs": "1.15.1",
     "highlight.js": "11.5.0",
     "prettier": "2.6.2",
     "reveal.js": "4.3.1",
