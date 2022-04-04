@@ -16,6 +16,7 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 - [https://glebbahmutov.com/blog/tags/cypress/](https://glebbahmutov.com/blog/tags/cypress/) 200+ Cypress blog posts
 - [https://www.youtube.com/glebbahmutov](https://www.youtube.com/glebbahmutov) 300+ Cypress videos
 - [cypress.tips](https://cypress.tips) with links, search, my courses
+- [Cypress Tips](https://cypresstips.substack.com/) monthly newsletter
 
 ---
 
