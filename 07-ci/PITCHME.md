@@ -8,6 +8,7 @@
 - CircleCI Orb example
 - GitHub Actions example
 - GitHub reusable workflows
+- How to run tests faster
 
 ---
 
@@ -292,7 +293,58 @@ jobs:
 - use [start-server-and-test](https://github.com/bahmutov/start-server-and-test) for simplicity
 - store videos and screenshots yourself or use Cypress Dashboard
 
+---
+
+## Run E2E faster
+
+1. Run changed specs first
+2. Run tests by tag
+3. Run tests in parallel
+
 +++
+
+1. Run changed specs first
+
+Read [Get Faster Feedback From Your Cypress Tests Running On CircleCI](https://glebbahmutov.com/blog/faster-ci-feedback-on-circleci/)
+
+```
+$ specs=$(npx find-cypress-specs --branch main)
+$ npx cypress run --spec $specs
+```
+
+See [find-cypress-specs](https://github.com/bahmutov/find-cypress-specs)
+
++++
+
+2. Run tests by tag
+
+Read [How To Tag And Run End-to-End Tests](https://glebbahmutov.com/blog/tag-tests/)
+
+```js
+it('logs in', { tags: 'user' }, () => ...)
+```
+
+```
+$ npx cypress run --env grepTags=user
+```
+
+See [cypress-grep](https://github.com/cypress-io/cypress-grep)
+
++++
+
+3. Run tests in parallel
+
+![Workshop tests](./img/workshop-tests.png)
+
++++
+
+## Examples of running specs in parallel
+
+- [Make Cypress Run Faster by Splitting Specs](https://glebbahmutov.com/blog/split-spec/)
+- [Split Long GitHub Action Workflow Into Parallel Cypress Jobs](https://glebbahmutov.com/blog/parallel-cypress-tests-gh-action/)
+- [Testing Time Zones in Parallel](https://glebbahmutov.com/blog/testing-timezones/)
+
+---
 
 ## Todo
 

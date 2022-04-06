@@ -45,8 +45,8 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 
 - total workshop duration 6-10 hours
 - two days
-  - 10-12 part 1
-  - 12-12:30 lunch
+  - 10:00-12:00 part 1
+  - 12:00-12:30 lunch 🍲
   - 12:30-14:30 part 2
 - time for questions during the workshop and after each section
 
@@ -56,11 +56,21 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 
 ## Poll: have you used Cypress before?
 
-- 👏 This is my first time
-- 👍 Using for less than 1 month
-- ❤️ Using it for less than 1 year
-- 😂 Using for longer than 1 year
-- 🎉 Using for longer than 2 years
+- This is my first time
+- Using for less than 1 month 👍<!-- .element: class="fragment" -->
+- Using it for less than 1 year 👍👍<!-- .element: class="fragment" -->
+- Using for longer than 1 year ❤️<!-- .element: class="fragment" -->
+- Using for longer than 2 years ❤️❤️<!-- .element: class="fragment" -->
+
+---
+
+## Poll: have you used other E2E test runners?
+
+- Selenium / Webdriver
+- Protractor <!-- .element: class="fragment" -->
+- TestCafe <!-- .element: class="fragment" -->
+- Puppeteer / Playwright <!-- .element: class="fragment" -->
+- Something else? <!-- .element: class="fragment" -->
 
 ---
 
@@ -74,7 +84,11 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 
 [bahmutov/cypress-workshop-basics](https://github.com/bahmutov/cypress-workshop-basics)
 
-🎉 If you can fill all "cypress/integration/.../spec.js" tests, you know Cypress. <!-- .element: class="fragment" -->
++++
+
+🎉 If you can make all "cypress/integration/.../spec.js" tests work, you know Cypress.
+
+Tip: there are about 80 tests to fill with code, see them with "npm run names" command <!-- .element: class="fragment" -->
 
 ---
 
