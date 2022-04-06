@@ -275,5 +275,58 @@ it('adds and deletes items using REST API calls', () => {
       cy.request('DELETE', `/todos/${id}`).its('status').should('equal', 200)
     })
 })
+
+it('completes an item using REST call', () => {
+  // reset the todos on the server
+  cy.request('POST', '/reset', { todos: [] })
+  // create a new item using cy.request POST /todos call
+  // and get its ID from the response
+  cy.request('POST', '/todos', { title: 'my item', completed: false })
+    .its('body.id')
+    .then((id) => {
+      // confirm the item is not completed by fetching it using GET /todos/:id
+      cy.request('GET', `/todos/${id}`).its('body.completed').should('be.false')
+      // complete the item using the PATCH /todos/:id call
+      // with { completed: true }
+      cy.request('PATCH', `/todos/${id}`, { completed: true })
+    })
+
+  // after completing the item via an API call
+  // visit the page (or reload) and confirm it is shown as completed
+  cy.visit('/')
+  cy.contains('.todo', 'my item').should('have.class', 'completed')
+  // confirm the count of remaining items is 0
+  cy.contains('[data-cy="remaining-count"]', '0')
+})
+
+it('creates todos from a fixture', () => {
+  // reset the todos on the server
+  cy.request('POST', '/reset', { todos: [] })
+  //
+  // load a list of todos from a fixture file using cy.fixture
+  // https://on.cypress.io/fixture
+  cy.fixture('three-items.json')
+    // get the list of todos from the fixture using .then callback
+    .then((items) => {
+      // for each item make a cy.request to create it on the server
+      items.forEach((item) => {
+        cy.request('POST', '/todos', item)
+      })
+      // after creating all items,
+      // reload the page and confirm each item is shown
+      cy.reload()
+      items.forEach((item) => {
+        if (item.completed) {
+          cy.contains('.todo', item.title).should('have.class', 'completed')
+        } else {
+          cy.contains('.todo', item.title).should('not.have.class', 'completed')
+        }
+      })
+    })
+  //
+  // bonus: import the fixture directly into the spec for simplicity
+  // read https://glebbahmutov.com/blog/import-cypress-fixtures/
+})
+
 // what a challenge?
 // test more UI at http://todomvc.com/examples/vue/

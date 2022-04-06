@@ -175,6 +175,37 @@ it('adds and deletes items using REST API calls', () => {
   // then use the "id" property to get the item
   // and then use the DELETE /todos/:id call to delete it
   // the status of the response should be 200
+  //
+  // bonus: use cy.fixture command to reset the todos
+  // or to create items one by one. Then visit the page
+  // and verify the shown items
+})
+
+it('completes an item using REST call', () => {
+  // reset the todos on the server
+  // create a new item using cy.request POST /todos call
+  // and get its ID from the response
+  // confirm the item is not completed by fetching it using GET /todos/:id
+  // complete the item using the PATCH /todos/:id call
+  // with { completed: true }
+  //
+  // after completing the item via an API call
+  // visit the page (or reload) and confirm it is shown as completed
+  // confirm the count of remaining items is 0
+})
+
+it('creates todos from a fixture', () => {
+  // reset the todos on the server
+  //
+  // load a list of todos from a fixture file using cy.fixture
+  // https://on.cypress.io/fixture
+  // get the list of todos from the fixture using .then callback
+  // for each item make a cy.request to create it on the server
+  // after creating all items,
+  // reload the page and confirm each item is shown
+  //
+  // bonus: import the fixture directly into the spec for simplicity
+  // read https://glebbahmutov.com/blog/import-cypress-fixtures/
 })
 
 // what a challenge?
