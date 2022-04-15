@@ -1,7 +1,11 @@
 /* global Vue, Vuex, axios, track */
 /* eslint-disable no-console */
 /* eslint-disable-next-line */
-;(function () {
+const uri = window.location.search.substring(1)
+const params = new URLSearchParams(uri)
+const appStartDelay = parseFloat(params.get('appStartDelay') || '0')
+
+function appStart() {
   Vue.use(Vuex)
 
   function randomId() {
@@ -201,8 +205,6 @@
     el: '.todoapp',
 
     created() {
-      const uri = window.location.search.substring(1)
-      const params = new URLSearchParams(uri)
       const delay = parseFloat(params.get('delay') || '0')
       const renderDelay = parseFloat(params.get('renderDelay') || '0')
       addTodoDelay = parseFloat(params.get('addTodoDelay') || '0')
@@ -303,4 +305,10 @@
   // if (window.Cypress) {
   window.app = app
   // }
-})()
+}
+
+if (appStartDelay > 0) {
+  setTimeout(appStart, appStartDelay)
+} else {
+  appStart()
+}

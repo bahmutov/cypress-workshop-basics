@@ -1,6 +1,8 @@
 /// <reference types="cypress" />
 /* eslint-disable no-unused-vars */
 
+import 'cypress-cdp'
+
 describe('retry-ability', () => {
   beforeEach(function resetData() {
     cy.request('POST', '/reset', {
@@ -162,5 +164,40 @@ describe('timing commands', () => {
     // take another timestamp when the indicator goes away.
     // compute the elapsed time
     // assert the elapsed time is less than 2 seconds
+  })
+})
+
+// TODO: finish this exercise
+describe.skip('delayed app start', () => {
+  it('waits for the event listeners to be attached', () => {
+    cy.visit('/?appStartDelay=2000')
+    const selector = 'input.new-todo'
+
+    function checkListeners() {
+      cy.CDP('Runtime.evaluate', {
+        expression: 'frames[0].document.querySelector("' + selector + '")'
+      })
+        .should((v) => {
+          expect(v.result).to.have.property('objectId')
+        })
+        .its('result.objectId')
+        .then(cy.log)
+        .then((objectId) => {
+          cy.CDP('DOMDebugger.getEventListeners', {
+            objectId,
+            depth: -1,
+            pierce: true
+          }).then((v) => {
+            if (v.listeners && v.listeners.length > 0) {
+              // all good
+              return
+            }
+            cy.wait(100).then(checkListeners)
+          })
+        })
+    }
+
+    checkListeners()
+    // cy.hasEventListeners('input.new-todo')
   })
 })
