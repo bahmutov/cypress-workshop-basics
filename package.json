@@ -43,7 +43,7 @@
   "devDependencies": {
     "cy-spok": "1.5.2",
     "cypress": "9.6.0",
-    "cypress-cdp": "1.0.1",
+    "cypress-cdp": "1.1.0",
     "cypress-real-events": "1.7.0",
     "find-cypress-specs": "1.17.0",
     "highlight.js": "11.5.1",
