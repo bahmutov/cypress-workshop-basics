@@ -328,5 +328,22 @@ it('creates todos from a fixture', () => {
   // read https://glebbahmutov.com/blog/import-cypress-fixtures/
 })
 
+it('checks the meta tags in the head element', () => {
+  // visit the page
+  cy.visit('/')
+  // confirm the page title includes the string "TodoMVC"
+  cy.get('head title').should('include.text', 'TodoMVC')
+  // confirm the meta tag name is "Gleb Bahmutov"
+  cy.get('head meta[name=author]').should(
+    'have.attr',
+    'content',
+    'Gleb Bahmutov'
+  )
+  // confirm the meta tag description includes the expected text "workshop"
+  cy.get('head meta[name=description]')
+    .should('have.attr', 'content')
+    .should('include', 'workshop')
+})
+
 // what a challenge?
 // test more UI at http://todomvc.com/examples/vue/

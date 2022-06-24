@@ -208,5 +208,14 @@ it('creates todos from a fixture', () => {
   // read https://glebbahmutov.com/blog/import-cypress-fixtures/
 })
 
+it('checks the meta tags in the head element', () => {
+  // visit the page "/"
+  // https://on.cypress.io/visit
+  // confirm the page title includes the string "TodoMVC"
+  // tip: how would you set the title element from the DevTools console?
+  // confirm the meta tag name is "Gleb Bahmutov"
+  // confirm the meta tag description includes the expected text "workshop"
+})
+
 // what a challenge?
 // test more UI at http://todomvc.com/examples/vue/
