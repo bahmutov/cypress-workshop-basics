@@ -45,7 +45,7 @@
     "cypress": "9.7.0",
     "cypress-cdp": "1.3.0",
     "cypress-real-events": "1.7.4",
-    "find-cypress-specs": "1.20.2",
+    "find-cypress-specs": "1.24.0",
     "highlight.js": "11.7.0",
     "prettier": "2.8.1",
     "reveal.js": "4.4.0",
