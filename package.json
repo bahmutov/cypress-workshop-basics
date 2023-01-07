@@ -47,7 +47,7 @@
     "cypress-real-events": "1.7.6",
     "find-cypress-specs": "1.24.0",
     "highlight.js": "11.7.0",
-    "prettier": "2.8.1",
+    "prettier": "2.8.2",
     "reveal.js": "4.4.0",
     "start-server-and-test": "1.15.2",
     "vite": "4.0.4"
