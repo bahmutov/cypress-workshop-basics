@@ -11,9 +11,9 @@ jobs:
 
       # https://github.com/cypress-io/github-action
       - name: Run Cypress tests 🧪
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v5
         with:
-          config-file: 'cypress-ci.json'
+          config-file: 'cypress.ci-config.js'
           start: 'npm start'
           wait-on: 'http://localhost:3000'
 
@@ -34,12 +34,12 @@ jobs:
 
       # https://github.com/cypress-io/github-action
       - name: Test answers 🤔
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v5
         with:
           start: 'npm start'
           wait-on: 'http://localhost:3000'
-          # run every answer spec file, ignore the placeholder files
-          config: 'ignoreTestFiles=spec.js'
+          # run every answer spec file
+          config: 'specPattern=cypress/e2e/*/answer*.js'
           # record the test results to Cypress Dashboard
           record: true
           parallel: true
