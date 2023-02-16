@@ -1,9 +1,19 @@
 {
   "todos": [
     {
-      "title": "  ",
+      "title": "first item from fixture",
       "completed": false,
-      "id": "1"
+      "id": 1
+    },
+    {
+      "title": "second item from fixture",
+      "completed": true,
+      "id": 2
+    },
+    {
+      "title": "third item",
+      "completed": false,
+      "id": 3
     }
   ]
 }
