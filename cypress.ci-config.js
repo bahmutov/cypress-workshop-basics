@@ -6,7 +6,6 @@ module.exports = defineConfig({
   e2e: {
     baseUrl: 'http://localhost:3000',
     env: {},
-    integrationFolder: 'cypress/ci-tests',
     specPattern: 'cypress/ci-tests/*-spec.js',
     projectId: '89mmxs'
   }
