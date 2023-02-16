@@ -7,6 +7,9 @@ module.exports = defineConfig({
     baseUrl: 'http://localhost:3000',
     env: {},
     specPattern: 'cypress/ci-tests/*-spec.js',
-    projectId: '89mmxs'
-  }
+    setupNodeEvents(on, config) {
+      return require('./cypress/plugins/index.js')(on, config)
+    }
+  },
+  projectId: '89mmxs'
 })

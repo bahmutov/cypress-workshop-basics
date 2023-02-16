@@ -1,19 +1,9 @@
 {
   "todos": [
     {
-      "title": "first item from fixture",
+      "title": "create a task",
       "completed": false,
-      "id": 1
-    },
-    {
-      "title": "second item from fixture",
-      "completed": true,
-      "id": 2
-    },
-    {
-      "title": "third item",
-      "completed": false,
-      "id": 3
+      "id": "3739965810"
     }
   ]
 }
