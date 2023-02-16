@@ -61,6 +61,12 @@ const resetData = (dataToSet = DEFAULT_DATA) => {
   fs.writeFileSync(dbFilename, str, 'utf8')
 }
 
+async function delay(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms)
+  })
+}
+
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // "cy.task" can be used from specs to "jump" into Node environment
@@ -69,8 +75,12 @@ module.exports = (on, config) => {
   on('task', {
     // saves given or default empty data object into todomvc/data.json file
     // if the server is watching this file, next reload should show the updated values
-    resetData(dataToSet = DEFAULT_DATA) {
+    async resetData(dataToSet = DEFAULT_DATA) {
       resetData(dataToSet)
+
+      // add a small delay for the server to "notice"
+      // the changed JSON file and reload
+      await delay(100)
 
       // cy.task handlers should always return something
       // otherwise it might be an accidental return

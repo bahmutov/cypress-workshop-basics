@@ -9,7 +9,7 @@ workflows:
       - cypress/run:
           name: Cypress E2E Tests
           start: npm start
-          config-file: cypress-ci.json
+          config-file: cypress.ci-config.js
           # store videos and any screenshots after tests
           store_artifacts: true
           # there are no jobs following this one,

@@ -171,13 +171,13 @@ describe('UI to Vuex store', { retries: 2 }, () => {
 
     it('starts typing after delayed server response', () => {
       // this will force new todo item to be added only after a delay
-      cy.server()
-      cy.route({
-        method: 'POST',
-        url: '/todos',
-        delay: 3000,
-        response: {}
-      })
+      cy.intercept(
+        {
+          method: 'POST',
+          url: '/todos'
+        },
+        { delay: 3000, body: {} }
+      )
 
       const title = 'first todo'
       enterTodo(title)
@@ -329,13 +329,16 @@ describe('UI to Vuex store', { retries: 2 }, () => {
     it('changes the state after delay', () => {
       // this will force store action "setNewTodo" to commit
       // change to the store only after 3 seconds
-      cy.server()
-      cy.route({
-        method: 'POST',
-        url: '/todos',
-        delay: 3000,
-        response: {}
-      })
+      cy.intercept(
+        {
+          method: 'POST',
+          url: '/todos'
+        },
+        {
+          delay: 3000,
+          body: {}
+        }
+      )
 
       getStore().then((store) => {
         store.dispatch('setNewTodo', 'a new todo')
@@ -372,8 +375,7 @@ describe('UI to Vuex store', { retries: 2 }, () => {
     })
 
     it('calls server', () => {
-      cy.server()
-      cy.route({
+      cy.intercept({
         method: 'POST',
         url: '/todos'
       }).as('postTodo')
@@ -393,13 +395,16 @@ describe('UI to Vuex store', { retries: 2 }, () => {
     })
 
     it('calls server with delay', () => {
-      cy.server()
-      cy.route({
-        method: 'POST',
-        url: '/todos',
-        delay: 3000,
-        response: {}
-      }).as('postTodo')
+      cy.intercept(
+        {
+          method: 'POST',
+          url: '/todos'
+        },
+        {
+          delay: 3000,
+          body: {}
+        }
+      ).as('postTodo')
 
       getStore().then((store) => {
         store.dispatch('setNewTodo', 'a new todo')

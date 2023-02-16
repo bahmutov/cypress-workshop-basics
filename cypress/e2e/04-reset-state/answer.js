@@ -7,7 +7,7 @@ const addItem = (text) => {
   cy.get('.new-todo').type(`${text}{enter}`)
 }
 
-describe('ANTI-PATTERN: reset state through the UI', () => {
+describe.skip('ANTI-PATTERN: reset state through the UI', () => {
   beforeEach(() => {
     cy.visit('/')
     // we need to wait for the items to be loaded
@@ -38,6 +38,9 @@ describe('ANTI-PATTERN: reset state through the UI', () => {
           // and the destroy button is not visible
           // until the user hovers over it, thus
           // we need to force it to be clickable
+          // NOTE: because there is a race condition between clicking
+          // and the app updating the elements after deleting each one
+          // Cypress will throw an error saying "the DOM has changed"
           .click({ multiple: true, force: true })
       })
   })
@@ -157,6 +160,8 @@ describe('create todos using API', () => {
     // call cy.request to post each TODO item
     todos.forEach((todo) => {
       cy.request('POST', '/todos', todo)
+        // the API a chance to save the todo
+        .wait(100)
     })
     // visit the page and check the displayed number of todos
     cy.visit('/')
