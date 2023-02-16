@@ -196,13 +196,16 @@ describe('Careful with negative assertions', { retries: 2 }, () => {
   })
 
   it('uses cy.route to slow down network response', () => {
-    cy.server()
-    cy.route({
-      method: 'GET',
-      url: '/todos',
-      response: [],
-      delay: 2000
-    })
+    cy.intercept(
+      {
+        method: 'GET',
+        url: '/todos'
+      },
+      {
+        body: [],
+        delay: 2000
+      }
+    )
     cy.visit('/?delay=3000')
     // first, make sure the loading indicator shows up (positive assertion)
     cy.get('.loading').should('be.visible')
