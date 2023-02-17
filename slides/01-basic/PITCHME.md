@@ -10,7 +10,7 @@
 
 - keep `todomvc` app running
 - open Cypress from the root folder with `npm run cy:open`
-- click on `01-basic/spec.js`
+- click on `01-basic/spec.js` (we are using custom `specPattern`)
 
 ```js
 /// <reference types="cypress" />
@@ -52,13 +52,15 @@ This is a good moment to show how Cypress stores DOM snapshots and shows them fo
 
 See [https://on.cypress.io/command-line](https://on.cypress.io/command-line)
 
+**💡 Hint:** `npx cypress help`
+
 +++
 
 ## Q: How do you:
 
 - run just the spec `cypress/integration/01-basic/spec.js` in headless mode?
 
-Hint: `npx cypress run --help`
+**💡 Hint:** `npx cypress run --help`
 
 +++
 
@@ -80,9 +82,12 @@ Hint: `npx cypress run --help`
   - by class
   - by attributes
 
-**Tip:** https://on.cypress.io/best-practices#Selecting-Elements
+**Tip:** https://on.cypress.io/best-practices#Selecting-Elements <!-- .element: class="fragment" -->
+
+**📝 Read:** https://glebbahmutov.com/blog/debug-cy-get-and-contains/ <!-- .element: class="fragment" -->
 
 ---
+
 ## 🏁 Conclusions
 
 - most commands retry
