@@ -12,9 +12,9 @@ jobs:
 
       # https://github.com/cypress-io/github-action
       - name: Test slides 🎞
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v5
         with:
-          config-file: 'cypress-slides.json'
+          config-file: 'cypress.slides-config.js'
           start: 'npm run slides'
           wait-on: 'http://localhost:3100'
 
