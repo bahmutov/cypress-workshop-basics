@@ -23,5 +23,9 @@ it('adds two items', () => {
   addItem('second item')
   // fill the selector
   // maybe use "tid" function
-  cy.get('...').should('have.length', 2)
+  cy.get('selector').should('have.length', 2)
+})
+
+it('can record a test', () => {
+  // use Cypress Studio to record a test
 })
