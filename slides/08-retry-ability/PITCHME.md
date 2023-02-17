@@ -10,7 +10,7 @@
 ---
 
 - keep `todomvc` app running
-- open `cypress/integration/08-retry-ability/spec.js`
+- open `cypress/e2e/08-retry-ability/spec.js`
 
 ---
 
@@ -624,7 +624,7 @@ Watch the webinar "Flaky Test Management" [https://www.youtube.com/cypress-io/we
 ## Todo: enable test retries for specific flaky test
 
 ```js
-// cypress/integration/08-retry-ability/spec.js
+// cypress/e2e/08-retry-ability/spec.js
 it('has two labels', { retries: 2 }, () => {
   // modify todomvc/app.js to make it flaky
   ...
