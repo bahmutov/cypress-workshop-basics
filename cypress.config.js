@@ -4,7 +4,7 @@ module.exports = defineConfig({
   viewportWidth: 600,
   viewportHeight: 800,
   experimentalStudio: true,
-  experimentalInteractiveRunEvents: true,
+  experimentalInteractiveRunEvents: false,
   projectId: '89mmxs',
   e2e: {
     experimentalRunAllSpecs: true,

@@ -31,3 +31,39 @@ it('can delete an item', () => {
   // confirm the other item still exists
   cy.contains('li.todo', 'hard').should('exist')
 })
+
+it('deletes all items at the start', () => {
+  // visit the page
+  // wait for the page to load the todos
+  // using cy.wait() for now
+  cy.wait(1000)
+  // get all todo items (there might not be any!)
+  cy.get('li.todo')
+    .should(Cypress._.noop)
+    // for each todo item click the remove button
+    .each(($item) => {
+      cy.wrap($item).find('.destroy').click({ force: true })
+    })
+  // confirm that the item is gone from the dom
+  cy.get('li.todo').should('not.exist')
+})
+
+it('deletes all items at the start (click multiple elements)', () => {
+  // visit the page
+  // wait for the page to load the todos
+  // using cy.wait() for now
+  cy.wait(1000)
+  // get all todo elements and their destroy buttons
+  // (there might not be any!)
+  // the click on them all at once
+  // see https://on.cypress.io/click documentation
+  cy.get('li.todo .destroy')
+    .should(Cypress._.noop)
+    .then(($destroy) => {
+      if ($destroy.length) {
+        cy.wrap($destroy).click({ force: true, multiple: true })
+      }
+    })
+  // confirm that the item is gone from the dom
+  cy.get('li.todo').should('not.exist')
+})

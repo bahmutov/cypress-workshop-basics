@@ -19,23 +19,25 @@ Longer tests, adding items then deleting one for example. Adding items via GUI a
 ## Let's test
 
 - keep `todomvc` app running
-- open `cypress/integration/02-adding-items/spec.js` in your text editor
+- open `cypress/e2e/02-adding-items/spec.js` in your text editor
 - click file `02-adding-items/spec.js` in Cypress
 
 +++
 
-## ⚠️ Warning
+## ⚠️ Warning ⚠️
 
 The tests we are about to write are NOT resetting the previously added Todo items. Delete the Todo items before each test manually.
 
 We will reset the previously saved Todo items in section "4 Reset State".
+
+## ⚠️ Warning ⚠️
 
 ---
 
 ## Todo: Make this test work
 
 ```js
-// cypress/integration/02-adding-items/spec.js
+// cypress/e2e/02-adding-items/spec.js
 it.only('adds two items', () => {
   // visit the site
   // https://on.cypress.io/visit
@@ -50,7 +52,7 @@ it.only('adds two items', () => {
 })
 ```
 
-**tip** use `cy.get`, `cy.type`, `cy.contains`, `cy.click`, remember `https://on.cypress.io/<command>`
+**💡 tip** use `cy.get`, `cy.type`, `cy.contains`, `cy.click`, remember `https://on.cypress.io/<command>`
 
 Note:
 Draw distinction between commands and assertions, show how commands can be chained,
@@ -88,9 +90,9 @@ Avoid duplicate `cy.visit('localhost:3000')` command at the start of each test.
 
 ## Refactor code 2/3
 
-- move the url into `cypress.json`
+- move the url into `cypress.config.js`
 
-**tip** look at [https://on.cypress.io/configuration](https://on.cypress.io/configuration)
+**💡 tip** look at [https://on.cypress.io/configuration](https://on.cypress.io/configuration)
 
 +++
 
@@ -98,10 +100,16 @@ Avoid duplicate `cy.visit('localhost:3000')` command at the start of each test.
 
 - make a helper function to add todo item
 
-**tip** it is just JavaScript
+**💡 tip** it is just JavaScript
 
 Note:
 Move `addItem` function into a separate file and import from the spec file. It is just JavaScript, and Cypress bundles each spec file, so utilities can have `cy...` commands too!
+
++++
+
+## Run multiple specs
+
+`experimentalRunAllSpecs: true` config option.
 
 ---
 
@@ -189,8 +197,7 @@ Implement the test "adds one more todo item"
 
 ## 💡 Pro tips
 
-- resize the viewport in `cypress.json`
-- set up IntelliSense in `cypress.json` using [https://on.cypress.io/intelligent-code-completion](https://on.cypress.io/intelligent-code-completion)
+- resize the viewport in `cypress.config.js`
 
 ---
 
@@ -342,11 +349,11 @@ describe('Feature A', () => {
 Support file is included before each spec file.
 
 ```html
-<script src="cypress/support/index.js"></script>
-<script src="cypress/integration/spec.js"></script>
+<script src="cypress/support/e2e.js"></script>
+<script src="cypress/e2e/spec.js"></script>
 ```
 
-**Tip:** Want to reset the data and visit the site before each test? Put the commands into `beforeEach` hook inside the suport file.
+**💡 Tip:** Want to reset the data and visit the site before each test? Put the commands into `beforeEach` hook inside the support file.
 
 ---
 

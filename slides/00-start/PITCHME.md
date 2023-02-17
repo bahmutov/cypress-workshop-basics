@@ -122,6 +122,31 @@ Run specs for topics that look interesting
 
 ---
 
+## Configuration
+
+```js
+// cypress.config.js
+// https://on.cypress.io/configuration
+module.exports = defineConfig({
+  // common settings
+  viewportWidth: 800,
+  viewportHeight: 1000,
+  e2e: {
+    // end-to-end settings
+    baseUrl: 'http://localhost:3000'
+  },
+  component: {
+    // component testing settings
+    devServer: {
+      framework: 'create-react-app',
+      bundler: 'webpack'
+    }
+  }
+})
+```
+
+---
+
 ## 💡 Pro tip
 
 ```shell
