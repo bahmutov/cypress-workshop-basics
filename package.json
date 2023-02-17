@@ -8,6 +8,7 @@
     "cy:answers": "cypress run --config 'specPattern=cypress/e2e/*/answer*.js'",
     "cy:answers:open": "cypress open --config 'specPattern=cypress/e2e/*/answer*.js'",
     "start": "npm start --prefix todomvc -- --quiet",
+    "test": "cypress run --config cypress.ci-config.js",
     "ci": "start-test 3000",
     "dev": "start-test 3000 cy:open",
     "dev:answers": "start-test 3000 cy:answers:open",
@@ -17,8 +18,8 @@
     "slides:dev": "start-test slides 3100 cy:slides",
     "slides:build": "vite build",
     "cy:slides": "cypress open --config-file cypress.slides-config.js",
-    "cy:ci": "cypress open --config-file cypress.slides-config.js",
-    "dev:ci": "start-test 3000 cy:ci",
+    "cy:slides:run": "cypress run --config-file cypress.slides-config.js",
+    "dev:ci": "start-test 3000",
     "names": "find-cypress-specs --names"
   },
   "private": true,

@@ -3,11 +3,48 @@
 
 import 'cypress-real-events/support'
 
+// https://j1000.github.io/blog/2022/10/27/enhanced_cypress_logging.html
+Cypress.Commands.add('endGroup', () => {
+  collapseLastGroup()
+  Cypress.log({ groupEnd: true, emitOnly: true })
+})
+
+function collapseLastGroup() {
+  const openExpanders = window.top.document.getElementsByClassName(
+    'command-expander-is-open'
+  )
+  const numExpanders = openExpanders.length
+  const el = openExpanders[numExpanders - 1]
+
+  if (el) {
+    el.parentElement.click()
+  }
+}
+
+Cypress.Commands.add('checkSlide', (column, row) => {
+  Cypress.log({
+    name: 'checkSlide',
+    message: `${column}, ${row}`,
+    groupStart: true
+  })
+  if (row > 1) {
+    cy.location('hash').should('equal', `#/${column}/${row}`)
+  }
+  cy.contains('.slide-number-a', String(column)).should('be.visible')
+  cy.contains('.slide-number-b', String(row)).should('be.visible')
+  return cy.endGroup()
+})
+
 describe('Workshop slides', () => {
   const checkSlide = (column, row) => {
+    Cypress.log({
+      name: 'checkSlide',
+      message: `${column}, ${row}`,
+      groupStart: true
+    })
     cy.contains('.slide-number-a', String(column)).should('be.visible')
     cy.contains('.slide-number-b', String(row)).should('be.visible')
-    return cy
+    return cy.endGroup()
   }
 
   it('loads', () => {
@@ -30,7 +67,7 @@ describe('Workshop slides', () => {
     cy.visit('/')
     cy.get('h1').should('be.visible')
 
-    checkSlide(1, 1)
+    cy.checkSlide(1, 1)
     cy.get('.navigate-down')
       .should('have.class', 'enabled')
       .and('be.visible')
@@ -38,17 +75,18 @@ describe('Workshop slides', () => {
 
     // focus on the app
     cy.get('h1').realClick().realPress('ArrowDown').wait(500, noLog)
-    checkSlide(1, 2)
+    cy.checkSlide(1, 2)
     cy.get('h1').realClick().realPress('ArrowDown').wait(500, noLog)
-    checkSlide(1, 3)
+    cy.checkSlide(1, 3)
 
-    // no more slides down
+    cy.log('**no more slides down**')
     cy.get('.navigate-down').should('not.be.visible').wait(1000, noLog)
-    // go back up
+    cy.log('**go back up**')
     cy.realPress('ArrowUp')
-    checkSlide(1, 1).wait(1000, noLog)
-    // go to the next slide column
+    cy.checkSlide(1, 2).wait(1000, noLog)
+
+    cy.log('**go to the next slide column**')
     cy.realPress('ArrowRight')
-    checkSlide(2, 1).wait(1000, noLog)
+    cy.checkSlide(2, 1).wait(1000, noLog)
   })
 })
