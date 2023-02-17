@@ -87,7 +87,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cypress/base:12
+      - image: cypress/base:16.14.2-slim
     working_directory: ~/repo
     steps:
       - checkout
@@ -152,9 +152,9 @@ A _much simpler_ CI configuration.
 version: 2.1
 orbs:
   # import Cypress orb by specifying an exact version x.y.z
-  # or the latest version 1.x.x using "@1" syntax
+  # or the latest version 2.x.x using "@1" syntax
   # https://github.com/cypress-io/circleci-orb
-  cypress: cypress-io/cypress@1
+  cypress: cypress-io/cypress@2
 workflows:
   build:
     jobs:
@@ -180,7 +180,7 @@ Look how tests are run in [.circleci/config.yml](https://github.com/bahmutov/cyp
 version: 2.1
 orbs:
   # https://github.com/cypress-io/circleci-orb
-  cypress: cypress-io/cypress@1
+  cypress: cypress-io/cypress@2
 workflows:
   build:
     jobs:
@@ -197,7 +197,7 @@ workflows:
 version: 2.1
 orbs:
   # https://github.com/cypress-io/circleci-orb
-  cypress: cypress-io/cypress@1
+  cypress: cypress-io/cypress@2
 workflows:
   build:
     jobs:
@@ -217,7 +217,7 @@ workflows:
 version: 2.1
 orbs:
   # https://github.com/cypress-io/circleci-orb
-  cypress: cypress-io/cypress@1
+  cypress: cypress-io/cypress@2
 workflows:
   build:
     jobs:
@@ -255,9 +255,9 @@ jobs:
   cypress-run:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       # https://github.com/cypress-io/github-action
-      - uses: cypress-io/github-action@v2
+      - uses: cypress-io/github-action@v5
         with:
           start: npm start
           wait-on: 'http://localhost:3000'
@@ -328,7 +328,7 @@ it('logs in', { tags: 'user' }, () => ...)
 $ npx cypress run --env grepTags=user
 ```
 
-See [cypress-grep](https://github.com/cypress-io/cypress-grep)
+See [@bahmutov/cy-grep](https://github.com/bahmutov/cy-grep)
 
 +++
 
@@ -343,6 +343,13 @@ See [cypress-grep](https://github.com/cypress-io/cypress-grep)
 - [Make Cypress Run Faster by Splitting Specs](https://glebbahmutov.com/blog/split-spec/)
 - [Split Long GitHub Action Workflow Into Parallel Cypress Jobs](https://glebbahmutov.com/blog/parallel-cypress-tests-gh-action/)
 - [Testing Time Zones in Parallel](https://glebbahmutov.com/blog/testing-timezones/)
+
+---
+
+## Run tests in parallel for free
+
+- 🔌 plugin [cypress-split](https://github.com/bahmutov/cypress-split)
+- 📝 read https://glebbahmutov.com/blog/cypress-parallel-free/
 
 ---
 

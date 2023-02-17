@@ -9,8 +9,8 @@
 +++
 
 - keep `todomvc` app running
-- open `cypress/integration/05-xhr/spec.js`
-- `cy.route` is deprecated, use `cy.intercept`
+- open `cypress/e2e/05-xhr/spec.js`
+- read [cy.intercept](https://on.cypress.io/intercept) API documentation
 
 📖 Fun read: [Cypress Network Requests Guide](https://on.cypress.io/network-requests) and [https://glebbahmutov.com/blog/cypress-intercept-problems/](https://glebbahmutov.com/blog/cypress-intercept-problems/)
 
@@ -129,7 +129,7 @@ add to the test "starts with zero items":
 
 ## Todo
 
-There are multiple tests in the "spec.js" that you can go through
+There are multiple tests in the "05-xhr/spec.js" that you can go through
 
 - 'starts with zero items (delay)'
 - 'starts with zero items (delay plus render delay)'
@@ -219,7 +219,9 @@ see instructions in the `05-xhr/spec.js` for the test
 
 **Todo 3/3**
 
-- after you waited for the intercept once, you can use `cy.get('@alias')` to get its as many times as needed. Verify the request body and the response body of the intercept. Implement the test "'confirms the request and the response"
+- ⌨️ implement the test "'confirms the request and the response"
+- verify the request body and the response body of the intercept
+- **Tip:** after you waited for the intercept once, you can use `cy.get('@alias')`
 
 ![Post new item response](./img/post-item-response.png)
 
@@ -269,7 +271,7 @@ In the application we are showing (very quickly) "Loading" state
 ## Refactor a failing test
 
 ```js
-// cypress/integration/05-xhr/spec.js
+// cypress/e2e/05-xhr/spec.js
 // can you fix this test?
 it.skip('confirms the right Todo item is sent to the server', () => {
   const id = cy.wait('@postTodo').then((intercept) => {
@@ -326,6 +328,8 @@ setInterval(() => {
 You can spy on every network request and keep track of its timestamp. Waiting for network idle means waiting for the network request to be older than N milliseconds before continuing the test.
 
 **Todo:** implement the test "waits for the network to be idle for 2 seconds". Bonus for logging the timings.
+
+**Todo 2:** or use [cypress-network-idle](https://github.com/bahmutov/cypress-network-idle) plugin
 
 ---
 
