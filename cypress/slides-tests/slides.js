@@ -25,6 +25,7 @@ describe('Workshop slides', () => {
   })
 
   it('navigates using the keyboard', () => {
+    cy.log('**very first column with 3 slides**')
     const noLog = { log: false }
     cy.visit('/')
     cy.get('h1').should('be.visible')
@@ -36,8 +37,11 @@ describe('Workshop slides', () => {
       .wait(1000, noLog)
 
     // focus on the app
-    cy.get('h1').realClick().realPress('ArrowDown')
+    cy.get('h1').realClick().realPress('ArrowDown').wait(500, noLog)
     checkSlide(1, 2)
+    cy.get('h1').realClick().realPress('ArrowDown').wait(500, noLog)
+    checkSlide(1, 3)
+
     // no more slides down
     cy.get('.navigate-down').should('not.be.visible').wait(1000, noLog)
     // go back up

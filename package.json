@@ -16,8 +16,8 @@
     "slides": "vite --strictPort --port 3100",
     "slides:dev": "start-test slides 3100 cy:slides",
     "slides:build": "vite build",
-    "cy:slides": "cypress open --config-file cypress-slides.json",
-    "cy:ci": "cypress open --config-file cypress-ci.json",
+    "cy:slides": "cypress open --config-file cypress.slides-config.js",
+    "cy:ci": "cypress open --config-file cypress.slides-config.js",
     "dev:ci": "start-test 3000 cy:ci",
     "names": "find-cypress-specs --names"
   },
