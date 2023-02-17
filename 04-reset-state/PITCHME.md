@@ -10,7 +10,7 @@
 ## The problem
 
 - keep `todomvc` app running
-- open `cypress/integration/04-reset-state/spec.js`
+- open `cypress/e2e/04-reset-state/spec.js`
 - if you reload the test it starts failing 😕
 
 +++
@@ -28,7 +28,7 @@
 ---
 
 ```javascript
-// cypress/integration/04-reset-state/spec.js
+// cypress/e2e/04-reset-state/spec.js
 beforeEach(() => {
   cy.visit('/')
 })
@@ -73,9 +73,9 @@ $ http POST :3000/reset todos:=[]
   - before or after `cy.visit`?
 
 Note:
-Students should modify `cypress/integration/04-reset-state/spec.js` and make the request to reset the database before each test using `cy.request`.
+Students should modify `cypress/e2e/04-reset-state/spec.js` and make the request to reset the database before each test using `cy.request`.
 
-The answer to this and other TODO assignments are in [cypress/integration/04-reset-state/answer.js](/cypress/integration/04-reset-state/answer.js) file.
+The answer to this and other TODO assignments are in [cypress/e2e/04-reset-state/answer.js](/cypress/e2e/04-reset-state/answer.js) file.
 
 ---
 
@@ -118,8 +118,9 @@ Most common mistake is using file path relative to the spec file, should be rela
 You can execute Node code during browser tests by calling [`cy.task`](https://on.cypress.io/task)
 
 ```js
-// cypress/plugins/index.js
-module.exports = (on, config) => {
+// cypress.config.file
+// runs in Node
+setupNodeEvents(on, config) {
   on('task', {
     hello(name) {
       console.log('Hello', name)
@@ -127,7 +128,8 @@ module.exports = (on, config) => {
     }
   })
 }
-// cypress/integration/spec.js
+// cypress/e2e/spec.js
+// runs in the browser
 cy.task('hello', 'World')
 ```
 
@@ -135,7 +137,7 @@ cy.task('hello', 'World')
 
 ## TODO reset data using cy.task
 
-Find "resetData" task in cypress/plugins/index.js
+Find "resetData" task in `cypress.config.js`
 
 ```js
 describe('reset data using a task', () => {
@@ -186,8 +188,8 @@ it('sets data using fixture', () => {
 Using the `experimentalInteractiveRunEvents` flag
 
 ```js
-// cypress/plugins/index.js
-module.exports = (on, config) => {
+// cypress.config.js
+setupNodeEvents(on, config) {
   on('before:spec', (spec) => {
     console.log('resetting DB before spec %s', spec.name)
     resetData()
