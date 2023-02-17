@@ -13,10 +13,16 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 - actively using Cypress since 2016
 - [gleb.dev](https://gleb.dev)
 - [@bahmutov](https://twitter.com/bahmutov)
-- [https://glebbahmutov.com/blog/tags/cypress/](https://glebbahmutov.com/blog/tags/cypress/) 200+ Cypress blog posts
-- [https://www.youtube.com/glebbahmutov](https://www.youtube.com/glebbahmutov) 300+ Cypress videos
+- [https://glebbahmutov.com/blog/tags/cypress/](https://glebbahmutov.com/blog/tags/cypress/) 250+ Cypress blog posts
+- [https://www.youtube.com/glebbahmutov](https://www.youtube.com/glebbahmutov) 400+ Cypress videos
 - [cypress.tips](https://cypress.tips) with links, search, my courses
 - [Cypress Tips](https://cypresstips.substack.com/) monthly newsletter
+
++++
+
+[cypress.tips/courses](https://cypress.tips/courses)
+
+![My Cypress courses](./img/courses.png)
 
 ---
 
@@ -43,18 +49,18 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 
 ## Time 🕰
 
-- total workshop duration 6-10 hours
-- two days
-  - 10:00-12:00 part 1
-  - 12:00-12:30 lunch 🍲
-  - 12:30-14:30 part 2
+- total workshop duration 6-7 hours
+- one day
+  - 9:00-12:00 part 1
+  - 12:00-12:55 lunch 🍲
+  - 13:00-17:00 part 2
 - time for questions during the workshop and after each section
 
 +++
 
 <!-- Please: if you have experience with Cypress.io, help others during the workshop 🙏 -->
 
-## Poll: have you used Cypress before?
+## Poll 1: have you used Cypress before?
 
 - This is my first time
 - Using for less than 1 month 👍<!-- .element: class="fragment" -->
@@ -64,13 +70,32 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 
 ---
 
-## Poll: have you used other E2E test runners?
+## Poll 2: have you used other E2E test runners?
 
 - Selenium / Webdriver
 - Protractor <!-- .element: class="fragment" -->
 - TestCafe <!-- .element: class="fragment" -->
 - Puppeteer / Playwright <!-- .element: class="fragment" -->
 - Something else? <!-- .element: class="fragment" -->
+
+---
+
+## Poll 3: what unit testing tool do you use?
+
+- Jest
+- Mocha <!-- .element: class="fragment" -->
+- Ava <!-- .element: class="fragment" -->
+- Tap/Tape <!-- .element: class="fragment" -->
+- Something else? <!-- .element: class="fragment" -->
+
+---
+
+## Last poll: Do you use TypeScript
+
+- no
+- a little <!-- .element: class="fragment" -->
+- half of the time <!-- .element: class="fragment" -->
+- all the time <!-- .element: class="fragment" -->
 
 ---
 
@@ -86,9 +111,9 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 
 +++
 
-🎉 If you can make all "cypress/integration/.../spec.js" tests work, you know Cypress.
+🎉 If you can make all "cypress/e2e/.../spec.js" tests work, you know Cypress.
 
-Tip: there are about 80 tests to fill with code, see them with "npm run names" command <!-- .element: class="fragment" -->
+**Tip:** there are about 80+ tests to fill with code, see them with "npm run names" command <!-- .element: class="fragment" -->
 
 ---
 
@@ -110,7 +135,7 @@ npm install
 ## Repo organization
 
 - `/todomvc` is a web application we are going to test
-- all tests are in `cypress/integration` folder
+- all tests are in `cypress/e2e` folder
   - there are subfolders for exercises
     - `01-basic`
     - `02-adding-items`
@@ -132,7 +157,7 @@ Let us look at the application.
 - `npm start`
 - `open localhost:3000`
 
-**important** keep application running through the entire workshop!
+**important:** keep application running through the entire workshop!
 
 +++
 

@@ -86,16 +86,27 @@ And I use `npm run cy:open`
 
 ---
 
-![First time you open Cypress](./img/cypress-scaffold.png)
+![First time you open Cypress](./img/start1.png)
 
 +++
 
+![Scaffold E2E tests](./img/start2.png)
+
++++
+
+![Created E2E configuration files](./img/start3.png)
+
++++
+
+![Scaffold example specs](./img/start4.png)
+
+---
+
 ## Cypress files and folders
 
-- "cypress.json" - all Cypress settings
-- "cypress/integration" - test files (specs)
+- "cypress.config.js" - all Cypress settings
+- "cypress/e2e" - end-to-end test files (specs)
 - "cypress/fixtures" - mock data <!-- .element: class="fragment" -->
-- "cypress/plugins" - extending Cypress in Node<!-- .element: class="fragment" -->
 - "cypress/support" - shared commands, utilities <!-- .element: class="fragment" -->
 
 Read blog post [Cypress is just ...](https://glebbahmutov.com/blog/cypress-is/)
@@ -108,6 +119,31 @@ This section shows how Cypress scaffolds its files and folders. Then the student
 Look at the scaffolded example test files (specs).
 
 Run specs for topics that look interesting
+
+---
+
+## Configuration
+
+```js
+// cypress.config.js
+// https://on.cypress.io/configuration
+module.exports = defineConfig({
+  // common settings
+  viewportWidth: 800,
+  viewportHeight: 1000,
+  e2e: {
+    // end-to-end settings
+    baseUrl: 'http://localhost:3000'
+  },
+  component: {
+    // component testing settings
+    devServer: {
+      framework: 'create-react-app',
+      bundler: 'webpack'
+    }
+  }
+})
+```
 
 ---
 
@@ -126,12 +162,9 @@ Repo [github.com/bahmutov/cly](https://github.com/bahmutov/cly)
 
 ---
 
-## Cypress example kitchen sink
+## [glebbahmutov.com/cypress-examples](https://glebbahmutov.com/cypress-examples/)
 
-- repo [github.com/cypress-io/cypress-example-kitchensink](https://github.com/cypress-io/cypress-example-kitchensink)
-- site [example.cypress.io](https://example.cypress.io)
-
-**Tip:** also use [glebbahmutov.com/cypress-examples](https://glebbahmutov.com/cypress-examples) that has a good code search, more command examples, and longer recipes
+![Cypress examples site](./img/cypress-examples.png)
 
 ---
 
@@ -139,11 +172,13 @@ Repo [github.com/bahmutov/cly](https://github.com/bahmutov/cly)
 
 Let's test our TodoMVC application. Create a new spec file
 
-- `cypress/integration/spec.js`
+- `cypress/e2e/spec.cy.js`
+
+**tip:** the default spec pattern is `cypress/e2e/**/*.cy.{js,jsx,ts,tsx}`
 
 +++
 
-Type into the `spec.js` our first test
+Type into the `spec.cy.js` our first test
 
 ```javascript
 it('loads', () => {
@@ -154,7 +189,7 @@ it('loads', () => {
 +++
 
 - make sure you have started TodoMVC in another terminal with `npm start`
-- click on "spec.js" in Cypress GUI
+- click on "spec.cy.js" in Cypress GUI
 
 +++
 
@@ -266,9 +301,7 @@ Students should know where to find information later on. Main resources is the a
 
 ---
 
-## My Cypress search
-
-[cypress.tips/search](https://cypress.tips/search)
+## 🏆 [cypress.tips/search](https://cypress.tips/search)
 
 ![Cypress tips search](./img/cypress-tips-search.png)
 
