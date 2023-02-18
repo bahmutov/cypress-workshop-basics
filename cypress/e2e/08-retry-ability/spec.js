@@ -17,6 +17,15 @@ describe('retry-ability', () => {
     // cy.visit('/?addTodoDelay=1000')
   })
 
+  it('creates 2 items', function () {
+    cy.visit('/?addTodoDelay=1000') // command
+    cy.get('.new-todo') // query
+      .type('todo A{enter}') // command
+      .type('todo B{enter}') // command
+    cy.get('.todo-list li') // query
+      .should('have.length', 2) // assertion
+  })
+
   it('shows UL', function () {
     cy.get('.new-todo')
       .type('todo A{enter}')
@@ -77,7 +86,7 @@ describe('retry-ability', () => {
     // then make the test flaky ...
   })
 
-  it('solution 1: merges queries', () => {
+  it('solution 1: remove cy.then', () => {
     cy.get('.new-todo').type('todo A{enter}')
     // ?
 
@@ -91,6 +100,27 @@ describe('retry-ability', () => {
 
     cy.get('.new-todo').type('todo B{enter}')
     // ?
+  })
+
+  it('solution 3: replace cy.then with a query', () => {
+    Cypress.Commands.addQuery('later', (fn) => {
+      return (subject) => {
+        fn(subject)
+        return subject
+      }
+    })
+    cy.get('.new-todo').type('todo A{enter}')
+    // ?
+
+    cy.get('.new-todo').type('todo B{enter}')
+    // ?
+  })
+
+  it('confirms the text of each todo', () => {
+    // use cypress-map queries to get the text from
+    // each todo and confirm the list of strings
+    // add printing the strings before the assertion
+    // Tip: there are queries for this in cypress-map
   })
 
   it('retries reading the JSON file', () => {

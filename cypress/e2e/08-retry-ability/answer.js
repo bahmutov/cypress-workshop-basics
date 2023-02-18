@@ -1,5 +1,7 @@
 // @ts-check
 /// <reference types="cypress" />
+import 'cypress-map'
+
 describe('retry-ability', () => {
   beforeEach(function resetData() {
     cy.request('POST', '/reset', {
@@ -9,9 +11,9 @@ describe('retry-ability', () => {
 
   beforeEach(function visitSite() {
     // do not delay adding new items after pressing Enter
-    cy.visit('/')
+    // cy.visit('/')
     // enable a delay when adding new items
-    // cy.visit('/?addTodoDelay=1000')
+    cy.visit('/?addTodoDelay=1000')
   })
 
   it('shows UL', function () {
@@ -75,8 +77,9 @@ describe('retry-ability', () => {
 
   it('has the right label', () => {
     cy.get('.new-todo').type('todo A{enter}')
-    cy.get('.todo-list li') // command
-      .find('label') // command
+    cy.get('.todo-list li') // query
+      .then(console.log) // command
+      .find('label') // query
       .should('contain', 'todo A') // assertion
   })
 
@@ -85,38 +88,85 @@ describe('retry-ability', () => {
   // in todomvc/app.js "addTodo({ commit, state })" method
   it('has two labels', { retries: 2 }, () => {
     cy.get('.new-todo').type('todo A{enter}')
-    cy.get('.todo-list li') // command
-      .find('label') // command
+    cy.get('.todo-list li') // query
+      .then(console.log) // command
+      .find('label') // query
       .should('contain', 'todo A') // assertion
 
     cy.get('.new-todo').type('todo B{enter}')
-    cy.get('.todo-list li') // command
-      .find('label') // command
+    cy.get('.todo-list li') // query
+      .then(console.log) // command
+      .find('label') // query
       .should('contain', 'todo B') // assertion
   })
 
-  it('solution 1: merges queries', () => {
+  it('solution 1: remove cy.then', () => {
     cy.get('.new-todo').type('todo A{enter}')
-    cy.get('.todo-list li label') // command
+    cy.get('.todo-list li') // query
+      .find('label') // query
       .should('contain', 'todo A') // assertion
 
     cy.get('.new-todo').type('todo B{enter}')
-    cy.get('.todo-list li label') // command
+    cy.get('.todo-list li') // query
+      .find('label') // query
       .should('contain', 'todo B') // assertion
   })
 
   it('solution 2: alternate commands and assertions', () => {
     cy.get('.new-todo').type('todo A{enter}')
-    cy.get('.todo-list li') // command
+    cy.get('.todo-list li') // query
       .should('have.length', 1) // assertion
-      .find('label') // command
+      .then(console.log) // command
+      .find('label') // query
       .should('contain', 'todo A') // assertion
 
     cy.get('.new-todo').type('todo B{enter}')
-    cy.get('.todo-list li') // command
+    cy.get('.todo-list li') // query
       .should('have.length', 2) // assertion
-      .find('label') // command
+      .then(console.log) // command
+      .find('label') // query
       .should('contain', 'todo B') // assertion
+  })
+
+  it('solution 3: replace cy.then with a query', () => {
+    // @ts-ignore
+    Cypress.Commands.addQuery('later', (fn) => {
+      return (subject) => {
+        // @ts-ignore
+        fn(subject)
+        return subject
+      }
+    })
+    cy.get('.new-todo').type('todo A{enter}')
+    cy.get('.todo-list li') // query
+      // @ts-ignore
+      .later(console.log) // query
+      .find('label') // query
+      .should('contain', 'todo A') // assertion
+
+    cy.get('.new-todo').type('todo B{enter}')
+    cy.get('.todo-list li') // query
+      // @ts-ignore
+      .later(console.log) // query
+      .find('label') // query
+      .should('contain', 'todo B') // assertion
+  })
+
+  it('confirms the text of each todo', () => {
+    // add several todo items
+    cy.get('.new-todo')
+      .type('todo A{enter}')
+      .type('todo B{enter}')
+      .type('todo C{enter}')
+      .type('todo D{enter}')
+    // use cypress-map queries to get the text from
+    // each todo and confirm the list of strings
+    // add printing the strings before the assertion
+    // Tip: there are queries for this in cypress-map
+    cy.get('.todo-list li label')
+      .map('innerText')
+      .print()
+      .should('deep.equal', ['todo A', 'todo B', 'todo C', 'todo D'])
   })
 
   it('retries reading the JSON file', () => {

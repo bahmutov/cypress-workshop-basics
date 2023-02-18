@@ -52,7 +52,7 @@
           @keyup.enter="addTodo"
         />
       </header>
-      <section class="main" v-show="todos.length" v-cloak>
+      <section class="main" v-show="todos.length">
         <ul class="todo-list">
           <li
             v-for="todo in filteredTodos"
