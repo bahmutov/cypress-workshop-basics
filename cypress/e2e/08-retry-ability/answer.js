@@ -1,6 +1,7 @@
 // @ts-check
 /// <reference types="cypress" />
 import 'cypress-map'
+import { recurse } from 'cypress-recurse'
 
 describe('retry-ability', () => {
   beforeEach(function resetData() {
@@ -11,9 +12,9 @@ describe('retry-ability', () => {
 
   beforeEach(function visitSite() {
     // do not delay adding new items after pressing Enter
-    // cy.visit('/')
+    cy.visit('/')
     // enable a delay when adding new items
-    cy.visit('/?addTodoDelay=1000')
+    // cy.visit('/?addTodoDelay=1000')
   })
 
   it('shows UL', function () {
@@ -167,6 +168,21 @@ describe('retry-ability', () => {
       .map('innerText')
       .print()
       .should('deep.equal', ['todo A', 'todo B', 'todo C', 'todo D'])
+  })
+
+  it('adds todos until we have 5 of them', () => {
+    recurse(
+      () => cy.get('.todo-list li').should(Cypress._.noop),
+      ($li) => $li.length >= 5,
+      {
+        log: '5 todos',
+        delay: 1000,
+        timeout: 6000,
+        post({ iteration }) {
+          cy.get('.new-todo').type(`todo ${iteration}{enter}`)
+        }
+      }
+    )
   })
 
   it('retries reading the JSON file', () => {

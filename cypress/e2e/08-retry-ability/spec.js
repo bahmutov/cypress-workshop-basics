@@ -133,6 +133,20 @@ describe('retry-ability', () => {
   })
 })
 
+describe('cypress-recurse', () => {
+  beforeEach(function resetData() {
+    cy.request('POST', '/reset', {
+      todos: []
+    })
+    cy.visit('/')
+  })
+
+  it('adds todos until we have 5 of them', () => {
+    // use cypress-recurse to add an item
+    // if there are fewer than 5
+  })
+})
+
 // if the tests are flaky, add test retries
 // https://on.cypress.io/test-retries
 describe('Careful with negative assertions', () => {
