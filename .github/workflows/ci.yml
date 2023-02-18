@@ -9,6 +9,9 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v3
 
+      - name: Print versions 🖨️
+        run: node -v
+
       # https://github.com/cypress-io/github-action
       - name: Run Cypress tests 🧪
         uses: cypress-io/github-action@v5
