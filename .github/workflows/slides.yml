@@ -10,6 +10,10 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v3
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
       # https://github.com/cypress-io/github-action
       - name: Test slides 🎞
         uses: cypress-io/github-action@v5

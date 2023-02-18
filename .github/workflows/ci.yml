@@ -9,6 +9,10 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v3
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
       - name: Print versions 🖨️
         run: node -v
 
@@ -18,7 +22,7 @@ jobs:
         with:
           config-file: 'cypress.ci-config.js'
           start: 'npm start'
-          wait-on: 'http://127.0.0.1:3000'
+          wait-on: 'http://localhost:3000'
 
   test-answers:
     runs-on: ubuntu-20.04
@@ -34,6 +38,10 @@ jobs:
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
       # https://github.com/cypress-io/github-action
       - name: Test answers 🤔

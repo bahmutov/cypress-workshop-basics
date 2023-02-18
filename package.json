@@ -7,7 +7,7 @@
     "cy:run": "cypress run",
     "cy:answers": "cypress run --config 'specPattern=cypress/e2e/*/answer*.js'",
     "cy:answers:open": "cypress open --config 'specPattern=cypress/e2e/*/answer*.js'",
-    "start": "npm start --prefix todomvc",
+    "start": "npm start --prefix todomvc -- --quiet",
     "test": "cypress run --config-file cypress.ci-config.js",
     "ci": "start-test 3000",
     "dev": "start-test 3000 cy:open",
