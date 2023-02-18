@@ -18,7 +18,7 @@ jobs:
         with:
           config-file: 'cypress.ci-config.js'
           start: 'npm start'
-          wait-on: 'http://localhost:3000'
+          wait-on: 'http://127.0.0.1:3000'
 
   test-answers:
     runs-on: ubuntu-20.04
