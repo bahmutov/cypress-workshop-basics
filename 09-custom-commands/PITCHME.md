@@ -10,7 +10,7 @@
 +++
 
 - keep `todomvc` app running
-- open `cypress/integration/09-custom-commands/spec.js`
+- open `cypress/e2e/09-custom-commands/spec.js`
 
 ---
 
@@ -39,48 +39,11 @@ Now these `beforeEach` hooks will be loaded _before every_ test in every spec. T
 
 ```html
 <script src="cypress/support/index.js"></script>
-<script src="cypress/integration/09-custom-commands/spec.js"></script>
+<script src="cypress/e2e/09-custom-commands/spec.js"></script>
 ```
 
 Note:
 Is this a good solution?
-
-+++
-
-### Todo: move them into `cypress/support/hooks.js`
-
-And load from the spec file:
-
-```js
-// automatically runs the "beforeEach" hooks
-import '../../support/hooks'
-
-it('enters 10 todos', function () {
-  ...
-})
-```
-
-Note:
-A better solution, because only the spec file that needs these hooks can load them.
-
-+++
-
-### Todo: export the `resetData` and `visitSite`
-
-```js
-// cypress/support/hooks.js
-// each function registers the "beforeEach" hooks
-export function resetData () { ... }
-export function visitSite () { ... }
-```
-
-⌨️ and update the `spec.js`
-
-```js
-import { resetData, visitSite } from '...'
-resetData()
-visitSite()
-```
 
 ---
 
@@ -96,9 +59,11 @@ import {
   resetDatabase,
   visit
 } from '../../support/utils'
-it('loads the app', () => {
+beforeEach(() => {
   resetDatabase()
   visit()
+})
+it('loads the app', () => {
   getTodoApp().should('be.visible')
   enterTodo('first item')
   enterTodo('second item')
@@ -144,6 +109,15 @@ More details in: [https://slides.com/bahmutov/ts-without-ts](https://slides.com/
 
 +++
 
+## Custom commands and queries
+
+- add a custom command
+- add a custom query
+- overwrite a command
+- overwrite a query (v12.6.0)
+
+---
+
 Let's write a custom command to create a todo
 
 ```js
@@ -181,7 +155,7 @@ How: [https://github.com/cypress-io/cypress-example-todomvc#cypress-intellisense
 
 +++
 
-⌨️ in file `cypress/integration/09-custom-commands/custom-commands.d.ts`
+⌨️ in file `cypress/e2e/09-custom-commands/custom-commands.d.ts`
 
 ```ts
 /// <reference types="cypress" />
@@ -199,7 +173,7 @@ declare namespace Cypress {
 
 +++
 
-Load the new definition file in `cypress/integration/09-custom-commands/spec.js`
+Load the new definition file in `cypress/e2e/09-custom-commands/spec.js`
 
 ```js
 /// <reference path="./custom-commands.d.ts" />
@@ -213,13 +187,6 @@ More JSDoc examples: [https://slides.com/bahmutov/ts-without-ts](https://slides.
 
 Note:
 Editors other than VSCode might require work.
-
-+++
-
-⚠️ tell Cypress to ignore ".d.ts" files using `ignoreTestFiles` in cypress.json or save ".d.ts" files outside the integration folder.
-
-Note:
-Otherwise Cypress will try load ".d.ts" file as spec and without TypeScript loader will fail.
 
 +++
 
@@ -292,12 +259,12 @@ const cmd = Cypress.log({
 
 ## 3rd party custom commands
 
+- [cypress-map](https://github.com/bahmutov/cypress-map)
 - [cypress-real-events](https://github.com/dmtrKovalenko/cypress-real-events)
-- [cypress-grep](https://github.com/bahmutov/cypress-grep)
+- [@bahmutov/cy-grep](https://github.com/bahmutov/cy-grep)
 - [cypress-recurse](https://github.com/bahmutov/cypress-recurse)
 - [cypress-xpath](https://github.com/cypress-io/cypress-xpath)
 - [cypress-plugin-snapshots](https://github.com/meinaart/cypress-plugin-snapshots)
-- [cypress-pipe](https://github.com/NicholasBoll/cypress-pipe)
 
 [on.cypress.io/plugins#custom-commands](https://on.cypress.io/plugins#custom-commands)
 
@@ -352,58 +319,6 @@ const resolveValue = () => {
 
 ---
 
-## Try `cypress-pipe`
-
-Easily retry your own functions
-
-```sh
-npm home cypress-pipe
-```
-
-Advanced example: [https://www.cypress.io/blog/2019/01/22/when-can-the-test-click/](https://www.cypress.io/blog/2019/01/22/when-can-the-test-click/)
-
-+++
-
-### Todo: retry getting object's property
-
-```js
-const o = {}
-setTimeout(() => {
-  o.foo = 'bar'
-}, 1000)
-```
-
-- until it becomes defined
-- and is equal to
-
-⌨️ test "passes when object gets new property"
-
----
-
-### Try `cypress-plugin-snapshots`
-
-⚠️ install requires 3 parts: command, plugin, env config object
-
-```js
-it('creates todos', () => {
-  // add a few todos
-  cy.window().its('app.todos').toMatchSnapshot()
-})
-```
-
-+++
-
-![toMatchSnapshot](./img/to-match-snapshot.png)
-
-+++
-
-## Todo: use data snapshot
-
-- ignore "id" field, because it is dynamic
-- update snapshot if you add todo
-
----
-
 ## Advanced concepts
 
 - parent vs child command
@@ -417,10 +332,7 @@ it('creates todos', () => {
 
 ```js
 Cypress.Commands.overwrite('type', (type, $el, text, options) => {
-  // just adds element selector to the
-  // list of seen elements
-  rememberSelector($el)
-
+  console.log($el)
   return type($el, text, options)
 })
 ```

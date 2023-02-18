@@ -171,10 +171,7 @@ it('every item starts with todo', function () {
 - text between two cells is unknown but should be the same
 - displayed value should be the same as API has returned
 
-See
-
-- [https://example.cypress.io/commands/assertions](https://example.cypress.io/commands/assertions)
-- https://glebbahmutov.com/cypress-examples/commands/assertions.html
+- 🔎 https://glebbahmutov.com/cypress-examples/commands/assertions.html
 
 ---
 
@@ -203,24 +200,43 @@ it('creates 2 items', function () {
 
 +++
 
-### Look at the last command + assertion
+### Cypress v12: commands, queries, assertions
 
 ```javascript
-cy.get('.todo-list li') // command
+it('creates 2 items', function () {
+  cy.visit('/') // command
+  cy.focused() // query
+    .should('have.class', 'new-todo') // assertion
+  cy.get('.new-todo') // query
+    .type('todo A{enter}') // command
+    .type('todo B{enter}') // command
+  cy.get('.todo-list li') // query
+    .should('have.length', 2) // assertion
+})
+```
+
+📝 Read https://glebbahmutov.com/blog/cypress-v12/ and
+
++++
+
+### Look at the last query + assertion
+
+```javascript
+cy.get('.todo-list li') // query
   .should('have.length', 2) // assertion
 ```
 
-Command `cy.get()` will be retried _until_ the assertion `should('have.length', 2)` passes.
+Query `cy.get()` will be retried _until_ the assertion `should('have.length', 2)` passes.
 
 Note:
 If not shown, this is a good moment to slow down the app and show how the assertion still works, especially when slowing down progressively - 1 item, slow down by 1 second, 2 items - slow down by 2 seconds.
 
 +++
 
-Command `cy.contains` will be retried _until 3 assertions_ that follow it all pass.
+Query `cy.contains` will be retried _until 3 assertions_ that follow it all pass.
 
 ```js
-cy.contains('ul', 'todo A') // command
+cy.contains('ul', 'todo A') // query
   .should('be.visible') // assertion
   .and('have.class', 'todo-list') // assertion
   .and('have.css', 'list-style-type', 'none') // assertion
@@ -228,10 +244,10 @@ cy.contains('ul', 'todo A') // command
 
 +++
 
-Command `cy.get` will be retried _until 5 assertions_ that follow it all pass.
+Query `cy.get` will be retried _until 5 assertions_ that follow it all pass.
 
 ```js
-cy.get('.todo label') // command
+cy.get('.todo label') // query
   .should(($labels) => {
     expect($labels).to.have.length(4) // assertion
 
@@ -246,9 +262,9 @@ cy.get('.todo label') // command
 
 ## Retry-ability
 
-Only some commands are retried: `cy.get`, `cy.find`, `cy.its`, `cy.invoke`. They don't change the application's state.
+Only queries are retried: `cy.get`, `cy.find`, `cy.its`, `cy.invoke`. They don't change the application's state.
 
-NOT retried: `cy.click`, `cy.task`, etc.
+NOT retried: `cy.click`, `cy.task`, `cy.then`, etc.
 
 ![Assertions section](./img/retry.png)
 
@@ -256,7 +272,7 @@ NOT retried: `cy.click`, `cy.task`, etc.
 
 ## `then(cb)` vs `should(cb)`
 
-- `should(cb)` retries
+- `should(cb)` retries previous query
 - `then(cb)` does not retry
 
 ### Todo: demonstrate this
@@ -324,7 +340,7 @@ Just like a human user, Cypress tries to do sensible thing. Very rarely though y
 
 ## Timeouts
 
-By default, command retries for up to 4 seconds. You can change config setting `defaultCommandTimeout` globally.
+By default, commands and queries retry for up to 4 seconds. You can change config setting `defaultCommandTimeout` globally.
 
 ```sh
 cypress run --config defaultCommandTimeout=10000
@@ -350,7 +366,15 @@ See [https://on.cypress.io/introduction-to-cypress#Timeouts](https://on.cypress.
 
 ---
 
-> ⚠️ Only the last command is retried ⚠️
+> ⚠️ The entire last chain of queries is retried ⚠️
+
+```javascript
+cy.type('Hello{enter}') // command
+  .get('.todo-list') // query
+  .find('li.todo') // query
+  .contains('label', 'Hello') // query
+  .should('be.visible') // assertion
+```
 
 +++
 
@@ -367,8 +391,8 @@ Did you write several commands before writing an assertion? <!-- .element: class
 ```js
 it('has the right label', () => {
   cy.get('.new-todo').type('todo A{enter}')
-  cy.get('.todo-list li') // command
-    .find('label') // command
+  cy.get('.todo-list li') // query
+    .find('label') // query
     .should('contain', 'todo A') // assertion
 })
 ```
@@ -377,24 +401,40 @@ Everything looks good.
 
 +++
 
+Let's print the found list items to the console. Insert the `cy.then(console.log)` command
+
+```javascript
+it('has the right label', () => {
+  cy.get('.new-todo').type('todo A{enter}')
+  cy.get('.todo-list li') // query
+    .then(console.log) // command
+    .find('label') // query
+    .should('contain', 'todo A') // assertion
+})
+```
+
++++
+
 ### Todo: write test that checks two labels
 
 ![two labels](./img/two-labels.png)
 
-⌨️ edit the test "has two labels" following the picture
+⌨️ edit the test "has two labels" following the picture, include the `cy.then(console.log)`
 
 +++
 
-```js
+```javascript
 it('has two labels', () => {
   cy.get('.new-todo').type('todo A{enter}')
-  cy.get('.todo-list li') // command
-    .find('label') // command
+  cy.get('.todo-list li') // query
+    .then(console.log) // command
+    .find('label') // query
     .should('contain', 'todo A') // assertion
 
   cy.get('.new-todo').type('todo B{enter}')
-  cy.get('.todo-list li') // command
-    .find('label') // command
+  cy.get('.todo-list li') // query
+    .then(console.log) // command
+    .find('label') // query
     .should('contain', 'todo B') // assertion
 })
 ```
@@ -434,11 +474,12 @@ For me it was 46ms. Flaky test like this works fine locally, yet sometimes fails
 
 +++
 
-> ⚠️ Only the last command is retried ⚠️
+> ⚠️ The entire last chain of queries is retried ⚠️
 
 ```js
 cy.get('.new-todo').type('todo B{enter}')
 cy.get('.todo-list li') // queries immediately, finds 1 <li>
+  .then(console.log) // command
   .find('label') // retried, retried, retried with 1 <li>
   .should('contain', 'todo B') // never succeeds with only 1st <li>
 ```
@@ -447,44 +488,34 @@ How do we fix the flaky test?
 
 ---
 
-## Solution 1: merge queries
+## Solution before Cypress v12
+
+Merge queries
 
 ```js
-// dangerous ⚠️
-cy.get('.todo-list li')
-  .find('label')
-  .should(...)
-
-// recommended ✅
 cy.get('.todo-list li label')
+  .then(console.log)
   .should(...)
+cy.window()
+  .its('app.model.todos')
+  .should('have.length', 2)
 ```
-
-⌨️ try this in test "solution 1: merges queries"
-
-Note:
-The test should pass now, even with longer delay, because `cy.get` is retried.
 
 +++
 
-## merge queries for `cy.its`
+## Solution 1: remove cy.then
 
-```javascript
-// dangerous ⚠️
-// only the last "its" will be retried
-cy.window()
-  .its('app') // runs once
-  .its('model') // runs once
-  .its('todos') // retried
-  .should('have.length', 2)
-
-// ✅ recommended
-cy.window()
-  .its('app.model.todos') // retried
-  .should('have.length', 2)
+```js
+cy.get('.todo-list li')
+  // .then(console.log)
+  .find('label')
+  .should(...)
 ```
 
-From [https://glebbahmutov.com/blog/set-flag-to-start-tests/](https://glebbahmutov.com/blog/set-flag-to-start-tests/)
+⌨️ try this in test "solution 1: remove cy.then"
+
+Note:
+The test should pass now, even with longer delay, because `cy.get` is retried.
 
 +++
 
@@ -492,28 +523,78 @@ From [https://glebbahmutov.com/blog/set-flag-to-start-tests/](https://glebbahmut
 
 ```js
 cy.get('.new-todo').type('todo A{enter}')
-cy.get('.todo-list li') // command
+cy.get('.todo-list li') // query
   .should('have.length', 1) // assertion
-  .find('label') // command
+  .then(console.log) // command
+  .find('label') // query
   .should('contain', 'todo A') // assertion
 
 cy.get('.new-todo').type('todo B{enter}')
-cy.get('.todo-list li') // command
+cy.get('.todo-list li') // query
   .should('have.length', 2) // assertion
-  .find('label') // command
+  .then(console.log) // command
+  .find('label') // query
   .should('contain', 'todo B') // assertion
 ```
 
 ⌨️ try this in test "solution 2: alternate commands and assertions"
 
++++
+
+## Solution 3: replace cy.then with a query
+
+```js
+it('solution 3: replace cy.then with a query', () => {
+  Cypress.Commands.addQuery('later', (fn) => {
+    return (subject) => {
+      fn(subject)
+      return subject
+    }
+  })
+  ...
+})
+```
+
+⌨️ try this in test "solution 3: replace cy.then with a query"
+
+---
+
+## cypress-map
+
+If 🕰️ allows, use [cypress-map](https://github.com/bahmutov/cypress-map) plugin.
+
+> Extra Cypress query commands for v12+
+
+- https://github.com/bahmutov/cypress-map
+
+⌨️ try implementing "confirms the text of each todo"
+
+---
+
+> 💡 Use more assertions in your tests, especially after actions
+
+```javascript
+// 🚨 NOT RECOMMENDED
+cy.get('.new-todo')
+  .type('todo A{enter}') // action
+  .type('todo B{enter}') // action after another action - bad
+  .should('...')
+// ✅ RECOMMENDED
+cy.get('.new-todo').type('todo A{enter}')
+cy.get('.todo-list li').should('have.length', 1)
+cy.get('.new-todo').type('todo B{enter}')
+cy.get('.todo-list li').should('have.length', 2)
+```
+
 ---
 
 ## Cypress Retries: Triple Header 1/3
 
-### 1. DOM queries
+### 1. DOM and other queries
 
 ```js
 cy.get('li').should('have.length', 2)
+cy.readFile('...').should('...')
 ```
 
 +++
@@ -542,6 +623,18 @@ cy.spy(...).as('some-method')
 cy.get('@some-method')
   .should('have.been.calledOnce')
 ```
+
+---
+
+## cypress-recurse
+
+If 🕰️ allows, look at [cypress-recurse](https://github.com/bahmutov/cypress-recurse) plugin.
+
+> Re-run parts of Cypress tests
+
+- https://github.com/bahmutov/cypress-recurse
+
+⌨️ try implementing "adds todos until we have 5 of them"
 
 ---
 
@@ -655,10 +748,10 @@ DOM 🎉 Network 🎉 Application methods 🎉
 
 ## 📝 Take away
 
-> ⚠️ Only the last command is retried ⚠️
+> ⚠️ Only the last chain of queries is retried ⚠️
 
-1. Merge queries into one command
-2. Alternate commands and assertions
+1. Do not mix queries and commands
+2. Add more assertions
 
 +++
 
