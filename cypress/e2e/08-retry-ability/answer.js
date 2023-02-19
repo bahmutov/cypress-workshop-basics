@@ -177,7 +177,8 @@ describe('retry-ability', () => {
       {
         log: '5 todos',
         delay: 1000,
-        timeout: 6000,
+        timeout: 10_000,
+        limit: 6,
         post({ iteration }) {
           cy.get('.new-todo').type(`todo ${iteration}{enter}`)
         }
