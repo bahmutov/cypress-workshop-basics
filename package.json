@@ -51,7 +51,7 @@
     "find-cypress-specs": "1.33.0",
     "highlight.js": "11.7.0",
     "prettier": "2.8.7",
-    "reveal.js": "4.4.0",
+    "reveal.js": "4.5.0",
     "start-server-and-test": "2.0.0",
     "vite": "4.2.1"
   },
