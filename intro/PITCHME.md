@@ -50,11 +50,7 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 
 ## Time 🕰
 
-- total workshop duration 6-7 hours
-- one day
-  - 9:00-12:00 part 1
-  - 12:00-12:55 lunch 🍲
-  - 13:00-17:00 part 2
+- total workshop duration 6-8 hours
 - time for questions during the workshop and after each section
 
 +++
