@@ -42,15 +42,39 @@ $ npm -v
 # for example 6.14.13
 ```
 
-In order to get the code and install NPM dependencies
+### Clone the repo
+
+In order to get the code and install NPM dependencies, first clone my repo to your local machine.
 
 ```bash
 git clone git@github.com:bahmutov/cypress-workshop-basics.git
+
+Cloning into ...
+```
+
+**Tip:** if you are having permission problems cloning using the `git@github.com:bahmutov/cypress-workshop-basics.git` URL, try using HTTPS URL to clone the same repo:
+
+```bash
+git clone https://github.com/bahmutov/cypress-workshop-basics.git
+
+Cloning into ...
+```
+
+### Install NPM dependencies
+
+Change the working folder to the cloned repository folder
+
+```bash
 cd cypress-workshop-basics
+```
+
+The cloned repo has the file `package.json` with all NPM dependencies. Let's install these NPM dependencies
+
+```bash
 npm install
 ```
 
-If necessary, install dependencies inside TodoMVC folder
+If necessary, install dependencies inside TodoMVC folder.
 
 ```bash
 cd todomvc
