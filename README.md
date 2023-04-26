@@ -223,6 +223,8 @@ npm run slides
 - https://www.youtube.com/glebbahmutov
 - https://slides.com/bahmutov
 - https://cypresstips.substack.com/
+- 📝 read [Cypress TodoMVC Questions Answered](https://glebbahmutov.com/blog/cypress-todomvc-questions/)
+- ✅ [Cypress Skills Checklist](https://cypress.tips/skills)
 
 ## Other workshops
 
