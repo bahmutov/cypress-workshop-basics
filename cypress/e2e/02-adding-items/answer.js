@@ -309,5 +309,24 @@ it('checks the meta tags in the head element', () => {
     .should('include', 'workshop')
 })
 
+describe('Title', () => {
+  it('adds an item with test case title', () => {
+    expect(Cypress.currentTest.title, 'just the test title').to.equal(
+      'adds an item with test case title'
+    )
+    expect(Cypress.currentTest.titlePath, 'full test path').to.deep.equal([
+      'Title',
+      'adds an item with test case title'
+    ])
+    // let all todos load
+    cy.wait(1000)
+    const title = Cypress._.kebabCase(
+      Cypress._.deburr(Cypress.currentTest.titlePath.join(' '))
+    )
+    addItem(title)
+    cy.contains('.todo', title)
+  })
+})
+
 // what a challenge?
 // test more UI at http://todomvc.com/examples/vue/
