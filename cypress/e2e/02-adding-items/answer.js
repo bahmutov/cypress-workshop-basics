@@ -310,21 +310,28 @@ it('checks the meta tags in the head element', () => {
 })
 
 describe('Title', () => {
-  it('adds an item with test case title', () => {
+  it.only('adds an item with test case title', () => {
+    // confirm the current test title
     expect(Cypress.currentTest.title, 'just the test title').to.equal(
       'adds an item with test case title'
     )
+    // confirm the current full test name
+    // (the parent suite title(s) plus the test title)
     expect(Cypress.currentTest.titlePath, 'full test path').to.deep.equal([
       'Title',
       'adds an item with test case title'
     ])
     // let all todos load
     cy.wait(1000)
+    // normalize the full test title to remove characters
+    // and maybe make it into a single string like "foo-bar-baz-..."
     const title = Cypress._.kebabCase(
       Cypress._.deburr(Cypress.currentTest.titlePath.join(' '))
     )
-    addItem(title)
-    cy.contains('.todo', title)
+    // add a new todo with the normalized title
+    cy.get('.new-todo').type(title + '{enter}')
+    // confirm the list has the new todo at the first position in the list
+    cy.get('li.todo label').last().should('have.text', title)
   })
 })
 

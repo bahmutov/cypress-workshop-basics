@@ -217,5 +217,22 @@ it('checks the meta tags in the head element', () => {
   // confirm the meta tag description includes the expected text "workshop"
 })
 
+describe('Title', () => {
+  it('adds an item with test case title', () => {
+    // confirm the current test title
+    // confirm the current full test name
+    // (the parent suite title(s) plus the test title)
+    //
+    // let all todos load
+    cy.wait(1000)
+    // normalize the full test title to remove characters
+    // and maybe make it into a single string like "foo-bar-baz-..."
+    //
+    // add a new todo with the normalized title
+    //
+    // confirm the list has the new todo at the first position in the list
+  })
+})
+
 // what a challenge?
 // test more UI at http://todomvc.com/examples/vue/
