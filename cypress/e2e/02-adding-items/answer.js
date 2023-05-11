@@ -310,7 +310,7 @@ it('checks the meta tags in the head element', () => {
 })
 
 describe('Title', () => {
-  it.only('adds an item with test case title', () => {
+  it('adds an item with test case title', () => {
     // confirm the current test title
     expect(Cypress.currentTest.title, 'just the test title').to.equal(
       'adds an item with test case title'

@@ -60,7 +60,7 @@ module.exports = defineConfig({
         resetData()
       })
     },
-    specPattern: ['cypress/e2e/*/spec.js', 'cypress/e2e/*/answer.js'],
+    specPattern: ['cypress/e2e/*/spec.js', 'cypress/e2e/*/demo.js'],
     baseUrl: 'http://localhost:3000'
   }
 })
