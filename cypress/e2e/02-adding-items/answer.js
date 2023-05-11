@@ -321,6 +321,8 @@ describe('Title', () => {
       'Title',
       'adds an item with test case title'
     ])
+    // visit the page
+    cy.visit('/')
     // let all todos load
     cy.wait(1000)
     // normalize the full test title to remove characters

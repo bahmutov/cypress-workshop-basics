@@ -223,6 +223,8 @@ describe('Title', () => {
     // confirm the current full test name
     // (the parent suite title(s) plus the test title)
     //
+    // visit the page
+    //
     // let all todos load
     cy.wait(1000)
     // normalize the full test title to remove characters
