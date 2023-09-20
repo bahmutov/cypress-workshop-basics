@@ -137,7 +137,7 @@ Alternative: use [start-server-and-test](https://github.com/bahmutov/start-serve
   "scripts": {
     "start": "npm start --prefix todomvc -- --quiet",
     "test": "cypress run",
-    "ci": "start-test 3000"
+    "ci": "start-test http://localhost:3000"
   }
 }
 ```
@@ -146,7 +146,7 @@ Alternative: use [start-server-and-test](https://github.com/bahmutov/start-serve
 
 ## CircleCI Cypress Orb
 
-A _much simpler_ CI configuration.
+A _much simpler_ CI configuration. **⚠️ Warning:** Cypress Orb v3 has significant changes.
 
 ```yaml
 version: 2.1
@@ -255,9 +255,9 @@ jobs:
   cypress-run:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       # https://github.com/cypress-io/github-action
-      - uses: cypress-io/github-action@v5
+      - uses: cypress-io/github-action@v6
         with:
           start: npm start
           wait-on: 'http://localhost:3000'
@@ -300,12 +300,13 @@ jobs:
 1. Run changed specs first
 2. Run tests by tag
 3. Run tests in parallel
+4. Run specs based on test IDs in the modified source files
 
 +++
 
 1. Run changed specs first
 
-Read [Get Faster Feedback From Your Cypress Tests Running On CircleCI](https://glebbahmutov.com/blog/faster-ci-feedback-on-circleci/)
+📝 Read [Get Faster Feedback From Your Cypress Tests Running On CircleCI](https://glebbahmutov.com/blog/faster-ci-feedback-on-circleci/)
 
 ```
 $ specs=$(npx find-cypress-specs --branch main)
@@ -318,7 +319,7 @@ See [find-cypress-specs](https://github.com/bahmutov/find-cypress-specs)
 
 2. Run tests by tag
 
-Read [How To Tag And Run End-to-End Tests](https://glebbahmutov.com/blog/tag-tests/)
+📝 Read [How To Tag And Run End-to-End Tests](https://glebbahmutov.com/blog/tag-tests/)
 
 ```js
 it('logs in', { tags: 'user' }, () => ...)
@@ -338,11 +339,17 @@ See [@bahmutov/cy-grep](https://github.com/bahmutov/cy-grep)
 
 +++
 
+4. Run specs based on test IDs in the modified source files
+
+📝 Read [Using Test Ids To Pick Cypress Specs To Run](https://glebbahmutov.com/blog/using-test-ids-to-pick-specs-to-run/)
+
++++
+
 ## Examples of running specs in parallel
 
-- [Make Cypress Run Faster by Splitting Specs](https://glebbahmutov.com/blog/split-spec/)
-- [Split Long GitHub Action Workflow Into Parallel Cypress Jobs](https://glebbahmutov.com/blog/parallel-cypress-tests-gh-action/)
-- [Testing Time Zones in Parallel](https://glebbahmutov.com/blog/testing-timezones/)
+- 📝 [Make Cypress Run Faster by Splitting Specs](https://glebbahmutov.com/blog/split-spec/)
+- 📝 [Split Long GitHub Action Workflow Into Parallel Cypress Jobs](https://glebbahmutov.com/blog/parallel-cypress-tests-gh-action/)
+- 📝 [Testing Time Zones in Parallel](https://glebbahmutov.com/blog/testing-timezones/)
 
 ---
 
@@ -365,4 +372,4 @@ Find the CI you use on [https://on.cypress.io/continuous-integration](https://on
 - my [GitHub Actions blog posts](https://glebbahmutov.com/blog/tags/github/)
 - my [CircleCI blog posts](https://glebbahmutov.com/blog/tags/circle/)
 
-➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents) or jump to the [08-retry-ability](?p=08-retry-ability) chapter
