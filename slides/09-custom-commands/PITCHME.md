@@ -33,12 +33,12 @@ Before each test we need to reset the server data and visit the page. The data c
 
 ---
 
-### Todo: move them into `cypress/support/index.js`
+### Todo: move them into `cypress/support/e2e.js`
 
 Now these `beforeEach` hooks will be loaded _before every_ test in every spec. The test runner loads the spec files like this:
 
 ```html
-<script src="cypress/support/index.js"></script>
+<script src="cypress/support/e2e.js"></script>
 <script src="cypress/e2e/09-custom-commands/spec.js"></script>
 ```
 
@@ -114,7 +114,7 @@ More details in: [https://slides.com/bahmutov/ts-without-ts](https://slides.com/
 - add a custom command
 - add a custom query
 - overwrite a command
-- overwrite a query (v12.6.0)
+- overwrite a query (v12.6.0+)
 
 ---
 
@@ -259,12 +259,12 @@ const cmd = Cypress.log({
 
 ## 3rd party custom commands
 
-- [cypress-map](https://github.com/bahmutov/cypress-map)
-- [cypress-real-events](https://github.com/dmtrKovalenko/cypress-real-events)
+- [cypress-map](https://github.com/bahmutov/cypress-map) 👍👍👍
+- [cypress-real-events](https://github.com/dmtrKovalenko/cypress-real-events) 👍👍
 - [@bahmutov/cy-grep](https://github.com/bahmutov/cy-grep)
-- [cypress-recurse](https://github.com/bahmutov/cypress-recurse)
-- [cypress-xpath](https://github.com/cypress-io/cypress-xpath)
+- [cypress-recurse](https://github.com/bahmutov/cypress-recurse) 👍
 - [cypress-plugin-snapshots](https://github.com/meinaart/cypress-plugin-snapshots)
+- [cypress-xpath](https://github.com/cypress-io/cypress-xpath) 🔻
 
 [on.cypress.io/plugins#custom-commands](https://on.cypress.io/plugins#custom-commands)
 
@@ -277,7 +277,7 @@ const cmd = Cypress.log({
 npm install -D cypress-xpath
 ```
 
-in `cypress/support/index.js`
+in `cypress/support/e2e.js`
 
 ```js
 require('cypress-xpath')
@@ -348,11 +348,11 @@ Cypress.Commands.overwrite('type', (type, $el, text, options) => {
 
 Read [https://glebbahmutov.com/blog/writing-custom-cypress-command/](https://glebbahmutov.com/blog/writing-custom-cypress-command/) and [https://glebbahmutov.com/blog/publishing-cypress-command/](https://glebbahmutov.com/blog/publishing-cypress-command/)
 
-+++
+---
 
-## Good plugins
+## My Fav Plugins
 
 - https://cypresstips.substack.com/p/my-favorite-cypress-plugins
 - https://cypresstips.substack.com/p/my-favorite-cypress-plugins-part
 
-➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents) or jump to the [10-component-testing](?p=10-component-testing) chapter

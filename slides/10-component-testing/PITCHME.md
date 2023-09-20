@@ -6,6 +6,8 @@
 - write simple tests
 - run tests on CI
 
+📝 [How Cypress Component Testing Was Born](https://glebbahmutov.com/blog/how-cypress-component-testing-was-born/)
+
 +++
 
 - clone repo https://github.com/bahmutov/the-fuzzy-line
@@ -45,4 +47,4 @@ There are several component testing placeholders in `src` folder
 - https://slides.com/bahmutov/test-components-without-fear
 - https://cypress.tips/courses
 
-➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents) or jump to the [end](?p=end) chapter
