@@ -337,5 +337,6 @@ You can spy on every network request and keep track of its timestamp. Waiting fo
 
 - confirm the REST calls
 - stub random data
+- 🎓 [Cypress Network Testing Exercises](https://cypress.tips/courses/network-testing) course
 
-➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents) or jump to the [06-app-data-store](?p=06-app-data-store) chapter
