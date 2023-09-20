@@ -9,7 +9,7 @@
 
 ## What kind of tests?
 
-- discussion: what would you test in the TodoMVC app?
+- discussion 🗣️: what would you test in the TodoMVC app?
 
 Note:
 Longer tests, adding items then deleting one for example. Adding items via GUI and observing communication with the server. Adding items then reloading the page.
@@ -38,7 +38,7 @@ We will reset the previously saved Todo items in section "4 Reset State".
 
 ```js
 // cypress/e2e/02-adding-items/spec.js
-it.only('adds two items', () => {
+it('adds two items', () => {
   // visit the site
   // https://on.cypress.io/visit
   // repeat twice
@@ -179,14 +179,6 @@ Todo: write test "disables the built-in assertion".
 
 ---
 
-## Todo: delete all items at the start
-
-Todo: write the test "deletes all items at the start"
-
-There might be two implementations (cy.each vs click on multiple elements)
-
----
-
 ## Todo: number of items increments by one
 
 How do you check if an unknown number of items grows by one? There might be no items at first.
@@ -281,10 +273,11 @@ Revisit the discussion about what kind of tests one should write. E2E tests can 
 
 +++
 
-### Unit vs E2E
+### Unit vs component vs E2E
 
-- if you are describing how code works: unit test
-- if you are describing how code is used by the user: end-to-end test
+- if you are describing how code works: **unit test**
+- if you are testing a component that runs in the browser: **component test**
+- if you are describing how code is used by the user: **end-to-end test**
 
 +++
 
@@ -362,4 +355,4 @@ Support file is included before each spec file.
 - go through UI
 - validate the application after actions
 
-➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents) or jump to the [03-selector-playground](?p=03-selector-playground) chapter
