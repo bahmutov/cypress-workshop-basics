@@ -9,6 +9,7 @@
 - GitHub Actions example
 - GitHub reusable workflows
 - How to run tests faster
+- Cypress paid Test Replay
 
 ---
 
@@ -286,7 +287,7 @@ jobs:
 
 ---
 
-## Cypress on CI: take away
+## Cypress on CI: the take away
 
 - use `npm ci` command instead of `npm install`
 - cache `~/.npm` and `~/.cache` folders
@@ -359,6 +360,32 @@ See [@bahmutov/cy-grep](https://github.com/bahmutov/cy-grep)
 - 📝 read https://glebbahmutov.com/blog/cypress-parallel-free/
 
 ---
+
+## Test Replay
+
+- optional paid Cypress service for recording tests
+- requires Cypress v13+
+- recreates the local time travel experience
+
++++
+
+![Cypress cloud badge](./img/cypress-cloud-badge.png)
+
+Click on the Cypress Cloud badge to view recorded tests
+
++++
+
+Test replays for each test run at https://cloud.cypress.io/projects/89mmxs/runs
+
+Good example test is "can mark an item as completed" from `02-adding-items/answer.js`
+
++++
+
+![Test Replay button](./img/replay-button.png)
+
++++
+
+![Test Replay screenshot](./img/replay.png)
 
 ## Todo
 
