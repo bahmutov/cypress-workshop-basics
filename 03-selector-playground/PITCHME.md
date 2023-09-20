@@ -114,4 +114,4 @@ Watch 📹 [Record A Test Using Cypress Studio](https://www.youtube.com/watch?v=
 - pick elements using Selector Playground
 - record tests using Cypress Studio
 
-➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents) or jump to the [04-reset-state](?p=04-reset-state) chapter

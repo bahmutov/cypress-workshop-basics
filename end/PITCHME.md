@@ -21,6 +21,5 @@
 
 Thank you for learning E2E testing with [Cypress.io](https://www.cypress.io)
 
-- [https://docs.cypress.io/](https://docs.cypress.io/) and [https://learn.cypress.io/](https://learn.cypress.io/)
-- [https://on.cypress.io/chat](https://on.cypress.io/chat), [https://on.cypress.io/discord](https://on.cypress.io/discord)
-- **My resources** [cypress.tips](https://cypress.tips) and [https://cypresstips.substack.com/](https://cypresstips.substack.com/), https://glebbahmutov.com/cypress-examples, https://www.youtube.com/glebbahmutov
+- [https://docs.cypress.io/](https://docs.cypress.io/) and [https://on.cypress.io/discord](https://on.cypress.io/discord)
+- **My resources** [cypress.tips](https://cypress.tips) and [https://cypresstips.substack.com/](https://cypresstips.substack.com/), https://glebbahmutov.com/cypress-examples, https://www.youtube.com/glebbahmutov, https://glebbahmutov.com/discord

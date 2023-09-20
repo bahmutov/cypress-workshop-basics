@@ -94,4 +94,4 @@ See [https://on.cypress.io/command-line](https://on.cypress.io/command-line)
 - run Cypress in headless mode on CI with `cypress run`
 - screenshots and videos
 
-➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents) or jump to the [02-adding-items](?p=02-adding-items) chapter

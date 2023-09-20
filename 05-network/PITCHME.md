@@ -9,7 +9,7 @@
 +++
 
 - keep `todomvc` app running
-- open `cypress/e2e/05-xhr/spec.js`
+- open `cypress/e2e/05-network/spec.js`
 - read [cy.intercept](https://on.cypress.io/intercept) API documentation
 
 📖 Fun read: [Cypress Network Requests Guide](https://on.cypress.io/network-requests) and [https://glebbahmutov.com/blog/cypress-intercept-problems/](https://glebbahmutov.com/blog/cypress-intercept-problems/)
@@ -47,7 +47,7 @@ it('starts with zero items', () => {
 ## Waiting
 
 ```javascript
-// 05-xhr/spec.js
+// 05-network/spec.js
 it('starts with zero items (waits)', () => {
   cy.visit('/')
   cy.wait(1000)
@@ -90,7 +90,7 @@ axios.get('/todos')
 
 ### Todo
 
-Use the test "starts with zero items" in the file `05-xhr/spec.js`
+Use the test "starts with zero items" in the file `05-network/spec.js`
 
 - spy on specific route with "cy.intercept" <!-- .element: class="fragment" -->
   - should we set the spy _before_ or _after_ `cy.visit`?
@@ -129,7 +129,7 @@ add to the test "starts with zero items":
 
 ## Todo
 
-There are multiple tests in the "05-xhr/spec.js" that you can go through
+There are multiple tests in the "05-network/spec.js" that you can go through
 
 - 'starts with zero items (delay)'
 - 'starts with zero items (delay plus render delay)'
@@ -202,7 +202,7 @@ It is important to be able to use DevTools network tab to inspect the XHR and it
 ![Post new item](./img/post-item.png)
 
 Note:
-see instructions in the `05-xhr/spec.js` for the test
+see instructions in the `05-network/spec.js` for the test
 
 +++
 
@@ -213,7 +213,7 @@ see instructions in the `05-xhr/spec.js` for the test
 ![Post new item response](./img/post-item-response.png)
 
 Note:
-see instructions in the `05-xhr/spec.js` for the test
+see instructions in the `05-network/spec.js` for the test
 
 +++
 
@@ -226,7 +226,7 @@ see instructions in the `05-xhr/spec.js` for the test
 ![Post new item response](./img/post-item-response.png)
 
 Note:
-see instructions in the `05-xhr/spec.js` for the test
+see instructions in the `05-network/spec.js` for the test
 
 ---
 
@@ -271,7 +271,7 @@ In the application we are showing (very quickly) "Loading" state
 ## Refactor a failing test
 
 ```js
-// cypress/e2e/05-xhr/spec.js
+// cypress/e2e/05-network/spec.js
 // can you fix this test?
 it.skip('confirms the right Todo item is sent to the server', () => {
   const id = cy.wait('@postTodo').then((intercept) => {
@@ -337,5 +337,6 @@ You can spy on every network request and keep track of its timestamp. Waiting fo
 
 - confirm the REST calls
 - stub random data
+- 🎓 [Cypress Network Testing Exercises](https://cypress.tips/courses/network-testing) course
 
-➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents) or jump to the [06-app-data-store](?p=06-app-data-store) chapter

@@ -252,4 +252,4 @@ Read also:
 - https://glebbahmutov.com/blog/stub-navigator-api/
 - https://glebbahmutov.com/blog/realworld-app-action/
 
-➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents) or jump to the [07-ci](?p=07-ci) chapter
