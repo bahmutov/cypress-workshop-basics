@@ -759,4 +759,4 @@ DOM 🎉 Network 🎉 Application methods 🎉
 
 1. Test retries and `cy.wait(N)` if tests are still flaky
 
-➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents) or jump to the [09-custom-commands](?p=09-custom-commands) chapter
