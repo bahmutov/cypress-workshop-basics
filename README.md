@@ -215,16 +215,14 @@ npm run slides
 
 ## Additional information
 
-- https://www.cypress.io/
-- https://docs.cypress.io/
-- https://learn.cypress.io/
-- https://glebbahmutov.com/cypress-examples/
 - https://cypress.tips/
+- https://glebbahmutov.com/cypress-examples/
 - https://www.youtube.com/glebbahmutov
 - https://slides.com/bahmutov
 - https://cypresstips.substack.com/
 - 📝 read [Cypress TodoMVC Questions Answered](https://glebbahmutov.com/blog/cypress-todomvc-questions/)
 - ✅ [Cypress Skills Checklist](https://cypress.tips/skills)
+- https://docs.cypress.io/
 
 ## Other workshops
 

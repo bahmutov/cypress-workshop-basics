@@ -13,12 +13,12 @@
 
 ```bash
 $ node -v
-v14.17.1
+v18.14.2
 $ npm -v
-6.14.13
+9.5.0
 # optional:
 $ yarn -v
-1.22.10
+1.22.19
 ```
 
 If you need to install Node, see [Basics Requirements](https://github.com/bahmutov/cypress-workshop-basics#requirements) and 📹 [Install Node and Cypress](https://www.youtube.com/watch?v=09KbTRLrgWA)
@@ -196,7 +196,7 @@ it('loads', () => {
 ## Questions
 
 - what does Cypress do?
-- what happens when the server is down?
+- what happens when the server is down? <!-- .element: class="fragment" -->
   - stop the application server running in folder `todomvc`
   - reload the tests
 
@@ -305,11 +305,21 @@ Students should know where to find information later on. Main resources is the a
 
 ![Cypress tips search](./img/cypress-tips-search.png)
 
++++
+
+## Todo: find using cypress.tips/search
+
+- Cypress assertion examples
+- URL and location examples
+- Cypress tips bog posts
+- Videos on making Cypress tests run faster
+
 ---
 
 ## 🏁 Conclusions
 
-- use IntelliSense
-- use Docs are [https://docs.cypress.io/](https://docs.cypress.io/)
+- set up IntelliSense
+- use Docs at [https://docs.cypress.io/](https://docs.cypress.io/)
+- use my [cypress.tips/search](https://cypress.tips/search)
 
-➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents) or jump to the [01-basic](?p=01-basic) chapter

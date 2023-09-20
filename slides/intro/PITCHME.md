@@ -13,8 +13,8 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 - actively using Cypress since 2016
 - [gleb.dev](https://gleb.dev)
 - [@bahmutov](https://twitter.com/bahmutov)
-- [https://glebbahmutov.com/blog/tags/cypress/](https://glebbahmutov.com/blog/tags/cypress/) 250+ Cypress blog posts
-- [https://www.youtube.com/glebbahmutov](https://www.youtube.com/glebbahmutov) 400+ Cypress videos
+- [https://glebbahmutov.com/blog/tags/cypress/](https://glebbahmutov.com/blog/tags/cypress/) 300+ Cypress blog posts
+- [https://www.youtube.com/glebbahmutov](https://www.youtube.com/glebbahmutov) 500+ Cypress videos
 - [cypress.tips](https://cypress.tips) with links, search, my courses
 - [Cypress Tips](https://cypresstips.substack.com/) monthly newsletter
 
@@ -40,7 +40,7 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 ## What we are going to cover 2/2
 
 - network spying and stubbing, fixtures
-- running E2E tests on CI
+- running E2E tests on CI / Test Replay
 - retry-ability and flake-free tests
 - custom commands
 - component testing
@@ -48,16 +48,20 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 
 ---
 
-## Time 🕰
+## Schedule 🕰
 
-- total workshop duration 6-8 hours
+- Unit 1: 08.30am - 10.00am ☕️
+- Unit 2: 10.30am - 12.00pm
+- Lunch Break: 12.00pm to 1.00pm
+- Unit 3: 1.00pm - 2.30pm ☕️
+- Unit 4: 3.00pm - 4.30pm
 - time for questions during the workshop and after each section
 
 +++
 
 <!-- Please: if you have experience with Cypress.io, help others during the workshop 🙏 -->
 
-## Poll 1: have you used Cypress before?
+## Poll 1 🗳️: have you used Cypress before?
 
 - This is my first time
 - Using for less than 1 month 👍<!-- .element: class="fragment" -->
@@ -67,7 +71,7 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 
 ---
 
-## Poll 2: have you used other E2E test runners?
+## Poll 2 🗳️: have you used other E2E test runners?
 
 - Selenium / Webdriver
 - Protractor <!-- .element: class="fragment" -->
@@ -77,17 +81,18 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 
 ---
 
-## Poll 3: what unit testing tool do you use?
+## Poll 3 🗳️: what unit testing tool do you use?
 
 - Jest
 - Mocha <!-- .element: class="fragment" -->
 - Ava <!-- .element: class="fragment" -->
 - Tap/Tape <!-- .element: class="fragment" -->
+- `node:test` <!-- .element: class="fragment" -->
 - Something else? <!-- .element: class="fragment" -->
 
 ---
 
-## Last poll: Do you use TypeScript
+## Last poll 🗳️: Do you use TypeScript
 
 - no
 - a little <!-- .element: class="fragment" -->
@@ -110,7 +115,7 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 
 🎉 If you can make all "cypress/e2e/.../spec.js" tests work, you know Cypress.
 
-**Tip:** there are about 80+ tests to fill with code, see them with "npm run names" command <!-- .element: class="fragment" -->
+Tip 💡: there are about 90+ tests to fill with code, see them with "npm run names" command by using "find-cypress-specs" <!-- .element: class="fragment" -->
 
 ---
 
@@ -119,7 +124,7 @@ Jump to: [00-start](?p=00-start), [01-basic](?p=01-basic), [02-adding-items](?p=
 You will need:
 
 - `git` to clone this repo
-- Node v14+ to install dependencies
+- Node v16+ to install dependencies
 
 ```text
 git clone <repo url>
@@ -209,4 +214,8 @@ This app has been coded and described in this blog post [https://www.cypress.io/
 
 This app has been coded and described in this blog post [https://www.cypress.io/blog/2017/11/28/testing-vue-web-application-with-vuex-data-store-and-rest-backend/](https://www.cypress.io/blog/2017/11/28/testing-vue-web-application-with-vuex-data-store-and-rest-backend/)
 
-➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents)
+---
+
+## End of introduction
+
+➡️ Pick the [next section](https://github.com/bahmutov/cypress-workshop-basics#contents) or go to the [00-start](?p=00-start) chapter
