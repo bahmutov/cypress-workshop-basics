@@ -52,7 +52,7 @@
     "highlight.js": "11.9.0",
     "prettier": "3.0.3",
     "reveal.js": "5.0.1",
-    "start-server-and-test": "2.0.1",
+    "start-server-and-test": "2.0.2",
     "vite": "4.5.0"
   },
   "engines": {
