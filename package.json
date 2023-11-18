@@ -43,7 +43,7 @@
   "homepage": "https://github.com/bahmutov/cypress-workshop-basics#readme",
   "devDependencies": {
     "cy-spok": "1.6.2",
-    "cypress": "13.5.0",
+    "cypress": "13.5.1",
     "cypress-cdp": "1.3.0",
     "cypress-map": "1.21.1",
     "cypress-real-events": "1.11.0",
