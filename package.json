@@ -44,7 +44,7 @@
   "devDependencies": {
     "cy-spok": "1.6.2",
     "cypress": "13.6.6",
-    "cypress-cdp": "1.4.1",
+    "cypress-cdp": "1.4.2",
     "cypress-map": "1.33.0",
     "cypress-real-events": "1.12.0",
     "cypress-recurse": "1.35.2",
