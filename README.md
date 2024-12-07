@@ -2,7 +2,7 @@
 
 [![ci status][ci image]][ci url] [![badges status][badges image]][badges url] [![slides status][slides image]][slides url] [![CircleCI](https://circleci.com/gh/bahmutov/cypress-workshop-basics/tree/main.svg?style=svg)](https://circleci.com/gh/bahmutov/cypress-workshop-basics/tree/main)
 
-[![cypress-workshop-basics](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/count/89mmxs/main&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/89mmxs/runs) [![renovate-app badge][renovate-badge]][renovate-app] ![cypress version](https://img.shields.io/badge/cypress-13.16.0-brightgreen)
+[![cypress-workshop-basics](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/count/89mmxs/main&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/89mmxs/runs) [![renovate-app badge][renovate-badge]][renovate-app] ![cypress version](https://img.shields.io/badge/cypress-13.16.1-brightgreen)
 
 > Basics of end-to-end testing with [Cypress.io](https://www.cypress.io) test runner
 
