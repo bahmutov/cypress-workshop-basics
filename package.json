@@ -45,7 +45,7 @@
     "cy-spok": "1.6.2",
     "cypress": "14.4.1",
     "cypress-cdp": "1.6.82",
-    "cypress-map": "1.48.1",
+    "cypress-map": "1.49.0",
     "cypress-real-events": "1.14.0",
     "cypress-recurse": "1.37.1",
     "find-cypress-specs": "1.54.1",
