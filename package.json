@@ -48,7 +48,7 @@
     "cypress-map": "1.49.0",
     "cypress-real-events": "1.14.0",
     "cypress-recurse": "1.37.1",
-    "find-cypress-specs": "1.54.1",
+    "find-cypress-specs": "1.54.4",
     "highlight.js": "11.11.1",
     "prettier": "3.5.3",
     "reveal.js": "5.2.1",
