@@ -50,7 +50,7 @@
     "cypress-recurse": "1.37.1",
     "find-cypress-specs": "1.54.5",
     "highlight.js": "11.11.1",
-    "prettier": "3.5.3",
+    "prettier": "3.6.2",
     "reveal.js": "5.2.1",
     "start-server-and-test": "2.0.12",
     "vite": "7.0.5"
