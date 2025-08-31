@@ -11,7 +11,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 22
 
       - name: Print versions 🖨️
         run: node -v
@@ -41,7 +41,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 22
 
       # https://github.com/cypress-io/github-action
       - name: Test answers 🤔
