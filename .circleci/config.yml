@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   # https://github.com/cypress-io/circleci-orb
-  cypress: cypress-io/cypress@5.0.1
+  cypress: cypress-io/cypress@6.0.0
 workflows:
   build:
     jobs:
