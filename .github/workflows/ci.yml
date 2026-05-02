@@ -18,7 +18,7 @@ jobs:
 
       # https://github.com/cypress-io/github-action
       - name: Run Cypress tests 🧪
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v7.1.10
         with:
           config-file: 'cypress.ci-config.js'
           start: 'npm start'
@@ -45,7 +45,7 @@ jobs:
 
       # https://github.com/cypress-io/github-action
       - name: Test answers 🤔
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7.1.10
         with:
           start: 'npm start'
           wait-on: 'http://localhost:3000'
