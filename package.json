@@ -53,7 +53,7 @@
     "prettier": "3.8.5",
     "reveal.js": "6.0.1",
     "start-server-and-test": "3.0.12",
-    "vite": "8.2.1"
+    "vite": "8.2.2"
   },
   "engines": {
     "node": ">=12"
