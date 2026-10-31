@@ -16,7 +16,7 @@ jobs:
 
       # https://github.com/cypress-io/github-action
       - name: Test slides 🎞
-        uses: cypress-io/github-action@v7.4.7
+        uses: cypress-io/github-action@v7.4.8
         with:
           config-file: 'cypress.slides-config.js'
           start: 'npm run slides'
